@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/collab3d/static/css/main.38bcfe9d.chunk.css",
+    "main.js": "/collab3d/static/js/main.f8972433.chunk.js",
+    "main.js.map": "/collab3d/static/js/main.f8972433.chunk.js.map",
+    "runtime-main.js": "/collab3d/static/js/runtime-main.c651fb5f.js",
+    "runtime-main.js.map": "/collab3d/static/js/runtime-main.c651fb5f.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/collab3d/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.9dc2fe6c.chunk.js": "/collab3d/static/js/2.9dc2fe6c.chunk.js",
+    "static/js/2.9dc2fe6c.chunk.js.map": "/collab3d/static/js/2.9dc2fe6c.chunk.js.map",
+    "index.html": "/collab3d/index.html",
+    "precache-manifest.d8b33c356b94d4d5ff44be8317fb7ab5.js": "/collab3d/precache-manifest.d8b33c356b94d4d5ff44be8317fb7ab5.js",
+    "service-worker.js": "/collab3d/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/collab3d/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.38bcfe9d.chunk.css.map": "/collab3d/static/css/main.38bcfe9d.chunk.css.map",
+    "static/js/2.9dc2fe6c.chunk.js.LICENSE": "/collab3d/static/js/2.9dc2fe6c.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c651fb5f.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.9dc2fe6c.chunk.js",
+    "static/css/main.38bcfe9d.chunk.css",
+    "static/js/main.f8972433.chunk.js"
+  ]
+}
