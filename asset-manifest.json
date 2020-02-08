@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/collab3d/static/css/main.d38d9af1.chunk.css",
-    "main.js": "/collab3d/static/js/main.6b8ab7d4.chunk.js",
-    "main.js.map": "/collab3d/static/js/main.6b8ab7d4.chunk.js.map",
+    "main.js": "/collab3d/static/js/main.560721c5.chunk.js",
+    "main.js.map": "/collab3d/static/js/main.560721c5.chunk.js.map",
     "runtime-main.js": "/collab3d/static/js/runtime-main.c651fb5f.js",
     "runtime-main.js.map": "/collab3d/static/js/runtime-main.c651fb5f.js.map",
     "static/css/2.47e06e2e.chunk.css": "/collab3d/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.cf14c816.chunk.js": "/collab3d/static/js/2.cf14c816.chunk.js",
-    "static/js/2.cf14c816.chunk.js.map": "/collab3d/static/js/2.cf14c816.chunk.js.map",
+    "static/js/2.11de09fe.chunk.js": "/collab3d/static/js/2.11de09fe.chunk.js",
+    "static/js/2.11de09fe.chunk.js.map": "/collab3d/static/js/2.11de09fe.chunk.js.map",
     "index.html": "/collab3d/index.html",
-    "precache-manifest.1a7a910e551d9784a3bd08cf94c06c15.js": "/collab3d/precache-manifest.1a7a910e551d9784a3bd08cf94c06c15.js",
+    "precache-manifest.c69f1a7f7e10503a40d3ba3ccb36615a.js": "/collab3d/precache-manifest.c69f1a7f7e10503a40d3ba3ccb36615a.js",
     "service-worker.js": "/collab3d/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/collab3d/static/css/2.47e06e2e.chunk.css.map",
     "static/css/main.d38d9af1.chunk.css.map": "/collab3d/static/css/main.d38d9af1.chunk.css.map",
-    "static/js/2.cf14c816.chunk.js.LICENSE": "/collab3d/static/js/2.cf14c816.chunk.js.LICENSE"
+    "static/js/2.11de09fe.chunk.js.LICENSE": "/collab3d/static/js/2.11de09fe.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.c651fb5f.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.cf14c816.chunk.js",
+    "static/js/2.11de09fe.chunk.js",
     "static/css/main.d38d9af1.chunk.css",
-    "static/js/main.6b8ab7d4.chunk.js"
+    "static/js/main.560721c5.chunk.js"
   ]
 }
