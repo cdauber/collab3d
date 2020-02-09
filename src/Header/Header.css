@@ -1,3 +1,48 @@
-.div {
-  background-color: blue;
+.head {
+  background-color: rgb(170, 170, 170);
+  margin: auto;
+  width: 1200px;
+  height: 50px
+}
+
+.greeting{
+  position: relative;
+  text-align: center;
+  font: 70;
+  top: 5px;
+}
+
+.logo{
+  position: relative;
+  height: 80%;
+  width: 80%;
+  bottom: 40px;
+  right: 530px;
+}
+
+.share{
+  color: white;
+  background-color: grey;
+  border-radius: 25px;
+  position: relative;
+  bottom: 37px;
+  left: 850px;
+}
+
+.AR{
+  color: white;
+  background-color: grey;
+  border-radius: 25px;
+  position: relative;
+  bottom: 37px;
+  left: 900px;
+}
+
+.profile{
+  color: white;
+  background-color: grey;
+  border-radius: 75px;
+  position: relative;
+  bottom: 37px;
+  left: 1000px;
 }
