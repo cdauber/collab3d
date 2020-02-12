@@ -25,7 +25,7 @@ export function ModelRenderer2({ setCameraPosition, ...props }) {
     gl={{ outputEncoding: THREE.sRGBEncoding }}
     onCreated={({ gl, scene, camera }) => {
       gl.outputEncoding = THREE.sRGBEncoding;
-      scene.background = new THREE.Color(0xcccccc);
+      scene.background = new THREE.Color(0xfafafa);
       camera.lookAt(0, 0, 0);
 
       setCameraPosition(position => {
