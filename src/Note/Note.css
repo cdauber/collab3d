@@ -1,0 +1,84 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.selected-bar {
+  background-color: #71b2ff;
+  width: 2.19px;
+}
+
+.note {
+  background-color: #fafafa;
+  padding: 10px 10px;
+  /* width: 23vw; */
+  width: 335px;
+  display: flex;
+  flex-direction: column;
+}
+
+.white {
+  background-color: white;
+}
+
+.title-row {
+  background-color: inherit;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.close-button {
+  cursor: pointer;
+}
+
+.content-row {
+  background-color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.profile-image {
+  border-radius: 100%;
+  margin-right: 10px;
+  height: 25px;
+  width: 25px;
+  flex-shrink: 0;
+}
+
+.content-column {
+  background-color: inherit;
+}
+
+.author-name {
+  background-color: inherit;
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.comment {
+  background-color: inherit;
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #424242
+}
+
+.reply {
+  background-color: inherit;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.reply-button {
+  cursor: pointer;
+}
