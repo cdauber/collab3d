@@ -76,7 +76,7 @@ export function NotesColumn({ setCameraPosition }) {
             white={index % 2 === 1}
             onClick={() => {
               setCameraPosition(camera);
-              setSelected(id)
+              setSelected(selected !== id ? id : null);
             }}
             onDelete={() => setNotes(notes.filter(note => note.id !== id))}
             {...note}>
