@@ -20,7 +20,7 @@ function Controls(props) {
   return <orbitControls args={[camera, domElement]} {...props} />
 }
 
-export function ModelRenderer2(props) {
+export function ModelRenderer2({ setCameraPosition, ...props }) {
   return <Canvas camera={{ fov: 60, near: 1, position: [-2, 0, -3] }}
     gl={{ outputEncoding: THREE.sRGBEncoding }}
     onCreated={({ gl, scene, camera }) => {
@@ -28,11 +28,12 @@ export function ModelRenderer2(props) {
       scene.background = new THREE.Color(0xcccccc);
       camera.lookAt(0, 0, 0);
 
-      props.setCameraPosition(position => {
+      setCameraPosition(position => {
         camera.position.set(...position);
         camera.lookAt(0, 0, 0);
       });
-    }}>
+    }}
+    {...props}>
     <Controls minDistance={1} maxDistance={500} />
     <pointLight position={[10, 10, 10]} />
     <pointLight position={[-10, -10, -10]} />
