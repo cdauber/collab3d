@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ModelRenderer from "./ModelRenderer";
+import { ModelRenderer2 } from "./ModelRenderer2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { Container, Button } from "react-bootstrap";
@@ -18,7 +18,7 @@ class MainPage extends React.Component {
         <Row>
           <Col style={{ border: "2px solid green" }}> </Col>
           <Col xs={9} style={{ border: "2px solid blue" }}>
-            <ModelRenderer
+            <ModelRenderer2
               setCameraPosition={click => (this.setCameraPosition = click)}
             />
           </Col>
