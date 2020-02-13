@@ -5,35 +5,28 @@
 
 .selected-bar {
   background-color: #71b2ff;
-  width: 3px;
+  min-width: 3px;
 }
 
 .note {
   background-color: #fafafa;
   padding: 10px 10px;
-  /* width: 23vw; */
-  width: 335px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .white {
   background-color: white;
 }
 
-.title-row {
+.author-row {
   background-color: inherit;
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.title {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
 }
 
 .close-button {
@@ -57,11 +50,11 @@
 
 .content-column {
   background-color: inherit;
+  flex-grow: 1;
 }
 
 .author-name {
   background-color: inherit;
-  margin: 5px 0;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
@@ -70,6 +63,7 @@
 .comment {
   background-color: inherit;
   margin-bottom: 15px;
+  flex-grow: 1;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
