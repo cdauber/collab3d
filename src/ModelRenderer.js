@@ -36,7 +36,6 @@ class ModelRenderer extends Component {
 
     //Renderer- Generally always use webGL
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.outputEncoding = THREE.sRGBEncoding;
     //renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.9);
 
@@ -47,7 +46,7 @@ class ModelRenderer extends Component {
 
     controls.minDistance = 1;
     controls.maxDistance = 500;
-    controls.maxPolarAngle = Math.PI / 2;
+    controls.maxPolarAngle = Math.PI;
 
     //Import the model
     var loader = new GLTFLoader().setPath("models/gltf/microphone/");
@@ -55,6 +54,7 @@ class ModelRenderer extends Component {
       "scene.gltf",
       gltf => {
         // called when the resource is loaded
+        console.log(JSON.stringify(gltf));
         scene.add(gltf.scene);
       },
       xhr => {
@@ -69,6 +69,7 @@ class ModelRenderer extends Component {
     //Bind ThreeJs items to this for use outside componentDidMount
     this.scene = scene;
     this.camera = camera;
+    this.controls = controls;
     this.renderer = renderer;
 
     //Mount
@@ -85,7 +86,13 @@ class ModelRenderer extends Component {
 
   setCameraPosition(param) {
     console.log("setting position to:" + param);
-    this.camera.position.set(...param);
+    this.camera.matrix.fromArray(param);
+    this.camera.matrix.decompose(
+      this.camera.position,
+      this.camera.quaternion,
+      this.camera.scale
+    );
+    //this.camera.updateProjectionMatrix();
   }
   componentWillUnmount() {
     this.stop();
@@ -104,7 +111,8 @@ class ModelRenderer extends Component {
 
   animate() {
     this.renderScene();
-    console.log(this.camera.position);
+    const cameraState = JSON.stringify(this.camera.matrix.toArray());
+    //console.log(cameraState);
     this.frameId = window.requestAnimationFrame(this.animate);
   }
 
