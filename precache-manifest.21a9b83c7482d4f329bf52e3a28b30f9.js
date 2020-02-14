@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d50d1bd9cd8c42a86df469cf23060b49",
+    "revision": "d1abd011c086edfa332aa7c022ca0809",
     "url": "/collab3d/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/collab3d/static/css/2.47e06e2e.chunk.css"
   },
   {
-    "revision": "cd73a8192b69ba527ca3",
+    "revision": "54982b09112a0d217ab4",
     "url": "/collab3d/static/css/main.9f7157fd.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/collab3d/static/js/2.ce279b13.chunk.js.LICENSE"
   },
   {
-    "revision": "cd73a8192b69ba527ca3",
-    "url": "/collab3d/static/js/main.c53e7c02.chunk.js"
+    "revision": "54982b09112a0d217ab4",
+    "url": "/collab3d/static/js/main.b6e4c42e.chunk.js"
   },
   {
     "revision": "31852599b7c42e2b3dbf",
