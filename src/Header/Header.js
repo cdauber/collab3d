@@ -4,21 +4,25 @@ import "./Header.css";
 class Header extends React.Component {
   render() {
     return (<div className = "head">
-      <h2 className = "greeting">Welcome User!</h2>
+      <text className = "greeting">Welcome User!</text>
       <button 
         className = "share"
         onClick={() => alert('share link copied')}> 
-         share
+         <text className = "text1">
+          Share
+         </text>
       </button>
       <button 
         className = "AR"
         onClick={() => alert('more features to come')}> 
-         AR
+         <text className = "text2">
+          AR
+         </text>
       </button>
       <button 
         className = "profile"
         onClick={() => alert('profile')}> 
-        \s
+        
       </button>
       <svg className = "logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3">
         <g fill="#61DAFB">
