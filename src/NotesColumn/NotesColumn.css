@@ -1,64 +1,34 @@
-#notes-column {
+#notes-row {
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  overflow-y: auto;
+  flex-direction: row;
   border-left: 0.2px solid black;
   /* width: 23vw; */
-  width: 335px;
-}
-
-#input-column {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border-bottom: 1px solid #D2D2D2;
-}
-
-#input-label {
-  margin: 10px 12px;
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-}
-
-#input-comment {
-  margin: 0 20px;
-  padding: 15px 17px 10px 17px;
-  border: 1px solid rgba(152, 152, 152, 0.5);
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  height: 18px;
   box-sizing: content-box;
-  outline: none;
+  width: 335px;
+  overflow: hidden;
 }
 
-#input-comment::placeholder {
-  font-style: italic;
-  color: #999999;
+.main-thread {
+  margin-left: 0;
+  transition: margin .3s, opacity .3s, visibility .3s;
+  opacity: 1;
+  visibility: visible;
 }
 
-#input-actions {
-  padding: 0 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
+.main-thread-inactive {
+  margin-left: -336px;
+  opacity: 0;
+  visibility: hidden;
 }
 
-#input-cancel, #input-submit {
-  margin: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  color: #848484;
-  cursor: pointer;
+.active-thread {
+  transition: visibility .3s, opacity .3s;
+  opacity: 1;
+  visibility: visible;
 }
 
-#input-cancel:hover, #input-submit:hover {
-  color: black;
+.active-thread-inactive {
+  opacity: 0;
+  visibility: hidden;
 }
