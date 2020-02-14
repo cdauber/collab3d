@@ -52,7 +52,10 @@ export function MainThread({
             }
           }}
           onDelete={() => setDeleteNoteId(id)}
-          onReply={comment => onReplyNote(id, comment)}
+          onReply={comment => {
+            setSelected(id);
+            onReplyNote(id, comment);
+          }}
           {...note}>
         </Note>
       )

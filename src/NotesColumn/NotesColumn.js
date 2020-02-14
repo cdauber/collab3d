@@ -13,6 +13,10 @@ export function NotesColumn({
   const [activeThread, setActiveThread] = useState(null);
   const [lastActiveThread, setLastActiveThread] = useState(null);
 
+  if (activeThread && notes.find(({id}) => id === activeThread) === undefined) {
+    setActiveThread(null);
+  }
+
   return <div id="notes-row">
     <MainThread
       className={'main-thread' + (activeThread ? ' main-thread-inactive' : '')}
@@ -20,7 +24,7 @@ export function NotesColumn({
       onSelect={onSelect}
       onSubmitComment={onSubmitComment}
       onReplyNote={id => {
-        onSelect(notes.find(note => note.id === id).camera)
+        onSelect(notes.find(note => note.id === id).camera);
         setActiveThread(id);
         setLastActiveThread(id);
       }}

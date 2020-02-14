@@ -121,7 +121,7 @@ function MainPage() {
   const [cameraPosition, setCameraPosition] = useState({ position: [-2, 0, -3], focus: [0, 0, 0] });
   const [camera, setCamera] = useState(undefined);
   const [controls, setControls] = useState(undefined);
-  const [notes, setNotes] = useState(notes1);
+  const [notes, setNotes] = useState(notes2);
 
   return (
     <>
