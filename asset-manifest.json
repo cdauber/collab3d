@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/collab3d/static/css/main.9f7157fd.chunk.css",
-    "main.js": "/collab3d/static/js/main.277dd106.chunk.js",
-    "main.js.map": "/collab3d/static/js/main.277dd106.chunk.js.map",
+    "main.js": "/collab3d/static/js/main.e0373c27.chunk.js",
+    "main.js.map": "/collab3d/static/js/main.e0373c27.chunk.js.map",
     "runtime-main.js": "/collab3d/static/js/runtime-main.c651fb5f.js",
     "runtime-main.js.map": "/collab3d/static/js/runtime-main.c651fb5f.js.map",
     "static/css/2.47e06e2e.chunk.css": "/collab3d/static/css/2.47e06e2e.chunk.css",
     "static/js/2.ce279b13.chunk.js": "/collab3d/static/js/2.ce279b13.chunk.js",
     "static/js/2.ce279b13.chunk.js.map": "/collab3d/static/js/2.ce279b13.chunk.js.map",
     "index.html": "/collab3d/index.html",
-    "precache-manifest.97b9bb9422c1eba052888c799096d5d0.js": "/collab3d/precache-manifest.97b9bb9422c1eba052888c799096d5d0.js",
+    "precache-manifest.ddcd01e6873365555d7907c9d4bb7b28.js": "/collab3d/precache-manifest.ddcd01e6873365555d7907c9d4bb7b28.js",
     "service-worker.js": "/collab3d/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/collab3d/static/css/2.47e06e2e.chunk.css.map",
     "static/css/main.9f7157fd.chunk.css.map": "/collab3d/static/css/main.9f7157fd.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.47e06e2e.chunk.css",
     "static/js/2.ce279b13.chunk.js",
     "static/css/main.9f7157fd.chunk.css",
-    "static/js/main.277dd106.chunk.js"
+    "static/js/main.e0373c27.chunk.js"
   ]
 }
