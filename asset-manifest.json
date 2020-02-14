@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/collab3d/static/css/main.16b619bc.chunk.css",
-    "main.js": "/collab3d/static/js/main.68a67dba.chunk.js",
-    "main.js.map": "/collab3d/static/js/main.68a67dba.chunk.js.map",
+    "main.css": "/collab3d/static/css/main.27023b8a.chunk.css",
+    "main.js": "/collab3d/static/js/main.1a56795e.chunk.js",
+    "main.js.map": "/collab3d/static/js/main.1a56795e.chunk.js.map",
     "runtime-main.js": "/collab3d/static/js/runtime-main.c651fb5f.js",
     "runtime-main.js.map": "/collab3d/static/js/runtime-main.c651fb5f.js.map",
     "static/css/2.47e06e2e.chunk.css": "/collab3d/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.0d1a52c6.chunk.js": "/collab3d/static/js/2.0d1a52c6.chunk.js",
-    "static/js/2.0d1a52c6.chunk.js.map": "/collab3d/static/js/2.0d1a52c6.chunk.js.map",
+    "static/js/2.ee78fe41.chunk.js": "/collab3d/static/js/2.ee78fe41.chunk.js",
+    "static/js/2.ee78fe41.chunk.js.map": "/collab3d/static/js/2.ee78fe41.chunk.js.map",
     "index.html": "/collab3d/index.html",
-    "precache-manifest.a0fae7aeed11d6873831e2b1b070e0cd.js": "/collab3d/precache-manifest.a0fae7aeed11d6873831e2b1b070e0cd.js",
+    "precache-manifest.05c58ee2e47c1eb7ebb83f5ce6682456.js": "/collab3d/precache-manifest.05c58ee2e47c1eb7ebb83f5ce6682456.js",
     "service-worker.js": "/collab3d/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/collab3d/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.16b619bc.chunk.css.map": "/collab3d/static/css/main.16b619bc.chunk.css.map",
-    "static/js/2.0d1a52c6.chunk.js.LICENSE": "/collab3d/static/js/2.0d1a52c6.chunk.js.LICENSE"
+    "static/css/main.27023b8a.chunk.css.map": "/collab3d/static/css/main.27023b8a.chunk.css.map",
+    "static/js/2.ee78fe41.chunk.js.LICENSE": "/collab3d/static/js/2.ee78fe41.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.c651fb5f.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.0d1a52c6.chunk.js",
-    "static/css/main.16b619bc.chunk.css",
-    "static/js/main.68a67dba.chunk.js"
+    "static/js/2.ee78fe41.chunk.js",
+    "static/css/main.27023b8a.chunk.css",
+    "static/js/main.1a56795e.chunk.js"
   ]
 }
