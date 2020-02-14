@@ -1,15 +1,30 @@
 .head {
-  background-color: rgb(170, 170, 170);
-  margin: auto;
-  width: 1200px;
-  height: 50px
+  position: absolute;
+width: 1440px;
+height: 51px;
+left: 0px;
+top: 0px;
+
+background: #FFFFFF;
+box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 .greeting{
-  position: relative;
-  text-align: center;
-  font: 70;
-  top: 5px;
+  position: absolute;
+width: 111px;
+height: 14px;
+left: 665px;
+top: 23px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+/* identical to box height */
+
+
+color: #000000;
 }
 
 .logo{
@@ -21,28 +36,58 @@
 }
 
 .share{
-  color: white;
-  background-color: grey;
-  border-radius: 25px;
-  position: relative;
-  bottom: 37px;
-  left: 850px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+
+  position: absolute;
+width: 94px;
+height: 34px;
+left: 1115px;
+top: 8px;
+
+background: #71B2FF;
+border-radius: 5px;
 }
 
 .AR{
-  color: white;
-  background-color: grey;
-  border-radius: 25px;
-  position: relative;
-  bottom: 37px;
-  left: 900px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+
+  position: absolute;
+width: 67px;
+height: 34px;
+left: 1220px;
+top: 8px;
+
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 5px;
 }
 
 .profile{
-  color: white;
-  background-color: grey;
-  border-radius: 75px;
-  position: relative;
-  bottom: 37px;
-  left: 1000px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+
+  position: absolute;
+width: 43px;
+height: 43px;
+left: 1386px;
+top: 4px;
+
+background: #434343;
+border-radius: 50%;
+}
+
+.text1{
+
+
+color: #FFFFFF;
+}
+
+.text2{
+
+color: #000000;
 }
