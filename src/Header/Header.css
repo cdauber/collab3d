@@ -1,93 +1,69 @@
 .head {
-  position: absolute;
-width: 1440px;
-height: 51px;
-left: 0px;
-top: 0px;
-
-background: #FFFFFF;
-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
 }
 
-.greeting{
-  position: absolute;
-width: 111px;
-height: 14px;
-left: 665px;
-top: 23px;
-
-font-family: Roboto;
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 14px;
-/* identical to box height */
-
-
-color: #000000;
+.greeting-row {
+  margin-left: 335px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.logo{
-  position: relative;
-  height: 80%;
-  width: 80%;
-  bottom: 40px;
-  right: 530px;
+.greeting {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
 }
 
-.share{
+.button-row {
+  padding: 5px 10px;
+  width: 335px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.share {
+  border: 0;
+  box-shadow: none;
+  padding: 8px 24px;
+  background: #71B2FF;
+  border-radius: 5px;
+}
+
+.text1 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: white;
+}
+
+.AR {
+  box-shadow: none;
+  padding: 8px 24px;
+  background: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.text2 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.profile {
   border: 0;
   background: none;
   box-shadow: none;
-
-  position: absolute;
-width: 94px;
-height: 34px;
-left: 1115px;
-top: 8px;
-
-background: #71B2FF;
-border-radius: 5px;
-}
-
-.AR{
-  border: 0;
-  background: none;
-  box-shadow: none;
-
-  position: absolute;
-width: 67px;
-height: 34px;
-left: 1220px;
-top: 8px;
-
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 5px;
-}
-
-.profile{
-  border: 0;
-  background: none;
-  box-shadow: none;
-
-  position: absolute;
-width: 43px;
-height: 43px;
-left: 1386px;
-top: 4px;
-
-background: #434343;
-border-radius: 50%;
-}
-
-.text1{
-
-
-color: #FFFFFF;
-}
-
-.text2{
-
-color: #000000;
+  width: 43px;
+  height: 43px;
+  background: #434343;
+  border-radius: 50%;
 }
