@@ -35,11 +35,10 @@
   border-radius: 5px;
 }
 
-.text1 {
+.textShare, .textAR {
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
-  color: white;
 }
 
 .AR {
@@ -52,18 +51,16 @@
   margin-left: 10px;
 }
 
-.text2 {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
+.textShare {
+  color: white;
 }
 
 .profile {
-  border: 0;
-  background: none;
-  box-shadow: none;
   width: 43px;
   height: 43px;
-  background: #434343;
-  border-radius: 50%;
+  border-radius: 50%; 
+}
+
+button:focus {
+  outline:0;
 }
