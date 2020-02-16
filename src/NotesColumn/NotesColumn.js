@@ -6,6 +6,7 @@ import { Thread } from "./Thread/Thread";
 export function NotesColumn({
   notes,
   onSelect,
+  onDeselect,
   onSubmitComment,
   onSubmitReply,
   ...props
@@ -28,6 +29,7 @@ export function NotesColumn({
         }
         notes={notes}
         onSelect={onSelect}
+        onDeselect={onDeselect}
         onSubmitComment={onSubmitComment}
         onReplyNote={id => {
           onSelect(notes.find(note => note.id === id).camera);

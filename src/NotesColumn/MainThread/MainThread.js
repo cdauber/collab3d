@@ -8,6 +8,7 @@ export function MainThread({
   notes,
   onSubmitComment,
   onSelect,
+  onDeselect,
   onDeleteNote,
   onReplyNote,
   ...props
@@ -49,6 +50,7 @@ export function MainThread({
             white={index % 2 === 1}
             onClick={() => {
               if (selected === id) {
+                onDeselect();
                 setSelected(null);
               } else {
                 onSelect(camera);
