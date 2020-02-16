@@ -3,9 +3,9 @@ import './ConfirmDelete.css';
 
 export function ConfirmDelete({ isModalOpen, onCancel, onDelete, ...props }) {
   return <div id="modal"
-    style={{ display: isModalOpen ? 'block' : 'none' }}
+    className={isModalOpen ? '' : 'hide'}
     onClick={onCancel}>
-    <div id="modal-dialog" {...props}>
+    <div id="modal-dialog" onClick={event => event.stopPropagation()} {...props}>
       <span id="modal-warning">
         Are you sure you want to delete?
       </span>

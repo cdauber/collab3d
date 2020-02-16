@@ -1,60 +1,38 @@
 import React, { useState } from 'react';
+import { MainThread } from './MainThread/MainThread';
 import './NotesColumn.css';
-import { Note } from '../Note/Note';
-import { ConfirmDelete } from '../ConfirmDelete/ConfirmDelete';
-import TextareaAutosize from 'react-autosize-textarea';
+import { Thread } from './Thread/Thread';
 
-export function NotesColumn({ notes, onSelect, onSubmitComment, onDeleteNote }) {
-  const [selected, setSelected] = useState(null);
-  const [deleteNoteId, setDeleteNoteId] = useState(null);
-  const [inputComment, setInputComment] = useState(undefined);
+export function NotesColumn({
+  notes,
+  onSelect,
+  onSubmitComment,
+  onSubmitReply,
+  ...props
+}) {
+  const [activeThread, setActiveThread] = useState(null);
+  const [lastActiveThread, setLastActiveThread] = useState(null);
 
-  return <div id="notes-column">
-      <div id="input-column">
-        <span id="input-label">
-          Comments
-        </span>
-        <TextareaAutosize id="input-comment"
-          placeholder="Add a comment"
-          value={inputComment}
-          onChange={event => setInputComment(event.target.value)}
-        />
-        <div id="input-actions">
-          <span id="input-cancel" onClick={() => setInputComment('')}>Cancel</span>
-          <span id="input-submit"
-            onClick={() => {
-              onSubmitComment(inputComment);
-              setInputComment('');
-            }}
-          >
-            Submit
-          </span>
-        </div>
-      </div>
-      {
-          notes.map(({ id, camera, ...note }, index) =>
-            <Note key={id}
-              selected={id === selected}
-              white={index % 2 === 1}
-              onClick={() => {
-                if (selected === id) {
-                  setSelected(null);
-                } else {
-                  onSelect(camera);
-                  setSelected(id);
-                }
-              }}
-              onDelete={() => setDeleteNoteId(id)}
-              {...note}>
-            </Note>
-          )
-      }
-      <ConfirmDelete isModalOpen={deleteNoteId}
-        onCancel={() => setDeleteNoteId(null)}
-        onDelete={() => {
-          onDeleteNote(deleteNoteId);
-          setDeleteNoteId(null);
-        }}
-      />
-    </div>;
+  if (activeThread && notes.find(({id}) => id === activeThread) === undefined) {
+    setActiveThread(null);
+  }
+
+  return <div id="notes-row">
+    <MainThread
+      className={'main-thread' + (activeThread ? ' main-thread-inactive' : '')}
+      notes={notes}
+      onSelect={onSelect}
+      onSubmitComment={onSubmitComment}
+      onReplyNote={id => {
+        onSelect(notes.find(note => note.id === id).camera);
+        setActiveThread(id);
+        setLastActiveThread(id);
+      }}
+      {...props} />
+    <Thread className={'active-thread' + (!activeThread ? ' active-thread-inactive' : '')}
+      note={notes.find(note => note.id === lastActiveThread)}
+      onReturn={() => setActiveThread(null)}
+      onSubmitReply={onSubmitReply}
+      {...props} />
+  </div>;
 }
