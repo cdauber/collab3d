@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-bottom: 1px solid #D2D2D2;
+  border-bottom: 1px solid #d2d2d2;
 }
 
 #input-label {
@@ -49,7 +49,8 @@
   align-items: center;
 }
 
-#input-cancel, #input-submit {
+#input-cancel,
+#input-submit {
   margin: 12px;
   font-size: 12px;
   font-weight: 500;
@@ -58,6 +59,7 @@
   cursor: pointer;
 }
 
-#input-cancel:hover, #input-submit:hover {
+#input-cancel:hover,
+#input-submit:hover {
   color: black;
 }

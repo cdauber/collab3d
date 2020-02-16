@@ -11,7 +11,7 @@
 
 .main-thread {
   margin-left: 0;
-  transition: margin .3s, opacity .3s, visibility .3s;
+  transition: margin 0.3s, opacity 0.3s, visibility 0.3s;
   opacity: 1;
   visibility: visible;
 }
@@ -23,7 +23,7 @@
 }
 
 .active-thread {
-  transition: visibility .3s, opacity .3s;
+  transition: visibility 0.3s, opacity 0.3s;
   opacity: 1;
   visibility: visible;
 }

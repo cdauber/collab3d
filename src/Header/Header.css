@@ -32,11 +32,12 @@
   border: 0;
   box-shadow: none;
   padding: 8px 24px;
-  background: #71B2FF;
+  background: #71b2ff;
   border-radius: 5px;
 }
 
-.textShare, .textAR {
+.textShare,
+.textAR {
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -59,9 +60,9 @@
 .profile {
   width: 43px;
   height: 43px;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 button:focus {
-  outline:0;
+  outline: 0;
 }
