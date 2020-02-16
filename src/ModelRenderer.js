@@ -1,44 +1,55 @@
-import React, { Suspense, useRef, useState } from "react";
-import * as THREE from "three";
+import React, { Suspense, useRef, useState, useEffect } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import {
-  Canvas,
-  useThree,
-  extend,
-  useLoader,
-  useFrame
-} from "react-three-fiber";
+import { Canvas, useThree, extend, useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { Box3, Vector3, Color, sRGBEncoding } from "three";
 
 extend({ OrbitControls });
 
-function Model() {
-  const gltf = useLoader(GLTFLoader, "models/gltf/microphone/scene.gltf");
-  return <primitive object={gltf.scene} position={[0, 0, 0]} />;
+function Model({ setModelSize, ...props }) {
+  const gltf = useLoader(GLTFLoader, "models/gltf/sneaker/scene.gltf");
+
+  useEffect(() => {
+    const maxVector = new Box3().setFromObject(gltf.scene).max;
+    setModelSize(maxVector.length());
+  }, [gltf, setModelSize]);
+
+  return <primitive object={gltf.scene} position={[0, 0, 0]} {...props} />;
 }
 
-function Controls({ cameraPosition, onUpdate, setOrbitControls, ...props }) {
-  const [controlsSet, setControlsSet] = useState(true);
+function Controls({ cameraPosition, modelSize, controls, ...props }) {
+  function updateCamera(position, target, camera, controls) {
+    camera.position.set(...position);
+    controls.current.target.set(...target);
+    controls.current.update();
+  }
+
   const {
     camera,
     gl: { domElement }
   } = useThree();
-  const controls = useRef();
 
-  useFrame(({ camera }) => {
-    if (controlsSet) {
-      setOrbitControls(controls.current);
-      setControlsSet(false);
+  useEffect(() => {
+    if (modelSize) {
+      updateCamera(
+        new Vector3(1, 0.5, 1).setLength(2 * modelSize).toArray(),
+        [0, 0, 0],
+        camera,
+        controls
+      );
     }
+  }, [camera, modelSize, controls]);
 
+  useEffect(() => {
     if (cameraPosition) {
-      camera.position.set(...cameraPosition.position);
-      camera.lookAt(0, 0, 0);
-      controls.current.target.set(...cameraPosition.focus);
-      controls.current.update();
-      onUpdate();
+      updateCamera(
+        cameraPosition.position,
+        cameraPosition.focus,
+        camera,
+        controls
+      );
     }
-  });
+  }, [camera, cameraPosition, controls]);
 
   return (
     <orbitControls ref={controls} args={[camera, domElement]} {...props} />
@@ -52,14 +63,19 @@ export function ModelRenderer({
   setOrbitControls,
   ...props
 }) {
+  const [modelSize, setModelSize] = useState(undefined);
+
+  const controls = useRef();
+  useEffect(() => {
+    setOrbitControls(controls.current);
+  }, [controls, setOrbitControls]);
+
   return (
     <Canvas
-      camera={{ fov: 60, near: 1, position: [-2, 0, -3] }}
-      gl={{ outputEncoding: THREE.sRGBEncoding }}
+      camera={{ fov: 60, near: 1 }}
       onCreated={({ gl, scene, camera }) => {
-        gl.outputEncoding = THREE.sRGBEncoding;
-        scene.background = new THREE.Color(0xfafafa);
-        camera.lookAt(0, 0, 0);
+        gl.outputEncoding = sRGBEncoding;
+        scene.background = new Color(0xfafafa);
 
         setCamera(camera);
       }}
@@ -67,15 +83,14 @@ export function ModelRenderer({
     >
       <Controls
         cameraPosition={cameraPosition}
-        onUpdate={onUpdate}
-        setOrbitControls={setOrbitControls}
+        modelSize={modelSize}
+        controls={controls}
         minDistance={1}
-        maxDistance={50}
+        maxDistance={modelSize ? 5 * modelSize : 50}
       />
-      <pointLight position={[10, 10, 10]} />
-      <pointLight position={[-10, -10, -10]} />
+      <ambientLight />
       <Suspense fallback={null}>
-        <Model />
+        <Model setModelSize={setModelSize} />
       </Suspense>
     </Canvas>
   );

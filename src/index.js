@@ -134,10 +134,7 @@ const deleteNote = (id, notes) =>
     }));
 
 function MainPage() {
-  const [cameraPosition, setCameraPosition] = useState({
-    position: [-2, 0, -3],
-    focus: [0, 0, 0]
-  });
+  const [cameraPosition, setCameraPosition] = useState(undefined);
   const [camera, setCamera] = useState(undefined);
   const [controls, setControls] = useState(undefined);
   const [notes, setNotes] = useState(notes2);
