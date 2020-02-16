@@ -9,7 +9,7 @@ export function MainThread({
   onSubmitComment,
   onSelect,
   onDeselect,
-  onDeleteNote,
+  onResolveNote,
   onReplyNote,
   ...props
 }) {
@@ -57,7 +57,7 @@ export function MainThread({
                 setSelected(id);
               }
             }}
-            onDelete={() => setDeleteNoteId(id)}
+            onResolve={() => setDeleteNoteId(id)}
             onReply={comment => {
               setSelected(id);
               onReplyNote(id, comment);
@@ -69,8 +69,8 @@ export function MainThread({
       <ConfirmDelete
         isModalOpen={deleteNoteId}
         onCancel={() => setDeleteNoteId(null)}
-        onDelete={() => {
-          onDeleteNote(deleteNoteId);
+        onResolve={() => {
+          onResolveNote(deleteNoteId);
           setDeleteNoteId(null);
         }}
       />

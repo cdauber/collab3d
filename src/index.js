@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import Header from "./Header/Header";
 import { NotesColumn } from "./NotesColumn/NotesColumn";
+import { addDays } from "./Note/Note";
 
 const NOTES = [
   {
@@ -13,8 +14,11 @@ const NOTES = [
       position: [2.67002707256112, 10.68010829024448, 16.02016243536672],
       focus: [0, 0, 0]
     },
-    profileColor: "#ff7a7a",
+    pin: {
+      color: "#ff7a7a"
+    },
     author: "Greg Gottesman",
+    date: new Date().getTime(),
     comment:
       "This is great feature to add. But have we thought about how it will work with the new intiative rolling out?",
     thread: []
@@ -25,8 +29,11 @@ const NOTES = [
       position: [10.680108290244483, 16.020162435366725, 2.670027072561121],
       focus: [0, 0, 0]
     },
-    profileColor: "#ffe279",
+    pin: {
+      color: "#ffe279"
+    },
     author: "Ed Lazowska",
+    date: addDays(new Date(), -1).getTime(),
     comment:
       "I disagree with the design choice here. I believe that weather resistant material would be better used here.",
     thread: []
@@ -37,8 +44,11 @@ const NOTES = [
       position: [16.02016243536672, 2.67002707256112, 10.68010829024448],
       focus: [0, 0, 0]
     },
-    profileColor: "#ffc37c",
+    pin: {
+      color: "#ffc37c"
+    },
     author: 'Dawy "The Boulder" Johnson',
+    date: addDays(new Date(), -2).getTime(),
     comment:
       "Have we thought about the cool factor associated with adding a flap here?  I’ve seeing market research that it is popular with our target demo.",
     thread: []
@@ -54,8 +64,9 @@ const addComment = (notes, camera, controls, comment) => [
       position: camera.position.toArray(),
       focus: controls.target.toArray()
     },
-    profileColor: colors[Math.floor(Math.random() * colors.length)],
+    pin: { color: colors[Math.floor(Math.random() * colors.length)] },
     author: "Greg Gottesman",
+    date: new Date().getTime(),
     comment: comment,
     thread: []
   },
@@ -71,8 +82,9 @@ const addReply = (notes, id, comment) =>
             ...thread,
             {
               id: 1 + Math.max(id, ...thread.map(({ id }) => id)),
-              profileColor: note.profileColor,
+              pin: { color: note.pin.color },
               author: "Greg Gottesman",
+              date: new Date().getTime(),
               comment: comment
             }
           ]
@@ -115,7 +127,7 @@ function MainPage() {
           }
           onSelect={cameraPosition => setCameraPosition(cameraPosition)}
           onDeselect={() => setCameraPosition(null)}
-          onDeleteNote={id => setNotes(deleteNote(id, notes))}
+          onResolveNote={id => setNotes(deleteNote(id, notes))}
         />
       </div>
     </>

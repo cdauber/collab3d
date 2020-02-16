@@ -1,85 +1,119 @@
+div {
+  background-color: inherit;
+}
+
 .wrapper {
   display: flex;
   flex-direction: row;
 }
 
 .selected-bar {
-  background-color: #71b2ff;
-  min-width: 3px;
-}
-
-.note {
-  background-color: #fafafa;
-  padding: 10px 10px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.white {
-  background-color: white;
-}
-
-.author-row {
-  background-color: inherit;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.close-button {
-  cursor: pointer;
-}
-
-.content-row {
-  background-color: inherit;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.profile-image {
-  border-radius: 100%;
-  margin-right: 10px;
-  height: 25px;
-  width: 25px;
+  width: 5px;
+  background-color: #7e8ed7;
   flex-shrink: 0;
 }
 
-.content-column {
-  background-color: inherit;
+.note {
+  padding: 16px 20px;
+  border-bottom: 1px solid #a5a5a5;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.note.selected {
+  background-color: #f7f8ff;
+}
+
+.note-content {
+  padding: 0 22px;
+}
+
+.note-content.selected {
+  padding-left: calc(22px - 5px);
+}
+
+.note-top-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pin-color {
+  height: 35px;
+  width: 35px;
+  flex-shrink: 0;
+  border-radius: 100%;
+}
+
+.note-top-column {
+  margin-left: 13px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+}
+
+.author-row {
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .author-name {
-  background-color: inherit;
-  font-size: 12px;
+  padding-right: 5px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 17px;
+  color: #333;
+}
+
+.resolve {
+  background: none;
+  border: none;
+
+  padding: 4px 10px;
+  border-radius: 5px;
+
+  font-size: 12px;
+  font-weight: bold;
   line-height: 14px;
+  color: #7e8ed7;
+}
+
+.resolve.main-comment {
+  border: 1px solid #cecece;
+}
+
+.note-date {
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 12px;
+  color: #a5a5a5;
 }
 
 .comment {
-  background-color: inherit;
-  margin-bottom: 15px;
-  flex-grow: 1;
+  margin: 20px 0;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 14px;
-  color: #424242;
+  color: #333;
 }
 
-.reply {
-  background-color: inherit;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 19px;
+.reply-row {
+  display: flex;
+  flex-direction: row;
 }
 
 .reply-button {
-  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #7e8ed7;
 }

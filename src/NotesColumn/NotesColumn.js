@@ -12,7 +12,6 @@ export function NotesColumn({
   ...props
 }) {
   const [activeThread, setActiveThread] = useState(null);
-  const [lastActiveThread, setLastActiveThread] = useState(null);
 
   if (
     activeThread &&
@@ -34,7 +33,6 @@ export function NotesColumn({
         onReplyNote={id => {
           onSelect(notes.find(note => note.id === id).camera);
           setActiveThread(id);
-          setLastActiveThread(id);
         }}
         {...props}
       />
@@ -42,7 +40,7 @@ export function NotesColumn({
         className={
           "active-thread" + (!activeThread ? " active-thread-inactive" : "")
         }
-        note={notes.find(note => note.id === lastActiveThread)}
+        note={notes.find(note => note.id === activeThread)}
         onReturn={() => setActiveThread(null)}
         onSubmitReply={onSubmitReply}
         {...props}

@@ -8,13 +8,13 @@ export function Thread({
   note,
   onReturn,
   onSubmitReply,
-  onDeleteNote,
+  onResolveNote,
   ...props
 }) {
   const [replyComment, setReplyComment] = useState(undefined);
   const [deleteNoteId, setDeleteNoteId] = useState(null);
 
-  return (
+  return note ? (
     <div id="thread-column" {...props}>
       <div id="back-to-comments-row" onClick={onReturn}>
         <i className="material-icons">chevron_left</i>
@@ -22,7 +22,7 @@ export function Thread({
       </div>
       <Note
         selected
-        onDelete={() => setDeleteNoteId(note.id)}
+        onResolve={() => setDeleteNoteId(note.id)}
         showReply={false}
         {...note}
       >
@@ -46,7 +46,7 @@ export function Thread({
             <Note
               key={note.id}
               white
-              onDelete={() => setDeleteNoteId(note.id)}
+              onResolve={() => setDeleteNoteId(note.id)}
               showReply={false}
               {...note}
             />
@@ -55,11 +55,11 @@ export function Thread({
       <ConfirmDelete
         isModalOpen={deleteNoteId}
         onCancel={() => setDeleteNoteId(null)}
-        onDelete={() => {
-          onDeleteNote(deleteNoteId);
+        onResolve={() => {
+          onResolveNote(deleteNoteId);
           setDeleteNoteId(null);
         }}
       />
     </div>
-  );
+  ) : null;
 }
