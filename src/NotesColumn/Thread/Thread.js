@@ -40,16 +40,18 @@ export function Thread({
           }}
         />
       </Note>
-      {note &&
-        note.thread.map(note => (
-          <Note
-            key={note.id}
-            white
-            onDelete={() => setDeleteNoteId(note.id)}
-            showReply={false}
-            {...note}
-          />
-        ))}
+      <div className="scroll-column">
+        {note &&
+          note.thread.map(note => (
+            <Note
+              key={note.id}
+              white
+              onDelete={() => setDeleteNoteId(note.id)}
+              showReply={false}
+              {...note}
+            />
+          ))}
+      </div>
       <ConfirmDelete
         isModalOpen={deleteNoteId}
         onCancel={() => setDeleteNoteId(null)}

@@ -41,27 +41,29 @@ export function MainThread({
           </span>
         </div>
       </div>
-      {notes.map(({ id, camera, ...note }, index) => (
-        <Note
-          key={id}
-          selected={id === selected}
-          white={index % 2 === 1}
-          onClick={() => {
-            if (selected === id) {
-              setSelected(null);
-            } else {
-              onSelect(camera);
+      <div className="scroll-column">
+        {notes.map(({ id, camera, ...note }, index) => (
+          <Note
+            key={id}
+            selected={id === selected}
+            white={index % 2 === 1}
+            onClick={() => {
+              if (selected === id) {
+                setSelected(null);
+              } else {
+                onSelect(camera);
+                setSelected(id);
+              }
+            }}
+            onDelete={() => setDeleteNoteId(id)}
+            onReply={comment => {
               setSelected(id);
-            }
-          }}
-          onDelete={() => setDeleteNoteId(id)}
-          onReply={comment => {
-            setSelected(id);
-            onReplyNote(id, comment);
-          }}
-          {...note}
-        ></Note>
-      ))}
+              onReplyNote(id, comment);
+            }}
+            {...note}
+          ></Note>
+        ))}
+      </div>
       <ConfirmDelete
         isModalOpen={deleteNoteId}
         onCancel={() => setDeleteNoteId(null)}
