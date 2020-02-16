@@ -12,23 +12,23 @@ class Header extends React.Component {
           <button
             className="share"
             onClick={() => alert('share link copied')}>
-            <span className="text1">
+            <span className="textShare">
               Share
          </span>
           </button>
           <button
             className="AR"
             onClick={() => alert('more features to come')}>
-            <span className="text2">
+            <span className="textAR">
               AR
-         </span>
+            </span>
           </button>
         </div>
-        <button
-          className="profile"
-          onClick={() => alert('profile')}>
-
-        </button>
+        <img className="profile"
+             alt = "Greg"
+             url src = "https://assets.website-files.com/5d3152346d95065922960b3a/5db769036b1dff3418bffd20_Greg.jpg"
+        >           
+        </img>
       </div>
     </div>);
   }
