@@ -6,64 +6,13 @@ import "./index.css";
 import Header from "./Header/Header";
 import { NotesColumn } from "./NotesColumn/NotesColumn";
 
-const notes1 = [
+const NOTES = [
   {
     id: 1,
-    camera: { position: [0.5, 2, 3], focus: [0, 0, 0] },
-    profileColor: "#c4c4c4",
-    author: "Name of person #1",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-    thread: [
-      {
-        id: 5,
-        profileColor: "#c4c4c4",
-        author: "Name of person #2",
-        comment:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-      },
-      {
-        id: 6,
-        profileColor: "#c4c4c4",
-        author: "Name of person #2",
-        comment:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
-      }
-    ]
-  },
-  {
-    id: 2,
-    camera: { position: [2, 3, 0.5], focus: [0, 0, 0] },
-    profileColor: "#c4c4c4",
-    author: "Name of person #2",
-    comment:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    thread: []
-  },
-  {
-    id: 3,
-    camera: { position: [3, 0.5, 2], focus: [0, 0, 0] },
-    profileColor: "#c4c4c4",
-    author: "Name of person #3",
-    comment:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    thread: []
-  },
-  {
-    id: 4,
-    camera: { position: [-2, 0, -3], focus: [0, 0, 0] },
-    profileColor: "#c4c4c4",
-    author: "Name of person #4",
-    comment:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    thread: []
-  }
-];
-
-const notes2 = [
-  {
-    id: 1,
-    camera: { position: [0.5, 2, 3], focus: [0, 0, 0] },
+    camera: {
+      position: [2.67002707256112, 10.68010829024448, 16.02016243536672],
+      focus: [0, 0, 0]
+    },
     profileColor: "#ff7a7a",
     author: "Greg Gottesman",
     comment:
@@ -72,7 +21,10 @@ const notes2 = [
   },
   {
     id: 2,
-    camera: { position: [2, 3, 0.5], focus: [0, 0, 0] },
+    camera: {
+      position: [10.680108290244483, 16.020162435366725, 2.670027072561121],
+      focus: [0, 0, 0]
+    },
     profileColor: "#ffe279",
     author: "Ed Lazowska",
     comment:
@@ -81,7 +33,10 @@ const notes2 = [
   },
   {
     id: 3,
-    camera: { position: [3, 0.5, 2], focus: [0, 0, 0] },
+    camera: {
+      position: [16.02016243536672, 2.67002707256112, 10.68010829024448],
+      focus: [0, 0, 0]
+    },
     profileColor: "#ffc37c",
     author: 'Dawy "The Boulder" Johnson',
     comment:
@@ -137,7 +92,7 @@ function MainPage() {
   const [cameraPosition, setCameraPosition] = useState(undefined);
   const [camera, setCamera] = useState(undefined);
   const [controls, setControls] = useState(undefined);
-  const [notes, setNotes] = useState(notes2);
+  const [notes, setNotes] = useState(NOTES);
 
   return (
     <>
@@ -147,7 +102,6 @@ function MainPage() {
         <ModelRenderer
           id="three-renderer"
           cameraPosition={cameraPosition}
-          onUpdate={() => setCameraPosition(null)}
           setCamera={camera => setCamera(camera)}
           setOrbitControls={controls => setControls(controls)}
         />
@@ -160,6 +114,7 @@ function MainPage() {
             setNotes(addReply(notes, id, comment))
           }
           onSelect={cameraPosition => setCameraPosition(cameraPosition)}
+          onDeselect={() => setCameraPosition(null)}
           onDeleteNote={id => setNotes(deleteNote(id, notes))}
         />
       </div>

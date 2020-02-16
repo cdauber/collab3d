@@ -58,7 +58,6 @@ function Controls({ cameraPosition, modelSize, controls, ...props }) {
 
 export function ModelRenderer({
   cameraPosition,
-  onUpdate,
   setCamera,
   setOrbitControls,
   ...props
