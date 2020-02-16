@@ -6,6 +6,7 @@ import "./index.css";
 import Header from "./Header/Header";
 import { NotesColumn } from "./NotesColumn/NotesColumn";
 import { addDays } from "./Note/Note";
+import { Variations } from "./VariationsColumn/Variations";
 
 const NOTES = [
   {
