@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import Header from "./Header/Header";
 import { NotesColumn } from "./NotesColumn/NotesColumn";
+import { Variations } from "./VariationsColumn/Variations";
 
 const notes1 = [
   {
@@ -73,8 +74,8 @@ function MainPage() {
     <>
       <Header />
       <div id="main-area">
-        <div id="variations-column">
-        </div>
+        <Variations id="variations-column"
+        />
         <ModelRenderer2 id="three-renderer"
           cameraPosition={cameraPosition}
           onUpdate={() => setCameraPosition(null)}
