@@ -1,134 +1,82 @@
-import React, { Component } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import {
+  Canvas,
+  useThree,
+  extend,
+  useLoader,
+  useFrame
+} from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-class ModelRenderer extends Component {
-  constructor(props) {
-    super(props);
-    this.setCameraPosition = this.setCameraPosition.bind(this);
-    this.start = this.start.bind(this);
-    this.stop = this.stop.bind(this);
-    this.animate = this.animate.bind(this);
-  }
 
-  componentDidMount() {
-    //Bind Upstream click events
-    this.props.setCameraPosition(this.setCameraPosition);
+extend({ OrbitControls });
 
-    //const width = this.mount.clientWidth;
-    //const height = this.mount.clientHeight;
-
-    //Pure ThreeJS code
-
-    //Scene
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xcccccc);
-
-    //Camera
-    const camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      1,
-      1000
-    );
-    camera.position.set(-2, 0, -3);
-    camera.lookAt(new THREE.Vector3(0, 0, 0)); // Set look at coordinate like this
-
-    //Renderer- Generally always use webGL
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    //renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth * 0.6, window.innerHeight * 0.9);
-
-    // controls
-    const controls = new OrbitControls(camera, renderer.domElement);
-
-    //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-
-    controls.minDistance = 1;
-    controls.maxDistance = 500;
-    controls.maxPolarAngle = Math.PI;
-
-    //Import the model
-    var loader = new GLTFLoader().setPath("models/gltf/microphone/");
-    loader.load(
-      "scene.gltf",
-      gltf => {
-        // called when the resource is loaded
-        console.log(JSON.stringify(gltf));
-        scene.add(gltf.scene);
-      },
-      xhr => {
-        // called while loading is progressing
-        console.log(`${(xhr.loaded / xhr.total) * 100}% loaded`);
-      },
-      error => {
-        // called when loading has errors
-        console.error("An error happened", error);
-      }
-    );
-    //Bind ThreeJs items to this for use outside componentDidMount
-    this.scene = scene;
-    this.camera = camera;
-    this.controls = controls;
-    this.renderer = renderer;
-
-    //Mount
-    this.mount.appendChild(this.renderer.domElement);
-
-    //Start Animating
-    this.start();
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("Update Time");
-    return false;
-  }
-
-  setCameraPosition(param) {
-    console.log("setting position to:" + param);
-    this.camera.matrix.fromArray(param);
-    this.camera.matrix.decompose(
-      this.camera.position,
-      this.camera.quaternion,
-      this.camera.scale
-    );
-    //this.camera.updateProjectionMatrix();
-  }
-  componentWillUnmount() {
-    this.stop();
-    this.mount.removeChild(this.renderer.domElement);
-  }
-
-  start() {
-    if (!this.frameId) {
-      this.frameId = requestAnimationFrame(this.animate);
-    }
-  }
-
-  stop() {
-    cancelAnimationFrame(this.frameId);
-  }
-
-  animate() {
-    this.renderScene();
-    const cameraState = JSON.stringify(this.camera.matrix.toArray());
-    //console.log(cameraState);
-    this.frameId = window.requestAnimationFrame(this.animate);
-  }
-
-  renderScene() {
-    this.renderer.render(this.scene, this.camera);
-  }
-
-  render() {
-    return (
-      <div
-        ref={mount => {
-          this.mount = mount;
-        }}
-      />
-    );
-  }
+function Model() {
+  const gltf = useLoader(GLTFLoader, "models/gltf/microphone/scene.gltf");
+  return <primitive object={gltf.scene} position={[0, 0, 0]} />;
 }
 
-export default ModelRenderer;
+function Controls({ cameraPosition, onUpdate, setOrbitControls, ...props }) {
+  const [controlsSet, setControlsSet] = useState(true);
+  const {
+    camera,
+    gl: { domElement }
+  } = useThree();
+  const controls = useRef();
+
+  useFrame(({ camera }) => {
+    if (controlsSet) {
+      setOrbitControls(controls.current);
+      setControlsSet(false);
+    }
+
+    if (cameraPosition) {
+      camera.position.set(...cameraPosition.position);
+      camera.lookAt(0, 0, 0);
+      controls.current.target.set(...cameraPosition.focus);
+      controls.current.update();
+      onUpdate();
+    }
+  });
+
+  return (
+    <orbitControls ref={controls} args={[camera, domElement]} {...props} />
+  );
+}
+
+export function ModelRenderer({
+  cameraPosition,
+  onUpdate,
+  setCamera,
+  setOrbitControls,
+  ...props
+}) {
+  return (
+    <Canvas
+      camera={{ fov: 60, near: 1, position: [-2, 0, -3] }}
+      gl={{ outputEncoding: THREE.sRGBEncoding }}
+      onCreated={({ gl, scene, camera }) => {
+        gl.outputEncoding = THREE.sRGBEncoding;
+        scene.background = new THREE.Color(0xfafafa);
+        camera.lookAt(0, 0, 0);
+
+        setCamera(camera);
+      }}
+      {...props}
+    >
+      <Controls
+        cameraPosition={cameraPosition}
+        onUpdate={onUpdate}
+        setOrbitControls={setOrbitControls}
+        minDistance={1}
+        maxDistance={50}
+      />
+      <pointLight position={[10, 10, 10]} />
+      <pointLight position={[-10, -10, -10]} />
+      <Suspense fallback={null}>
+        <Model />
+      </Suspense>
+    </Canvas>
+  );
+}
