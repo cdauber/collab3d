@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextareaAutosize from "react-autosize-textarea/lib";
 import { Note } from "../../Note/Note";
-import { ConfirmDelete } from "../../ConfirmDelete/ConfirmDelete";
+import { ConfirmResolve } from "../../ConfirmDelete/ConfirmResolve";
 import "./MainThread.css";
 
 export function MainThread({
@@ -14,7 +14,7 @@ export function MainThread({
   ...props
 }) {
   const [selected, setSelected] = useState(null);
-  const [deleteNoteId, setDeleteNoteId] = useState(null);
+  const [resolveNoteId, setResolveNoteId] = useState(null);
   const [inputComment, setInputComment] = useState(undefined);
 
   return (
@@ -28,18 +28,25 @@ export function MainThread({
           onChange={event => setInputComment(event.target.value)}
         />
         <div id="input-actions">
-          <span id="input-cancel" onClick={() => setInputComment("")}>
+          <button
+            id="input-cancel"
+            className={inputComment ? "enabled" : ""}
+            onClick={() => inputComment && setInputComment("")}
+          >
             Cancel
-          </span>
-          <span
+          </button>
+          <button
             id="input-submit"
+            className={inputComment ? "enabled" : ""}
             onClick={() => {
-              onSubmitComment(inputComment);
-              setInputComment("");
+              if (inputComment) {
+                onSubmitComment(inputComment);
+                setInputComment("");
+              }
             }}
           >
             Submit
-          </span>
+          </button>
         </div>
       </div>
       <div className="scroll-column">
@@ -57,7 +64,7 @@ export function MainThread({
                 setSelected(id);
               }
             }}
-            onResolve={() => setDeleteNoteId(id)}
+            onResolve={() => setResolveNoteId(id)}
             onReply={comment => {
               setSelected(id);
               onReplyNote(id, comment);
@@ -66,12 +73,12 @@ export function MainThread({
           ></Note>
         ))}
       </div>
-      <ConfirmDelete
-        isModalOpen={deleteNoteId}
-        onCancel={() => setDeleteNoteId(null)}
+      <ConfirmResolve
+        isModalOpen={resolveNoteId}
+        onCancel={() => setResolveNoteId(null)}
         onResolve={() => {
-          onResolveNote(deleteNoteId);
-          setDeleteNoteId(null);
+          onResolveNote(resolveNoteId);
+          setResolveNoteId(null);
         }}
       />
     </div>

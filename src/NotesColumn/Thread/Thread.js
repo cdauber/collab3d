@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Thread.css";
 import { Note } from "../../Note/Note";
 import TextareaAutosize from "react-autosize-textarea/lib";
-import { ConfirmDelete } from "../../ConfirmDelete/ConfirmDelete";
+import { ConfirmResolve } from "../../ConfirmDelete/ConfirmResolve";
 
 export function Thread({
   note,
@@ -17,8 +17,10 @@ export function Thread({
   return note ? (
     <div id="thread-column" {...props}>
       <div id="back-to-comments-row" onClick={onReturn}>
-        <i className="material-icons">chevron_left</i>
-        <span id="back-to-comments">Back to comments</span>
+        <i id="back-to-comments-icon" className="material-icons">
+          chevron_left
+        </i>
+        Back to all comments
       </div>
       <Note
         selected
@@ -52,7 +54,7 @@ export function Thread({
             />
           ))}
       </div>
-      <ConfirmDelete
+      <ConfirmResolve
         isModalOpen={deleteNoteId}
         onCancel={() => setDeleteNoteId(null)}
         onResolve={() => {

@@ -1,7 +1,7 @@
 import React from "react";
-import "./ConfirmDelete.css";
+import "./ConfirmResolve.css";
 
-export function ConfirmDelete({ isModalOpen, onCancel, onDelete, ...props }) {
+export function ConfirmResolve({ isModalOpen, onCancel, onResolve, ...props }) {
   return (
     <div id="modal" className={isModalOpen ? "" : "hide"} onClick={onCancel}>
       <div
@@ -9,7 +9,7 @@ export function ConfirmDelete({ isModalOpen, onCancel, onDelete, ...props }) {
         onClick={event => event.stopPropagation()}
         {...props}
       >
-        <span id="modal-warning">Are you sure you want to delete?</span>
+        <span id="modal-warning">Are you sure you want to resolve?</span>
         <div id="modal-actions">
           <span
             id="modal-cancel"
@@ -21,13 +21,13 @@ export function ConfirmDelete({ isModalOpen, onCancel, onDelete, ...props }) {
             Cancel
           </span>
           <span
-            id="modal-delete"
+            id="modal-submit"
             onClick={event => {
               event.stopPropagation();
-              onDelete();
+              onResolve();
             }}
           >
-            Delete
+            Submit
           </span>
         </div>
       </div>

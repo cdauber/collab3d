@@ -20,8 +20,9 @@
 
 #modal-dialog {
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px 10px;
+  padding: 20px 20px;
   width: 174px;
+  background-color: white;
   border-radius: 2px;
   display: flex;
   flex-direction: column;
@@ -33,10 +34,15 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
+  color: #333;
   text-align: center;
 }
 
 #modal-actions {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #6e82dc;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -44,15 +50,12 @@
 }
 
 #modal-cancel,
-#modal-delete {
-  padding: 8px 15px;
-  border-radius: 7px;
-  font-size: 8px;
-  font-weight: 500;
-  line-height: 9px;
+#modal-submit {
+  padding: 11px 16px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-#modal-delete {
-  border: 1px solid black;
+#modal-submit {
+  border: 1px solid #7e8ed7;
 }

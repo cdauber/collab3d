@@ -79,14 +79,14 @@ const addReply = (notes, id, comment) =>
       ? {
           ...note,
           thread: [
-            ...thread,
             {
               id: 1 + Math.max(id, ...thread.map(({ id }) => id)),
               pin: { color: note.pin.color },
               author: "Greg Gottesman",
               date: new Date().getTime(),
               comment: comment
-            }
+            },
+            ...thread
           ]
         }
       : { thread, ...note }

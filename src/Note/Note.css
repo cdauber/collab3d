@@ -27,11 +27,11 @@ div {
 }
 
 .note-content {
-  padding: 0 22px;
+  padding: 0 13px;
 }
 
 .note-content.selected {
-  padding-left: calc(22px - 5px);
+  padding-left: calc(13px - 5px);
 }
 
 .note-top-row {
@@ -95,7 +95,7 @@ div {
 }
 
 .comment {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   font-size: 12px;
   font-weight: normal;
   line-height: 14px;
@@ -103,6 +103,7 @@ div {
 }
 
 .reply-row {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
 }
