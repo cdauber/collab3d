@@ -43,4 +43,5 @@
 
 .scroll-column {
   overflow-y: auto;
+  flex-grow: 1;
 }
