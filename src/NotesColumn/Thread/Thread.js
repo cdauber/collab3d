@@ -16,7 +16,13 @@ export function Thread({
 
   return note ? (
     <div id="thread-column" {...props}>
-      <div id="back-to-comments-row" onClick={onReturn}>
+      <div
+        id="back-to-comments-row"
+        onClick={() => {
+          onReturn();
+          setReplyComment("");
+        }}
+      >
         <i id="back-to-comments-icon" className="material-icons">
           chevron_left
         </i>
@@ -31,6 +37,7 @@ export function Thread({
         <TextareaAutosize
           id="reply-comment"
           placeholder="Add a reply"
+          autoFocus
           value={replyComment}
           onChange={event => setReplyComment(event.target.value)}
           onKeyPress={event => {
