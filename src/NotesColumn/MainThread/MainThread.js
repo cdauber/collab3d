@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextareaAutosize from "react-autosize-textarea/lib";
 import { Note } from "../../Note/Note";
-import { ConfirmResolve } from "../../ConfirmDelete/ConfirmResolve";
+import { ConfirmResolve } from "../../ConfirmResolve/ConfirmResolve";
 import "./MainThread.css";
 
 export function MainThread({

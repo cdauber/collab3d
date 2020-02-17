@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Thread.css";
 import { Note } from "../../Note/Note";
 import TextareaAutosize from "react-autosize-textarea/lib";
-import { ConfirmResolve } from "../../ConfirmDelete/ConfirmResolve";
+import { ConfirmResolve } from "../../ConfirmResolve/ConfirmResolve";
 
 export function Thread({
   note,
