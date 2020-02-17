@@ -26,11 +26,11 @@
 
 #reply-comment {
   margin-top: 20px;
-  padding: 13px 12px;
+  padding: 12px;
   border: 1px solid rgba(152, 152, 152, 0.5);
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 14px;
   box-sizing: content-box;
   outline: none;
@@ -38,7 +38,7 @@
 
 #reply-comment::placeholder {
   font-style: italic;
-  color: #999999;
+  color: #a5a5a5;
 }
 
 .scroll-column {
