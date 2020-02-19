@@ -3,9 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  overflow-y: auto;
   /* width: 23vw; */
-  width: 335px;
+  width: 337px;
 }
 
 #back-to-comments-row {
@@ -14,29 +13,35 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  color: #333;
 }
 
-#back-to-comments {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
+#back-to-comments-icon {
+  font-size: 27px;
 }
 
 #reply-comment {
-  /* width: 100%; */
-  /* flex-grow: 1; */
-  padding: 13px 12px;
+  margin-top: 20px;
+  padding: 12px;
   border: 1px solid rgba(152, 152, 152, 0.5);
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 14px;
-  /* height: 18px; */
   box-sizing: content-box;
   outline: none;
 }
 
 #reply-comment::placeholder {
   font-style: italic;
-  color: #999999;
+  color: #a5a5a5;
+}
+
+.scroll-column {
+  overflow-y: auto;
+  flex-grow: 1;
 }
