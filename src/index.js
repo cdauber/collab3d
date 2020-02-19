@@ -17,7 +17,7 @@ const NOTES = [
     pin: {
       color: "#ff7a7a"
     },
-    author: "Palvi Mehta,",
+    author: "Palvi Mehta",
     date: new Date().getTime(),
     comment:
       "I dont like how the openings end before the bottom of the black canvas, what can we do about this?",
