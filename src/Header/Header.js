@@ -6,7 +6,7 @@ class Header extends React.Component {
     return (
       <div className="head">
         <div className="greeting-row">
-          <span className="greeting">Welcome Username!</span>
+          <span className="greeting">Welcome Greg!</span>
         </div>
         <div className="button-row">
           <div className="buttons">

@@ -11,22 +11,22 @@ const NOTES = [
   {
     id: 1,
     camera: {
-      position: [2.67002707256112, 10.68010829024448, 16.02016243536672],
+      position: [3.6724893617668513, 0.10448181831762553, -0.10443959458119491],
       focus: [0, 0, 0]
     },
     pin: {
       color: "#ff7a7a"
     },
-    author: "Greg Gottesman",
+    author: "Palvi Mehta,",
     date: new Date().getTime(),
     comment:
-      "This is great feature to add. But have we thought about how it will work with the new intiative rolling out?",
+      "I dont like how the openings end before the bottom of the black canvas, what can we do about this?",
     thread: []
   },
   {
     id: 2,
     camera: {
-      position: [10.680108290244483, 16.020162435366725, 2.670027072561121],
+      position: [-0.2391278466290959, 0.2413250726086689, 1.7599386342780603],
       focus: [0, 0, 0]
     },
     pin: {
@@ -35,22 +35,26 @@ const NOTES = [
     author: "Ed Lazowska",
     date: addDays(new Date(), -1).getTime(),
     comment:
-      "I disagree with the design choice here. I believe that weather resistant material would be better used here.",
+      "I'm really proud of the lacing design here, do we think it will be too complicated?",
     thread: []
   },
   {
     id: 3,
     camera: {
-      position: [16.02016243536672, 2.67002707256112, 10.68010829024448],
-      focus: [0, 0, 0]
+      position: [
+        1.2556252511652628,
+        -1.8845128318655633,
+        -0.006335531414734807
+      ],
+      focus: [1.2637327202535016, 0, -0.09982552431336995]
     },
     pin: {
       color: "#ffc37c"
     },
-    author: 'Dawy "The Boulder" Johnson',
+    author: " Kabir Shahani",
     date: addDays(new Date(), -2).getTime(),
     comment:
-      "Have we thought about the cool factor associated with adding a flap here?  I’ve seeing market research that it is popular with our target demo.",
+      "I love the differnent fonts, but make the nike and zoom closer together in size",
     thread: []
   }
 ];

@@ -7,14 +7,28 @@ import { Box3, Vector3, Color, sRGBEncoding } from "three";
 extend({ OrbitControls });
 
 function Model({ setModelSize, ...props }) {
-  const gltf = useLoader(GLTFLoader, "models/gltf/sneaker/scene.gltf");
+  const gltf = useLoader(GLTFLoader, "models/gltf/nike_shoe/scene.gltf");
 
   useEffect(() => {
-    const maxVector = new Box3().setFromObject(gltf.scene).max;
-    setModelSize(maxVector.length());
+    //const maxVector = new Box3().setFromObject(gltf.scene).max;
+    //setModelSize(maxVector.length());
+
+    //Centering Object
+    var mroot = gltf.scene;
+    var bbox = new Box3().setFromObject(mroot);
+    var cent = bbox.getCenter(new Vector3());
+    var size = bbox.getSize(new Vector3());
+
+    //Rescale the object to normalized space
+    var maxAxis = Math.max(size.x, size.y, size.z);
+    mroot.scale.multiplyScalar(5.0 / maxAxis);
+    bbox.setFromObject(mroot);
+    bbox.getCenter(cent);
+    bbox.getSize(size);
+    mroot.position.copy(cent).multiplyScalar(-1);
   }, [gltf, setModelSize]);
 
-  return <primitive object={gltf.scene} position={[0, 0, 0]} {...props} />;
+  return <primitive object={gltf.scene} {...props} />;
 }
 
 function Controls({ cameraPosition, modelSize, controls, ...props }) {
@@ -48,9 +62,11 @@ function Controls({ cameraPosition, modelSize, controls, ...props }) {
         camera,
         controls
       );
+      console.log(cameraPosition);
     }
   }, [camera, cameraPosition, controls]);
 
+  console.log(cameraPosition);
   return (
     <orbitControls ref={controls} args={[camera, domElement]} {...props} />
   );
