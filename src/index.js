@@ -63,7 +63,9 @@ const colors = ["#c4c4c4", "#ff7a7a", "#ffe279", "#ffc37c"];
 
 const addComment = (notes, camera, controls, comment) => [
   {
-    id: 1 + Math.max(...notes.map(({ id }) => id)),
+    id:
+      1 +
+      notes.flatMap(({ id, thread }) => [id, ...thread.map(({ id }) => id)]),
     camera: {
       position: camera.position.toArray(),
       focus: controls.target.toArray()
@@ -84,7 +86,14 @@ const addReply = (notes, id, comment) =>
           ...note,
           thread: [
             {
-              id: 1 + Math.max(id, ...thread.map(({ id }) => id)),
+              id:
+                1 +
+                Math.max(
+                  notes.flatMap(({ id, thread }) => [
+                    id,
+                    ...thread.map(({ id }) => id)
+                  ])
+                ),
               pin: { color: note.pin.color },
               author: "Greg Gottesman",
               date: new Date().getTime(),
