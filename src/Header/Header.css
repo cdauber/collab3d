@@ -61,13 +61,20 @@
 }
 
 .topComment {
+  position: relative;
   padding: 0px 10px;
   border: 0;
   box-shadow: none;
+  z-index: 2;
 }
 
-.iconComment, .iconAngle{
+.iconComment, .iconAngle, .iconPin, .iconPen{
   color: #FFFFFF;
+  z-index: 0;
+}
+
+.iconPin{
+  transform: rotate(45deg);
 }
 
 
@@ -128,3 +135,48 @@ button:focus {
 .topComment:hover{
   background: #2673DD;;
 }
+
+.dpSpan{
+  color: white;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: max-content;
+}
+
+.dropdown-content {
+  padding: 5px 30px;
+  display: none;
+  position: absolute;
+    flex-direction: column;
+    z-index: 1;
+    top: 80px;
+    align-items: left;
+    justify-content: left;
+  overflow: auto;
+  background: #373737;
+  z-index: 10;
+}
+
+.checker1{
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  display: none;
+  color: #2673DD;
+}
+.checker2{
+  position: absolute;
+  left: 6px;
+  top: 38px;
+  display: none;
+  color: #2673DD;
+}
+.checker3{
+  position: absolute;
+  left: 6px;
+  top: 68px;
+  display: none;
+  color: #2673DD;
+}
+
+.show {display: flex;}

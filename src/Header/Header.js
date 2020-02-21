@@ -2,6 +2,9 @@ import React from "react";
 import "./Header.css";
 import {FaRegComment} from 'react-icons/fa';
 import {FaAngleDown} from 'react-icons/fa';
+import {FaNeuter} from 'react-icons/fa';
+import {FaCheck} from 'react-icons/fa';
+import {RiPencilLine} from 'react-icons/ri';
 
 class Header extends React.Component {
   render() {
@@ -14,9 +17,28 @@ class Header extends React.Component {
         <span className="greeting">Prototype 2</span>
       </div>
       <div className="button-row" >
-          <button className="topComment">
-            <FaRegComment className="iconComment" size="1.8em"></FaRegComment>
-            <FaAngleDown className="iconAngle" size="1.3em"></FaAngleDown>
+          <button className="topComment"          
+          onClick={() => document.getElementById("myDropdown").classList.toggle("show")}>
+            <FaRegComment className="iconComment" 
+            size="1.8em"></FaRegComment>
+            <FaAngleDown className="iconAngle" 
+            size="1.3em"></FaAngleDown>
+            <div id="myDropdown" class="dropdown-content">
+            <span className="dpSpan"
+              onClick={() => document.getElementById("checker1").classList.toggle("show")}>
+              <FaCheck id="checker1" className="checker1"/>
+              <FaRegComment className="iconComment" 
+              size="1.8em"></FaRegComment>  Comment</span>
+            <span className="dpSpan"
+              onClick={() => document.getElementById("checker2").classList.toggle("show")}>
+              <FaCheck id="checker2" className="checker2"/>
+              <FaNeuter className="iconPin" size="1.8em"
+              />  Pin</span>
+            <span className="dpSpan"
+              onClick={() => document.getElementById("checker").classList.toggle("show")}>
+              <FaCheck id="checker3" className="checker3"/>
+              <RiPencilLine className="iconPen" size="1.8em"/>  Drawover</span>
+          </div>
           </button>   
         <button className="AR"
             onClick={() => alert('more features to come')}>
@@ -38,6 +60,27 @@ class Header extends React.Component {
         </div>
             
     </div>);
+  }
+}
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.topComment')&&
+  !event.target.matches('.iconComment')&&
+  !event.target.matches('.iconAngle')&&
+  !event.target.matches('dropdown-content')
+  ) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
   }
 }
 
