@@ -1,41 +1,85 @@
+.head, .greeting-row, .button-row, .buttons, .back-row{
+  background: #373737;
+}
+
 .head {
+  padding-top: 5px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  /*box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);*/
   z-index: 1;
 }
 
-.greeting-row {
+.back-row{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+
+.back{
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  }
+
+  .greeting-row {
   margin-left: 335px;
   flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
+  }
 
 .greeting {
-  font-size: 12px;
+  font-family: SF Pro Display;
+  font-style: normal;
   font-weight: 500;
-  line-height: 14px;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
 }
 
 .button-row {
-  padding: 5px 10px;
-  width: 335px;
+  width: 340px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-right: 10px;
+}
+
+.comment {
+  background:white;
+}
+
+.iconComment{
+  width: 20%;
+  height: 20%;
+  color: #FFFFFF;
 }
 
 .share {
+  background: #5C35EE;
+  border-radius: 6px;
   border: 0;
   box-shadow: none;
-  padding: 5px 15px;
-  background: #71B2FF;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-left: 10px;
+  padding: 5px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .textShare, .textAR {
@@ -46,24 +90,38 @@
 
 .AR {
   box-shadow: none;
-  padding: 5px 15px;
-  background: white;
-  border: 1px solid black;
+  padding: 5px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #373737;
+  border: none;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 20px;
 }
 
-.textShare {
-  color: white;
+.textShare, .textAR {
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+
 }
 
 .profile {
   width: 43px;
   height: 43px;
   border-radius: 50%; 
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
 }
 
 button:focus {
   outline:0;
 }
+
