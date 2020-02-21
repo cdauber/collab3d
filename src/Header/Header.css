@@ -12,6 +12,7 @@
 }
 
 .back-row{
+  color: #FFFFFF;
   margin-left: 10px;
   display: flex;
   flex-direction: row;
@@ -149,7 +150,8 @@ button:focus {
   position: absolute;
     flex-direction: column;
     z-index: 1;
-    top: 80px;
+    top: 60px;
+    left: -40px;
     align-items: left;
     justify-content: left;
   overflow: auto;
