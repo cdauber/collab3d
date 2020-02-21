@@ -16,7 +16,7 @@ class Header extends React.Component {
       <div className="button-row" >
           <button className="topComment">
             <FaRegComment className="iconComment" size="1.8em"></FaRegComment>
-            <FaAngleDown className="iconAngle" size="1.8em"></FaAngleDown>
+            <FaAngleDown className="iconAngle" size="1.3em"></FaAngleDown>
           </button>   
         <button className="AR"
             onClick={() => alert('more features to come')}>
