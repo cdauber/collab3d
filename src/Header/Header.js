@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
-import {FaComment} from 'react-icons/fa';
-import { icons } from "react-icons/lib/cjs";
+import {FaRegComment} from 'react-icons/fa';
+import {FaAngleDown} from 'react-icons/fa';
 
 class Header extends React.Component {
   render() {
@@ -14,8 +14,9 @@ class Header extends React.Component {
         <span className="greeting">Prototype 2</span>
       </div>
       <div className="button-row" >
-          <button className="comment">
-          <FaComment className="iconComment" />
+          <button className="topComment">
+            <FaRegComment className="iconComment" size="1.8em"></FaRegComment>
+            <FaAngleDown className="iconAngle" size="1.8em"></FaAngleDown>
           </button>   
         <button className="AR"
             onClick={() => alert('more features to come')}>
