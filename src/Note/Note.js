@@ -1,59 +1,96 @@
-import React from 'react';
-import './Note.css';
+import React from "react";
+import "./Note.css";
+
+export function addDays(date, days) {
+  const result = new Date(date.valueOf());
+  result.setDate(date.getDate() + days);
+  return result;
+}
+
+function dateString(dateInMillis) {
+  const today = new Date();
+  const date = new Date(dateInMillis);
+
+  if (today.toDateString() === date.toDateString()) {
+    return `${date.toLocaleTimeString(navigator.language, {
+      timeStyle: "short"
+    })} Today`;
+  } else if (today.toDateString() === addDays(date, 1).toDateString()) {
+    return "Yesterday";
+  } else {
+    return date.toLocaleDateString(navigator.language, { dateStyle: "medium" });
+  }
+}
 
 function replyString(thread) {
   if (thread && thread.length > 0) {
     if (thread.length > 1) {
       return `${thread.length} Replies`;
     } else {
-      return '1 Reply';
+      return "1 Reply";
     }
   } else {
-    return 'Reply';
+    return "Reply";
   }
 }
 
 export function Note({
   selected,
   white,
+  pin,
   author,
+  date,
   comment,
-  profileColor,
   thread,
-  onDelete,
+  onResolve,
   onReply,
-  showReply=true,
+  showReply = true,
   ...props
 }) {
-  return <div className="wrapper">
-      <div className={selected ? 'selected-bar' : ''}></div>
-      <div className={'note' + (white ? ' white' : '')} {...props}>
-        <div className="content-row">
-          <div className="profile-image" style={{ backgroundColor: profileColor }}></div>
-          <div className="content-column">
-            <div className="author-row">
-              <div className="author-name">{author}</div>
-              <i className="close-button material-icons"
-                onClick={event => {
-                  event.stopPropagation();
-                  onDelete();
-                }}>
-                close
-              </i>
+  return (
+    <div className="wrapper">
+      <div className={selected ? "selected-bar" : ""}></div>
+      <div className={"note" + (selected ? " selected" : "")} {...props}>
+        <div className={"note-content" + (selected ? " selected" : "")}>
+          <div className="note-top-row">
+            <img
+              className="pin-color"
+              alt=""
+              style={{ backgroundColor: pin.color }}
+            />
+            <div className="note-top-column">
+              <div className="author-row">
+                <div className="author-name">{author}</div>
+                <button
+                  className={"resolve" + (thread ? " main-comment" : "")}
+                  onClick={event => {
+                    event.stopPropagation();
+                    onResolve();
+                  }}
+                >
+                  Resolve
+                </button>
+              </div>
+              <div className="note-date">{dateString(date)}</div>
             </div>
-            <div className="comment">{comment}</div>
-            {props.children}
-            {showReply ? <div className="reply">
-              <span className="reply-button"
+          </div>
+          <p className="comment">{comment}</p>
+          {showReply ? (
+            <div className="reply-row">
+              <button
+                className="reply-button"
                 onClick={event => {
                   event.stopPropagation();
-                  onReply()
-                }}>
+                  onReply();
+                }}
+              >
                 {replyString(thread)}
-              </span>
-            </div> : null}
-          </div>
+              </button>
+            </div>
+          ) : null}
         </div>
+        {props.children}
       </div>
-    </div>;
+    </div>
+  );
 }

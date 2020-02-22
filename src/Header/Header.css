@@ -1,4 +1,8 @@
-.head, .greeting-row, .button-row, .topComment, .back-row{
+.head,
+.greeting-row,
+.button-row,
+.topComment,
+.back-row {
   background: #373737;
 }
 
@@ -11,8 +15,8 @@
   z-index: 1;
 }
 
-.back-row{
-  color: #FFFFFF;
+.back-row {
+  color: #ffffff;
   margin-left: 10px;
   display: flex;
   flex-direction: row;
@@ -20,7 +24,7 @@
   margin-right: 10px;
 }
 
-.back{
+.back {
   font-family: SF Pro Display;
   font-style: normal;
   font-weight: normal;
@@ -29,16 +33,16 @@
   display: flex;
   align-items: center;
   text-align: center;
-  color: #FFFFFF;
-  }
+  color: #ffffff;
+}
 
-  .greeting-row {
+.greeting-row {
   margin-left: 335px;
   flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  }
+}
 
 .greeting {
   font-family: SF Pro Display;
@@ -50,7 +54,7 @@
   align-items: center;
   text-align: center;
 
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .button-row {
@@ -69,18 +73,20 @@
   z-index: 2;
 }
 
-.iconComment, .iconAngle, .iconPin, .iconPen{
-  color: #FFFFFF;
+.iconComment,
+.iconAngle,
+.iconPin,
+.iconPen {
+  color: #ffffff;
   z-index: 0;
 }
 
-.iconPin{
+.iconPin {
   transform: rotate(45deg);
 }
 
-
 .share {
-  background: #5C35EE;
+  background: #5c35ee;
   border-radius: 6px;
   border: 0;
   box-shadow: none;
@@ -89,7 +95,8 @@
   margin-bottom: 10px;
 }
 
-.textShare, .textAR {
+.textShare,
+.textAR {
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -106,7 +113,8 @@
   border-radius: 5px;
 }
 
-.textShare, .textAR {
+.textShare,
+.textAR {
   font-family: SF Pro Display;
   font-style: normal;
   font-weight: normal;
@@ -116,28 +124,27 @@
   align-items: center;
   text-align: center;
 
-  color: #FFFFFF;
-
+  color: #ffffff;
 }
 
 .profile {
   width: 43px;
   height: 43px;
-  border-radius: 50%; 
-  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
   box-sizing: border-box;
   margin: 5px 0px;
 }
 
 button:focus {
-  outline:0;
+  outline: 0;
 }
 
-.topComment:hover{
-  background: #2673DD;;
+.topComment:hover {
+  background: #2673dd;
 }
 
-.dpSpan{
+.dpSpan {
   color: white;
   flex-direction: row;
   justify-content: flex-start;
@@ -148,37 +155,39 @@ button:focus {
   padding: 5px 30px;
   display: none;
   position: absolute;
-    flex-direction: column;
-    z-index: 1;
-    top: 60px;
-    left: -40px;
-    align-items: left;
-    justify-content: left;
+  flex-direction: column;
+  z-index: 1;
+  top: 60px;
+  left: -40px;
+  align-items: left;
+  justify-content: left;
   overflow: auto;
   background: #373737;
   z-index: 10;
 }
 
-.checker1{
+.checker1 {
   position: absolute;
   left: 6px;
   top: 8px;
   display: none;
-  color: #2673DD;
+  color: #2673dd;
 }
-.checker2{
+.checker2 {
   position: absolute;
   left: 6px;
   top: 38px;
   display: none;
-  color: #2673DD;
+  color: #2673dd;
 }
-.checker3{
+.checker3 {
   position: absolute;
   left: 6px;
   top: 68px;
   display: none;
-  color: #2673DD;
+  color: #2673dd;
 }
 
-.show {display: flex;}
+.show {
+  display: flex;
+}
