@@ -15,13 +15,40 @@
   border-bottom: 1px solid #d2d2d2;
 }
 
+#input-label-row {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #input-label {
-  margin: 5px;
-  align-self: flex-start;
   font-size: 18px;
   font-weight: 500;
   line-height: 21px;
   color: #333;
+}
+
+#comment-required-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.red-circle {
+  margin: 6px;
+  width: 6px;
+  height: 6px;
+  background-color: #ec898e;
+  border-radius: 100%;
+}
+
+#comment-required {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+  font-style: italic;
+  color: #a5a5a5;
 }
 
 #input-comment {
@@ -75,6 +102,22 @@
 }
 
 .scroll-column {
+  position: relative;
   overflow-y: auto;
   flex-grow: 1;
+}
+
+.scroll-column.focused {
+  overflow-y: hidden;
+}
+
+#note-vignette {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  opacity: 0.38;
+  z-index: 1;
 }

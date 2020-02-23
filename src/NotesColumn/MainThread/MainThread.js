@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TextareaAutosize from "react-autosize-textarea/lib";
 import { Note } from "../../Note/Note";
 import { ConfirmResolve } from "../../ConfirmResolve/ConfirmResolve";
@@ -6,6 +6,8 @@ import "./MainThread.css";
 
 export function MainThread({
   notes,
+  selected,
+  focusInput,
   onSubmitComment,
   onSelect,
   onDeselect,
@@ -13,17 +15,29 @@ export function MainThread({
   onReplyNote,
   ...props
 }) {
-  const [selected, setSelected] = useState(null);
-  const [resolveNoteId, setResolveNoteId] = useState(null);
-  const [inputComment, setInputComment] = useState(undefined);
+  const [resolveNoteId, setResolveNoteId] = useState();
+  const [inputComment, setInputComment] = useState();
 
   return (
     <div id="notes-column" {...props}>
       <div id="input-column">
-        <span id="input-label">Comments</span>
+        <div id="input-label-row">
+          <span id="input-label">Comments</span>
+          {focusInput ? (
+            <div id="comment-required-group">
+              <div className="red-circle"></div>
+              <span id="comment-required">Comment required</span>
+            </div>
+          ) : null}
+        </div>
         <TextareaAutosize
           id="input-comment"
-          placeholder="Add a comment"
+          placeholder={
+            focusInput
+              ? "Comment is required for pins and drawovers"
+              : "Add a comment"
+          }
+          autoFocus={focusInput}
           value={inputComment}
           onChange={event => setInputComment(event.target.value)}
         />
@@ -49,7 +63,7 @@ export function MainThread({
           </button>
         </div>
       </div>
-      <div className="scroll-column">
+      <div className={"scroll-column" + (focusInput ? " focused" : "")}>
         {notes.map(({ id, camera, ...note }, index) => (
           <Note
             key={id}
@@ -58,20 +72,18 @@ export function MainThread({
             onClick={() => {
               if (selected === id) {
                 onDeselect();
-                setSelected(null);
               } else {
-                onSelect(camera);
-                setSelected(id);
+                onSelect({ id, camera, ...note });
               }
             }}
             onResolve={() => setResolveNoteId(id)}
             onReply={comment => {
-              setSelected(id);
-              onReplyNote(id, comment);
+              onReplyNote({ id, camera, ...notes }, comment);
             }}
             {...note}
           ></Note>
         ))}
+        {focusInput ? <div id="note-vignette"></div> : null}
       </div>
       <ConfirmResolve
         isModalOpen={resolveNoteId}

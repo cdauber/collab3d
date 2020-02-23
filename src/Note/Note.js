@@ -34,10 +34,17 @@ function replyString(thread) {
   }
 }
 
+function reduceToClassName(classObj) {
+  return Object.keys(classObj)
+    .reduce((acc, key) => (classObj[key] ? acc + key + " " : acc), "")
+    .trimRight();
+}
+
 export function Note({
   selected,
   white,
   pin,
+  drawOver,
   author,
   date,
   comment,
@@ -48,10 +55,21 @@ export function Note({
   ...props
 }) {
   return (
-    <div className="wrapper">
+    <div className={"wrapper" + (selected ? " selected" : "")}>
       <div className={selected ? "selected-bar" : ""}></div>
-      <div className={"note" + (selected ? " selected" : "")} {...props}>
-        <div className={"note-content" + (selected ? " selected" : "")}>
+      <div className="corner-tag-group">
+        <div
+          className={reduceToClassName({
+            "corner-tag": true,
+            drawover: !!drawOver
+          })}
+        ></div>
+        {drawOver && (
+          <img className="icon" src="assets/pencil.svg" alt="pencil icon" />
+        )}
+      </div>
+      <div className="note" {...props}>
+        <div className="note-content">
           <div className="note-top-row">
             <img
               className="pin-color"
@@ -61,15 +79,20 @@ export function Note({
             <div className="note-top-column">
               <div className="author-row">
                 <div className="author-name">{author}</div>
-                <button
-                  className={"resolve" + (thread ? " main-comment" : "")}
-                  onClick={event => {
-                    event.stopPropagation();
-                    onResolve();
-                  }}
-                >
-                  Resolve
-                </button>
+                <div>
+                  <button
+                    className={"resolve" + (thread ? " main-comment" : "")}
+                    onClick={event => {
+                      event.stopPropagation();
+                      onResolve();
+                    }}
+                  >
+                    Resolve
+                  </button>
+                  <button className="more-options-button">
+                    <img src="assets/dots.svg" alt="more options icon" />
+                  </button>
+                </div>
               </div>
               <div className="note-date">{dateString(date)}</div>
             </div>
@@ -85,6 +108,13 @@ export function Note({
                 }}
               >
                 {replyString(thread)}
+              </button>
+              <button className="attachment-button">
+                <img
+                  className="attachement-icon"
+                  src="assets/clip.svg"
+                  alt="attachment icon"
+                />
               </button>
             </div>
           ) : null}

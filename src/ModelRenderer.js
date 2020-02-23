@@ -31,11 +31,27 @@ function Model({ setModelSize, ...props }) {
   return <primitive object={gltf.scene} {...props} />;
 }
 
-function Controls({ cameraPosition, modelSize, controls, ...props }) {
-  function updateCamera(position, target, camera, controls) {
+function Controls({
+  cameraPosition,
+  modelSize,
+  controls,
+  onOrbitChange,
+  ...props
+}) {
+  function updateCamera(
+    position,
+    target,
+    camera,
+    controls,
+    updateEventListener = false,
+    onOrbitChange
+  ) {
     camera.position.set(...position);
-    controls.current.target.set(...target);
-    controls.current.update();
+    controls.target.set(...target);
+    if (updateEventListener) {
+      controls.addEventListener("change", onOrbitChange);
+    }
+    controls.update();
   }
 
   const {
@@ -49,7 +65,7 @@ function Controls({ cameraPosition, modelSize, controls, ...props }) {
         new Vector3(1, 0.5, 1).setLength(2 * modelSize).toArray(),
         [0, 0, 0],
         camera,
-        controls
+        controls.current
       );
     }
   }, [camera, modelSize, controls]);
@@ -60,13 +76,22 @@ function Controls({ cameraPosition, modelSize, controls, ...props }) {
         cameraPosition.position,
         cameraPosition.focus,
         camera,
-        controls
+        controls.current,
+        true,
+        onOrbitChange
       );
-      console.log(cameraPosition);
     }
-  }, [camera, cameraPosition, controls]);
+  }, [camera, cameraPosition, controls, onOrbitChange]);
 
-  console.log(cameraPosition);
+  useEffect(() => {
+    const ref = controls.current;
+    if (controls.current) {
+      ref.addEventListener("change", onOrbitChange);
+    }
+
+    return () => ref.removeEventListener("change", onOrbitChange);
+  }, [controls, onOrbitChange]);
+
   return (
     <orbitControls ref={controls} args={[camera, domElement]} {...props} />
   );
@@ -74,6 +99,7 @@ function Controls({ cameraPosition, modelSize, controls, ...props }) {
 
 export function ModelRenderer({
   cameraPosition,
+  onOrbitChange,
   setCamera,
   setOrbitControls,
   ...props
@@ -102,6 +128,7 @@ export function ModelRenderer({
         controls={controls}
         minDistance={1}
         maxDistance={modelSize ? 5 * modelSize : 50}
+        onOrbitChange={onOrbitChange}
       />
       <ambientLight />
       <Suspense fallback={null}>

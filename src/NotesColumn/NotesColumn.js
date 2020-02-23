@@ -5,9 +5,8 @@ import { Thread } from "./Thread/Thread";
 
 export function NotesColumn({
   notes,
+  focusInput,
   onSelect,
-  onDeselect,
-  onSubmitComment,
   onSubmitReply,
   ...props
 }) {
@@ -15,7 +14,7 @@ export function NotesColumn({
 
   if (
     activeThread &&
-    notes.find(({ id }) => id === activeThread) === undefined
+    (focusInput || notes.find(({ id }) => id === activeThread) === undefined)
   ) {
     setActiveThread(null);
   }
@@ -27,11 +26,10 @@ export function NotesColumn({
           "main-thread" + (activeThread ? " main-thread-inactive" : "")
         }
         notes={notes}
+        focusInput={focusInput}
         onSelect={onSelect}
-        onDeselect={onDeselect}
-        onSubmitComment={onSubmitComment}
-        onReplyNote={id => {
-          onSelect(notes.find(note => note.id === id).camera);
+        onReplyNote={({ id, ...note }) => {
+          onSelect({ id, ...note });
           setActiveThread(id);
         }}
         {...props}

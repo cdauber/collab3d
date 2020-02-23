@@ -40,6 +40,10 @@ code {
   align-items: center;
 }
 
-#three-renderer {
+.draw-over {
   flex-grow: 1;
+}
+
+.renderer {
+  position: absolute !important;
 }

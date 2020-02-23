@@ -5,6 +5,11 @@ div {
 .wrapper {
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid #a5a5a5;
+}
+
+.wrapper.selected {
+  background-color: #f7f8ff;
 }
 
 .selected-bar {
@@ -13,25 +18,44 @@ div {
   flex-shrink: 0;
 }
 
+.corner-tag-group {
+  position: relative;
+  align-self: flex-start;
+  width: 40px;
+  height: 40px;
+}
+
+.corner-tag {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid transparent;
+}
+
+.corner-tag.drawover {
+  border-top: 20px solid #6e82dc;
+  border-left: 20px solid #6e82dc;
+}
+
+.icon {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 1;
+}
+
 .note {
-  padding: 16px 20px;
-  border-bottom: 1px solid #a5a5a5;
+  padding: 16px 20px 16px 0;
   flex-grow: 1;
 
   display: flex;
   flex-direction: column;
 }
 
-.note.selected {
-  background-color: #f7f8ff;
-}
-
 .note-content {
-  padding: 0 13px;
-}
-
-.note-content.selected {
-  padding-left: calc(13px - 5px);
+  padding-right: 13px;
 }
 
 .note-top-row {
@@ -87,6 +111,13 @@ div {
   border: 1px solid #cecece;
 }
 
+.more-options-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 8px;
+}
+
 .note-date {
   font-size: 10px;
   font-weight: normal;
@@ -117,4 +148,11 @@ div {
   font-weight: 500;
   line-height: 14px;
   color: #7e8ed7;
+}
+
+.attachment-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 48px;
 }
