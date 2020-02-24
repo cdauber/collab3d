@@ -2,7 +2,70 @@ import React, { useEffect, useState } from "react";
 import "./DrawCanvas.css";
 import { useRef } from "react";
 import { HotKeys } from "react-hotkeys";
-import { compressToEncodedURIComponent } from "lz-string";
+
+function handleUndo(isPainting, setPainting, value, onChange) {
+  return () => {
+    if (isPainting) {
+      setPainting(false);
+    }
+    value = value.filter(line => line.length > 1);
+    if (value.length > 0) {
+      onChange && onChange(value.slice(0, value.length - 1));
+    }
+  };
+}
+
+function handleClick(setPainting, onChange, value, ref) {
+  return ({ nativeEvent }) => {
+    const { offsetX, offsetY } = nativeEvent;
+    setPainting(true);
+    onChange &&
+      onChange([
+        ...value,
+        [
+          {
+            x: offsetX / ref.current.clientWidth,
+            y: offsetY / ref.current.clientHeight
+          }
+        ]
+      ]);
+  };
+}
+
+function handleDrag(isPainting, value, onChange, ref) {
+  return ({ nativeEvent }) => {
+    if (isPainting) {
+      const { offsetX, offsetY } = nativeEvent;
+      if (value.length > 0) {
+        const currLine = value[value.length - 1];
+        onChange &&
+          onChange([
+            ...value.slice(0, value.length - 1),
+            [
+              ...currLine,
+              {
+                x: offsetX / ref.current.clientWidth,
+                y: offsetY / ref.current.clientHeight
+              }
+            ]
+          ]);
+      }
+    }
+  };
+}
+
+function convertTouchToMouse(handler) {
+  return ({ nativeEvent }) => {
+    const canvasRect = nativeEvent.target.getBoundingClientRect();
+    const touch = nativeEvent.targetTouches[0];
+    handler({
+      nativeEvent: {
+        offsetX: touch.pageX - canvasRect.left,
+        offsetY: touch.pageY - canvasRect.top
+      }
+    });
+  };
+}
 
 function paint(canvas, ctx, value, lineWidth, lineColor) {
   if (ctx) {
@@ -57,17 +120,9 @@ export function DrawCanvas({
     <HotKeys
       allowChanges
       className="draw-canvas-hotkeys"
-      keyMap={{ undo: ["command+z", "ctrl+z", "backspace"], print: ["enter"] }}
+      keyMap={{ undo: ["command+z", "ctrl+z", "backspace"] }}
       handlers={{
-        undo: () => {
-          if (isPainting) {
-            setPainting(false);
-          }
-          if (value.length > 0) {
-            onChange && onChange(value.slice(0, value.length - 1));
-          }
-        },
-        print: () => console.log(compressToEncodedURIComponent(JSON.stringify(value)))
+        undo: handleUndo(isPainting, setPainting, value, onChange)
       }}
     >
       <canvas
@@ -75,38 +130,17 @@ export function DrawCanvas({
         className="draw-canvas"
         width={width}
         height={height}
-        onMouseDown={({ nativeEvent }) => {
-          const { offsetX, offsetY } = nativeEvent;
-          setPainting(true);
-          onChange && onChange([
-            ...value,
-            [
-              {
-                x: offsetX / ref.current.clientWidth,
-                y: offsetY / ref.current.clientHeight
-              }
-            ]
-          ]);
-        }}
-        onMouseMove={({ nativeEvent }) => {
-          if (isPainting) {
-            const { offsetX, offsetY } = nativeEvent;
-            if (value.length > 0) {
-              const currLine = value[value.length - 1];
-              onChange && onChange([
-                ...value.slice(0, value.length - 1),
-                [
-                  ...currLine,
-                  {
-                    x: offsetX / ref.current.clientWidth,
-                    y: offsetY / ref.current.clientHeight
-                  }
-                ]
-              ]);
-            }
-          }
-        }}
+        onMouseDown={handleClick(setPainting, onChange, value, ref)}
+        onMouseMove={handleDrag(isPainting, value, onChange, ref)}
         onMouseUp={() => setPainting(false)}
+        onTouchStart={convertTouchToMouse(
+          handleClick(setPainting, onChange, value, ref)
+        )}
+        onTouchMove={convertTouchToMouse(
+          handleDrag(isPainting, value, onChange, ref)
+        )}
+        onTouchEnd={() => setPainting(false)}
+        onTouchCancel={handleUndo(isPainting, setPainting, value, onChange)}
         {...props}
       />
     </HotKeys>

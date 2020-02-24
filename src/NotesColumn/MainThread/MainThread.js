@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import TextareaAutosize from "react-autosize-textarea/lib";
 import { Note } from "../../Note/Note";
 import { ConfirmResolve } from "../../ConfirmResolve/ConfirmResolve";

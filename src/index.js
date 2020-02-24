@@ -105,7 +105,7 @@ function MainPage() {
   const [controls, setControls] = useState();
   const [notes, setNotes] = useState(NOTES);
   const [selectedNote, setSelectedNote] = useState();
-  const [cursor, setCursor] = useState(CURSOR.POINTER);
+  const [cursor, setCursor] = useState(CURSOR.DRAWOVER);
   const [drawing, setDrawing] = useState();
 
   return (
@@ -163,7 +163,13 @@ function MainPage() {
           onSubmitReply={({ id }, comment) =>
             setNotes(addReply(notes, id, comment))
           }
-          onResolveNote={id => setNotes(deleteNote(id, notes))}
+          onResolveNote={id => {
+            setNotes(deleteNote(id, notes));
+            if (selectedNote && id === selectedNote.id) {
+              setSelectedNote(null);
+              setDrawing(null);
+            }
+          }}
         />
       </div>
     </>
