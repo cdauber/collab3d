@@ -7,7 +7,7 @@ export function DrawOver({ active, drawing, onChange, children, ...props }) {
     <div id="sketch-container" {...props}>
       {children}
       <div id="sketch-canvas" className={onChange ? "" : "static"}>
-        <DrawCanvas lineColor="red" value={drawing} onChange={onChange} />
+        <DrawCanvas lineWidth={2} lineColor="#ff0035" value={drawing} onChange={onChange} />
       </div>
     </div>
   );

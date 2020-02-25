@@ -10,8 +10,8 @@ import NOTES, { NoteModel, NoteCamera, NotePin } from "./notes.js";
 import LZString from "lz-string";
 
 const COLORS = ["#c4c4c4", "#ff7a7a", "#ffe279", "#ffc37c"];
-const CURSOR = {
-  POINTER: "pointer",
+export const CURSOR = {
+  DEFAULT: "pointer",
   DRAWOVER: "drawover"
 };
 
@@ -141,7 +141,7 @@ function MainPage() {
         <NotesColumn
           notes={notes}
           selected={selectedNote && selectedNote.id}
-          focusInput={cursor === CURSOR.DRAWOVER}
+          cursor={cursor}
           onSelect={selected => {
             setSelectedNote(selected);
             setDrawing(
@@ -158,7 +158,11 @@ function MainPage() {
           onSubmitComment={comment => {
             setNotes(addComment(notes, camera, controls, comment, drawing));
             setDrawing(null);
-            setCursor(CURSOR.POINTER);
+            setCursor(CURSOR.DEFAULT);
+          }}
+          onCancel={() => {
+            setDrawing(null);
+            setCursor(CURSOR.DEFAULT);
           }}
           onSubmitReply={({ id }, comment) =>
             setNotes(addReply(notes, id, comment))
@@ -170,6 +174,8 @@ function MainPage() {
               setDrawing(null);
             }
           }}
+          allowRedraw={drawing && drawing.length > 0}
+          onRedraw={() => setDrawing(null)}
         />
       </div>
     </>

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { MainThread } from "./MainThread/MainThread";
 import "./NotesColumn.css";
 import { Thread } from "./Thread/Thread";
+import { CURSOR } from "../index";
 
 export function NotesColumn({
   notes,
-  focusInput,
+  cursor,
   onSelect,
   onSubmitReply,
   ...props
@@ -14,7 +15,8 @@ export function NotesColumn({
 
   if (
     activeThread &&
-    (focusInput || notes.find(({ id }) => id === activeThread) === undefined)
+    (cursor === CURSOR.DRAWOVER ||
+      notes.find(({ id }) => id === activeThread) === undefined)
   ) {
     setActiveThread(null);
   }
@@ -26,7 +28,7 @@ export function NotesColumn({
           "main-thread" + (activeThread ? " main-thread-inactive" : "")
         }
         notes={notes}
-        focusInput={focusInput}
+        cursor={cursor}
         onSelect={onSelect}
         onReplyNote={({ id, ...note }) => {
           onSelect({ id, ...note });
