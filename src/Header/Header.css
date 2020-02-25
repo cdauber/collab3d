@@ -32,8 +32,8 @@
   color: #FFFFFF;
   }
 
-  .greeting-row {
-  margin-left: 335px;
+.greeting-row {
+  margin-left: 200px;
   flex-grow: 1;
   display: flex;
   flex-direction: row;
@@ -54,50 +54,27 @@
 }
 
 .button-row {
-  width: 340px;
+  width: 140px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-right: 10px;
 }
 
-.topComment {
-  position: relative;
-  padding: 0px 10px;
-  border: 0;
-  box-shadow: none;
-  z-index: 2;
-}
-
-.iconComment, .iconAngle, .iconPin, .iconPen{
-  color: #FFFFFF;
-  z-index: 0;
-}
-
-.iconPin{
-  transform: rotate(45deg);
-}
-
-
 .share {
-  background: #5C35EE;
+  background: #9B00D1;
   border-radius: 6px;
   border: 0;
   box-shadow: none;
-  padding: 5px 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.textShare, .textAR {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19px;
+  display: flex;
+  flex-direction: row;
+  padding: 4px 18px;
+  margin: 13px;
+  margin-right: 20px;
 }
 
 .AR {
   box-shadow: none;
-  padding: 5px 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   background: #373737;
@@ -115,9 +92,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-
   color: #FFFFFF;
-
 }
 
 .profile {
@@ -126,59 +101,13 @@
   border-radius: 50%; 
   border: 1px solid #FFFFFF;
   box-sizing: border-box;
-  margin: 5px 0px;
+  margin: 5px 7px;
 }
 
 button:focus {
   outline:0;
 }
 
-.topComment:hover{
-  background: #2673DD;;
-}
 
-.dpSpan{
-  color: white;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: max-content;
-}
 
-.dropdown-content {
-  padding: 5px 30px;
-  display: none;
-  position: absolute;
-    flex-direction: column;
-    z-index: 1;
-    top: 60px;
-    left: -40px;
-    align-items: left;
-    justify-content: left;
-  overflow: auto;
-  background: #373737;
-  z-index: 10;
-}
 
-.checker1{
-  position: absolute;
-  left: 6px;
-  top: 8px;
-  display: none;
-  color: #2673DD;
-}
-.checker2{
-  position: absolute;
-  left: 6px;
-  top: 38px;
-  display: none;
-  color: #2673DD;
-}
-.checker3{
-  position: absolute;
-  left: 6px;
-  top: 68px;
-  display: none;
-  color: #2673DD;
-}
-
-.show {display: flex;}
