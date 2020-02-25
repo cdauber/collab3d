@@ -86,8 +86,30 @@
 #input-actions {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+}
+
+#add-on-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#attachment-button,
+#drawover-button {
+  background: none;
+  border: none;
+  padding: 5px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#drawover-button.enabled {
+  background-color: #6e82dc;
+  border-radius: 6px;
 }
 
 #input-cancel,

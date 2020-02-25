@@ -65,7 +65,7 @@ export function Note({
           })}
         ></div>
         {drawOver && (
-          <img className="icon" src="assets/pencil.svg" alt="pencil icon" />
+          <img className="icon" src="assets/pencil-white.svg" alt="pencil icon" />
         )}
       </div>
       <div className="note" {...props}>
@@ -108,13 +108,6 @@ export function Note({
                 }}
               >
                 {replyString(thread)}
-              </button>
-              <button className="attachment-button">
-                <img
-                  className="attachement-icon"
-                  src="assets/clip.svg"
-                  alt="attachment icon"
-                />
               </button>
             </div>
           ) : null}

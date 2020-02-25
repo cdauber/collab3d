@@ -105,7 +105,7 @@ function MainPage() {
   const [controls, setControls] = useState();
   const [notes, setNotes] = useState(NOTES);
   const [selectedNote, setSelectedNote] = useState();
-  const [cursor, setCursor] = useState(CURSOR.DRAWOVER);
+  const [cursor, setCursor] = useState(CURSOR.DEFAULT);
   const [drawing, setDrawing] = useState();
 
   return (
@@ -174,8 +174,24 @@ function MainPage() {
               setDrawing(null);
             }
           }}
+          onAddDrawOver={() => {
+            if (selectedNote) {
+              setSelectedNote(null);
+            }
+            if (cursor === CURSOR.DRAWOVER) {
+              setCursor(CURSOR.DEFAULT);
+              setDrawing(null);
+            } else {
+              setCursor(CURSOR.DRAWOVER);
+            }
+          }}
           allowRedraw={drawing && drawing.length > 0}
-          onRedraw={() => setDrawing(null)}
+          onRedraw={() => {
+            if (selectedNote) {
+              setSelectedNote(null);
+            }
+            setDrawing(null);
+          }}
         />
       </div>
     </>
