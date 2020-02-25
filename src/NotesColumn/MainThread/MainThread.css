@@ -3,61 +3,78 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  overflow-y: auto;
   /* width: 23vw; */
-  width: 335px;
+  width: 337px;
 }
 
 #input-column {
+  padding: 5px 20px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-bottom: 1px solid #D2D2D2;
+  border-bottom: 1px solid #d2d2d2;
 }
 
 #input-label {
-  margin: 10px 12px;
+  margin: 5px;
   align-self: flex-start;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 21px;
+  color: #333;
 }
 
 #input-comment {
-  margin: 0 20px;
-  padding: 15px 17px 10px 17px;
-  border: 1px solid rgba(152, 152, 152, 0.5);
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #a5a5a5;
   border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: normal;
   line-height: 14px;
-  height: 18px;
+  color: #333;
   box-sizing: content-box;
   outline: none;
 }
 
 #input-comment::placeholder {
   font-style: italic;
-  color: #999999;
+  color: #a5a5a5;
 }
 
 #input-actions {
-  padding: 0 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 }
 
-#input-cancel, #input-submit {
-  margin: 12px;
+#input-cancel,
+#input-submit {
+  background: none;
+  border: none;
+  cursor: default;
+
+  padding: 10px 15px;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
-  color: #848484;
-  cursor: pointer;
+  color: #a5a5a5;
 }
 
-#input-cancel:hover, #input-submit:hover {
-  color: black;
+#input-cancel.enabled:hover {
+  cursor: pointer;
+  color: #6e82dc;
+}
+
+#input-submit.enabled {
+  cursor: pointer;
+  background-color: #6e82dc;
+  color: white;
+  border-radius: 6px;
+}
+
+.scroll-column {
+  overflow-y: auto;
+  flex-grow: 1;
 }

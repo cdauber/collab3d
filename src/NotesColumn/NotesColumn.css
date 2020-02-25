@@ -5,25 +5,25 @@
   border-left: 0.2px solid black;
   /* width: 23vw; */
   box-sizing: content-box;
-  width: 335px;
+  width: 337px;
   overflow: hidden;
 }
 
 .main-thread {
   margin-left: 0;
-  transition: margin .3s, opacity .3s, visibility .3s;
+  transition: margin 0.3s, opacity 0.3s, visibility 0.3s;
   opacity: 1;
   visibility: visible;
 }
 
 .main-thread-inactive {
-  margin-left: -336px;
+  margin-left: -337px;
   opacity: 0;
   visibility: hidden;
 }
 
 .active-thread {
-  transition: visibility .3s, opacity .3s;
+  transition: visibility 0.3s, opacity 0.3s;
   opacity: 1;
   visibility: visible;
 }
