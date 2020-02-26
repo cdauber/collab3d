@@ -1,36 +1,33 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import IconButton from '@material-ui/core/IconButton';
-import Checkbox from '@material-ui/core/Checkbox';
-import CommentIcon from '@material-ui/icons/Comment';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import './Variations.css';
-
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import { makeStyles } from "@material-ui/core/styles";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import React from "react";
+import "./Variations.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: "100%",
     maxWidth: 250,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper
   },
   nested: {
-    paddingLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(4)
   }
 }));
 
-export function Variations({shoes}) {
+export function Variations({ shoes }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [checked, setChecked] = React.useState([0]);
-  
+
   const handleClick = () => {
     setOpen(!open);
   };
@@ -41,12 +38,12 @@ export function Variations({shoes}) {
 
   const theme = createMuiTheme({
     props: {
-    // Name of the component ⚛️
+      // Name of the component ⚛️
       MuiButtonBase: {
         // The properties to apply
-        disableRipple: true, // No more ripple, on the whole application 💣!
-      },
-    },
+        disableRipple: true // No more ripple, on the whole application 💣!
+      }
+    }
   });
 
   // return (
@@ -84,7 +81,8 @@ export function Variations({shoes}) {
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
-      className={classes.root}>
+      className={classes.root}
+    >
       <ListItem button onClick={handleClick}>
         <ListItemText disabled primary="Nike Zoom Prototype 1" />
         {open ? <ExpandLess /> : <ExpandMore />}
@@ -92,68 +90,76 @@ export function Variations({shoes}) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <ListItemIcon id = "checkbox">
-               <Checkbox id="1"
+            <ListItemIcon id="checkbox">
+              <Checkbox
+                id="1"
                 checked={checked}
                 onChange={handleChange}
                 value="1"
                 disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
             </ListItemIcon>
-            <IconButton disabled id="shoe_1"><img src={require('./shoe_1.png')}/> </IconButton>
+            <IconButton disabled id="shoe_1">
+              <img src={require("./shoe_1.png")} />{" "}
+            </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <ListItemIcon id = "checkbox">
-               <Checkbox
+            <ListItemIcon id="checkbox">
+              <Checkbox
                 checked={checked}
                 onChange={handleChange}
                 value="2"
                 disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
             </ListItemIcon>
-            <IconButton disabled id="shoe_2"><img src={require('./shoe_2.png')}/> </IconButton>
+            <IconButton disabled id="shoe_2">
+              <img src={require("./shoe_2.png")} />{" "}
+            </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
-         <List component="div" disablePadding>
+        <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <ListItemIcon id = "checkbox">
-               <Checkbox
+            <ListItemIcon id="checkbox">
+              <Checkbox
                 checked={checked}
                 onChange={handleChange}
                 value="3"
                 disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
             </ListItemIcon>
-            <IconButton disabled id="shoe_3"><img src={require('./shoe_3.png')}/> </IconButton>
+            <IconButton disabled id="shoe_3">
+              <img src={require("./shoe_3.png")} />{" "}
+            </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
-         <List component="div" disablePadding>
+        <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <ListItemIcon id = "checkbox">
-               <Checkbox
+            <ListItemIcon id="checkbox">
+              <Checkbox
                 checked={checked}
                 onChange={handleChange}
                 value="primary"
                 disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
+                inputProps={{ "aria-label": "primary checkbox" }}
               />
             </ListItemIcon>
-            <IconButton disabled id="shoe_4"><img src={require('./shoe_4.png')}/> </IconButton>
+            <IconButton disabled id="shoe_4">
+              <img src={require("./shoe_4.png")} />{" "}
+            </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
       </Collapse>
     </List>
   );
-
 
   // return (
   //   <List
@@ -193,8 +199,6 @@ export function Variations({shoes}) {
   //   </List>
   // );
 }
-
-
 
 /*import React from 'react';
 import './Variations.css'
@@ -306,8 +310,7 @@ export function Variations({ shoes, depthStep, depth, expanded }) {
 }
 */
 
-
-  /*
+/*
   return <div id="variations-column">
     <div id="row-one">
       <div id="box"></div>
@@ -330,4 +333,3 @@ export function Variations({ shoes, depthStep, depth, expanded }) {
     </div>
     
     </div>*/
-
