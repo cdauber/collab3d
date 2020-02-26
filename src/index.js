@@ -64,6 +64,20 @@ const notes2 = [
 
 const colors = ['#c4c4c4', '#ff7a7a', '#ffe279', '#ffc37c'];
 
+/*
+const shoes = [
+  { name: 'shoe_model_panel', 
+    label: 'Nike Zoom Prototype 1',
+    items: [
+      { name: 'shoe_1', label: 'shoe V1' },
+      { name: 'shoe_2', label: 'shoe V1' },
+      { name: 'shoe_3', label: 'shoe V1' },
+      { name: 'shoe_4', label: 'shoe V1' },
+    ],
+  }
+]
+*/
+
 function MainPage() {
   const [cameraPosition, setCameraPosition] = useState({ position: [-2, 0, -3], focus: [0, 0, 0] });
   const [camera, setCamera] = useState(undefined);
