@@ -114,6 +114,20 @@ const deleteNote = (id, notes) =>
       ...note
     }));
 
+/*
+const shoes = [
+  { name: 'shoe_model_panel', 
+    label: 'Nike Zoom Prototype 1',
+    items: [
+      { name: 'shoe_1', label: 'shoe V1' },
+      { name: 'shoe_2', label: 'shoe V1' },
+      { name: 'shoe_3', label: 'shoe V1' },
+      { name: 'shoe_4', label: 'shoe V1' },
+    ],
+  }
+]
+*/
+
 function MainPage() {
   const [cameraPosition, setCameraPosition] = useState(undefined);
   const [camera, setCamera] = useState(undefined);
