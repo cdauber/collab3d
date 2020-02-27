@@ -97,6 +97,7 @@ export function Variations({shoes}) {
                 checked={checked}
                 onChange={handleChange}
                 value="1"
+                disableRipple
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </ListItemIcon>
@@ -111,6 +112,7 @@ export function Variations({shoes}) {
                 checked={checked}
                 onChange={handleChange}
                 value="2"
+                disableRipple
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </ListItemIcon>
@@ -125,6 +127,7 @@ export function Variations({shoes}) {
                 checked={checked}
                 onChange={handleChange}
                 value="3"
+                disableRipple
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </ListItemIcon>
@@ -139,6 +142,7 @@ export function Variations({shoes}) {
                 checked={checked}
                 onChange={handleChange}
                 value="primary"
+                disableRipple
                 inputProps={{ 'aria-label': 'primary checkbox' }}
               />
             </ListItemIcon>
