@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CommentIcon from '@material-ui/icons/Comment';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import './Variations.css';
 
 import { createMuiTheme } from '@material-ui/core';
@@ -35,50 +36,30 @@ export function Variations({shoes}) {
     setOpen(!open);
   };
 
-  const handleChange = event => {
-    setChecked(event.target.checked);
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
   };
 
-  const theme = createMuiTheme({
-    props: {
-    // Name of the component ⚛️
-      MuiButtonBase: {
-        // The properties to apply
-        disableRipple: true, // No more ripple, on the whole application 💣!
-      },
-    },
+  const [state, setState] = React.useState({
+      checkedA: true,
+      checkedB: true,
+      checkedC: true,
+      checkedD: true,
   });
-
-  // return (
-  //   <List className={classes.root}>
-  //     {[0, 1, 2, 3].map(value => {
-  //       const labelId = `checkbox-list-label-${value}`;
-
-  //       return (
-  //         <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
-  //           <ListItemIcon>
-  //             <Checkbox
-  //               edge="start"
-  //               checked={checked.indexOf(value) !== -1}
-  //               tabIndex={-1}
-  //               disableRipple
-  //               inputProps={{ 'aria-labelledby': labelId }}
-  //             />
-  //           </ListItemIcon>
-  //           <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-  //           <ListItemSecondaryAction>
-  //             <IconButton edge="end" aria-label="comments">
-  //               <CommentIcon />
-  //             </IconButton>
-  //           </ListItemSecondaryAction>
-  //         </ListItem>
-  //       );
-  //     })}
-  //   </List>
-  // );
 
   // TODO: fix ripple effect and overlapping
   // TODO: fix the checkboxes all seleting at a time fml
+        // <ListItemIcon id = "checkbox">
+        //        <Checkbox id="1"
+        //         checked={checked}
+        //         onChange={handleChange}
+        //         value="1"
+        //         disableRipple
+        //         inputProps={{ 'aria-label': 'primary checkbox' }}
+        //       />
+        //     </ListItemIcon>
+
+
 
   return (
     <List
@@ -92,60 +73,72 @@ export function Variations({shoes}) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <ListItemIcon id = "checkbox">
-               <Checkbox id="1"
-                checked={checked}
-                onChange={handleChange}
-                value="1"
-                disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-              />
-            </ListItemIcon>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  id="checkedA"
+                  checked={state.checkedA}
+                  onChange={handleChange('checkedA')}
+                  value="checkedA"
+                  color="primary"
+                  disableRipple
+                />
+              }
+            />
             <IconButton disabled id="shoe_1"><img src={require('./shoe_1.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <ListItemIcon id = "checkbox">
-               <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                value="2"
-                disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-              />
-            </ListItemIcon>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  id="checkedB"
+                  checked={state.checkedB}
+                  onChange={handleChange('checkedB')}
+                  value="checkedB"
+                  color="primary"
+                  disableRipple
+                />
+              }
+            />
             <IconButton disabled id="shoe_2"><img src={require('./shoe_2.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
          <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <ListItemIcon id = "checkbox">
-               <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                value="3"
-                disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-              />
-            </ListItemIcon>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  id="checkedC"
+                  checked={state.checkedC}
+                  onChange={handleChange('checkedC')}
+                  value="checkedC"
+                  color="primary"
+                  disableRipple
+                />
+              }
+            />
             <IconButton disabled id="shoe_3"><img src={require('./shoe_3.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
          <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-          <ListItemIcon id = "checkbox">
-               <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                value="primary"
-                disableRipple
-                inputProps={{ 'aria-label': 'primary checkbox' }}
-              />
-            </ListItemIcon>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  id="checkedD"
+                  checked={state.checkedD}
+                  onChange={handleChange('checkedD')}
+                  value="checkedD"
+                  color="primary"
+                  disableRipple
+                />
+              }
+            />
             <IconButton disabled id="shoe_4"><img src={require('./shoe_4.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
