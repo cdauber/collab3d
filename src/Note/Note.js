@@ -53,7 +53,7 @@ export function Note({
       <div className={"note" + (selected ? " selected" : "")} {...props}>
         <div className={"note-content" + (selected ? " selected" : "")}>
           <div className="note-top-row">
-            <img
+            <div
               className="pin-color"
               alt=""
               style={{ backgroundColor: pin.color }}
