@@ -40,6 +40,7 @@
 
 .greeting-row > span {
   pointer-events: all;
+  padding: 0 20px;
 }
 
 .button-row {
