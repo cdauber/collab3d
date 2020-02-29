@@ -7,14 +7,8 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
-import Checkbox from '@material-ui/core/Checkbox';
-import CommentIcon from '@material-ui/icons/Comment';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from 'rc-checkbox';
 import './Variations.css';
-
-import { createMuiTheme } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 export function Variations({shoes}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  const [checked, setChecked] = React.useState([0]);
+  // const [checked, setChecked] = React.useState([0]);
   
   const handleClick = () => {
     setOpen(!open);
@@ -47,280 +41,57 @@ export function Variations({shoes}) {
       checkedD: true,
   });
 
-  // TODO: fix ripple effect and overlapping
-  // TODO: fix the checkboxes all seleting at a time fml
-        // <ListItemIcon id = "checkbox">
-        //        <Checkbox id="1"
-        //         checked={checked}
-        //         onChange={handleChange}
-        //         value="1"
-        //         disableRipple
-        //         inputProps={{ 'aria-label': 'primary checkbox' }}
-        //       />
-        //     </ListItemIcon>
-
-
-
   return (
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
       className={classes.root}>
-      <ListItem button onClick={handleClick}>
-        <ListItemText disabled primary="Nike Zoom Prototype 1" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItem>
+      <ListItemText id="title" disabled primary="Iteration" />
+
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  id="checkedA"
-                  checked={state.checkedA}
-                  onChange={handleChange('checkedA')}
-                  value="checkedA"
-                  color="primary"
-                  disableRipple
-                />
-              }
+            <Checkbox
+                checked={state.checkedA}
+                onChange={handleChange('checkedA')}
             />
-            <IconButton disabled id="shoe_1"><img src={require('./shoe_1.png')}/> </IconButton>
+            <IconButton disabled alt="shoe 1" id="shoe_1"><img id="shoe" src={require('./shoe_1.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  id="checkedB"
-                  checked={state.checkedB}
-                  onChange={handleChange('checkedB')}
-                  value="checkedB"
-                  color="primary"
-                  disableRipple
-                />
-              }
+            <Checkbox
+                checked={state.checkedB}
+                onChange={handleChange('checkedB')}
             />
-            <IconButton disabled id="shoe_2"><img src={require('./shoe_2.png')}/> </IconButton>
+            <IconButton disabled alt="shoe 2" id="shoe_2"><img id="shoe" src={require('./shoe_2.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
          <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  id="checkedC"
+            <Checkbox
                   checked={state.checkedC}
+                  defaultChecked
                   onChange={handleChange('checkedC')}
-                  value="checkedC"
-                  color="primary"
-                  disableRipple
-                />
-              }
             />
-            <IconButton disabled id="shoe_3"><img src={require('./shoe_3.png')}/> </IconButton>
+            <IconButton disabled alt="shoe 3"id="shoe_3"><img id="shoe" src={require('./shoe_3.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
          <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  id="checkedD"
+            <Checkbox
                   checked={state.checkedD}
+                  defaultChecked
                   onChange={handleChange('checkedD')}
-                  value="checkedD"
-                  color="primary"
-                  disableRipple
-                />
-              }
             />
-            <IconButton disabled id="shoe_4"><img src={require('./shoe_4.png')}/> </IconButton>
+            <IconButton disabled alt="shoe 4" id="shoe_4"><img id="shoe" src={require('./shoe_4.png')}/> </IconButton>
             <ListItemText disabled id="shoe_text" primary="shoe V1" />
           </ListItem>
         </List>
       </Collapse>
     </List>
   );
-
-
-  // return (
-  //   <List
-  //     component="nav"
-  //     aria-labelledby="nested-list-subheader"
-  //     className={classes.root}>
-  //     <ListItem button onClick={handleClick}>
-  //       <ListItemText disabled primary="Nike Zoom Prototype 1" />
-  //       {open ? <ExpandLess /> : <ExpandMore />}
-  //     </ListItem>
-  //     <Collapse in={open} timeout="auto" unmountOnExit>
-  //       <List component="div" disablePadding>
-  //         <ListItem button className={classes.nested}>
-  //           <IconButton disabled id="shoe_1"><img src={require('./shoe_1.png')}/> </IconButton>
-  //           <ListItemText disabled id="shoe_text" primary="shoe V1" />
-  //         </ListItem>
-  //       </List>
-  //       <List component="div" disablePadding>
-  //         <ListItem button className={classes.nested}>
-  //           <IconButton disabled id="shoe_2"><img src={require('./shoe_2.png')}/> </IconButton>
-  //           <ListItemText disabled id="shoe_text" primary="shoe V1" />
-  //         </ListItem>
-  //       </List>
-  //        <List component="div" disablePadding>
-  //         <ListItem button className={classes.nested}>
-  //           <IconButton disabled id="shoe_3"><img src={require('./shoe_3.png')}/> </IconButton>
-  //           <ListItemText disabled id="shoe_text" primary="shoe V1" />
-  //         </ListItem>
-  //       </List>
-  //        <List component="div" disablePadding>
-  //         <ListItem button className={classes.nested}>
-  //           <IconButton disabled id="shoe_4"><img src={require('./shoe_4.png')}/> </IconButton>
-  //           <ListItemText disabled id="shoe_text" primary="shoe V1" />
-  //         </ListItem>
-  //       </List>
-  //     </Collapse>
-  //   </List>
-  // );
 }
-
-
-
-/*import React from 'react';
-import './Variations.css'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-
-import Divider from "@material-ui/core/Divider";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import Collapse from "@material-ui/core/Collapse";
-*/
-/*
-
-function SidebarItem({ depthStep = 10, depth=0, expanded, item, ...rest}) {
-  const [collapsed, setCollapsed] = React.useState(true);
-  const { label, items, Icon, onClick: onClickProp } = item;
-
-  function toggleCollapse() {
-    setCollapsed(prevValue => !prevValue);
-  }
-
-  function onClick(e) {
-    if (Array.isArray(items)) {
-      toggleCollapse();
-    }
-    if (onClickProp) {
-      onClickProp(e, item);
-    }
-  }
-
-  let expandIcon;
-
-  if (Array.isArray(items) && items.length) {
-    expandIcon = !collapsed ? (
-      <ExpandLessIcon
-        id={
-          "sidebar-item-expand-arrow" + " sidebar-item-expand-arrow-expanded"
-        }
-      />
-    ) : (
-      <ExpandMoreIcon id="sidebar-item-expand-arrow" />
-    );
-  }
-
-  return (
-    <>
-      <ListItem
-        className="sidebar-item"
-        onClick={onClick}
-        button
-        dense
-        {...rest}
-      >
-        <div
-          style={{ paddingLeft: depth * depthStep}}
-          id="sidebar-item-content"
-        >
-          {Icon && <Icon id="sidebar-item-icon" fontSize="small" />}
-          <div id="sidebar-item-text">{label}</div>
-        </div>
-        {expandIcon}
-      </ListItem>
-      <Collapse in={!collapsed} timeout="auto" unmountOnExit>
-        {Array.isArray(items) ? (
-            <List disablePadding dense>
-              {items.map((subItem, index) => (
-                <React.Fragment key={'${subItem.name}${index}'}>
-                  {subItem === "divider" ? (
-                     <Divider style={{ margin: "6px 0" }, {height:100}} />
-                  ) : (
-                    <SidebarItem
-                      depth={depth + 1}
-                      depthStep={depthStep}
-                      item={subItem}
-                    />
-                  )}
-                </React.Fragment>
-              ))}
-          </List>
-        ) : null}
-      </Collapse>
-    </>
-  );
-}
-
-
-export function Variations({ shoes, depthStep, depth, expanded }) {
-  return (
-    <div id="variations-column">
-    <List disablePadding dense>
-      {shoes.map((sidebarItem, index) => (
-        <React.Fragment key={`${sidebarItem.name}${index}`}>  
-          {sidebarItem === "divider" ? (
-            <Divider style={{ margin: "6px 0"}} />
-          ) : (
-            <SidebarItem
-              depthStep={depthStep}
-              depth={depth}
-              expanded={expanded}
-              item={sidebarItem}
-            />
-          )}
-        </React.Fragment>
-      ))}
-    </List>
-  </div>
- );
-}
-*/
-
-
-  /*
-  return <div id="variations-column">
-    <div id="row-one">
-      <div id="box"></div>
-      <p id = "text-current">Current objects</p>
-    </div>
-
-    <div id="row-two">
-      <div id="box"></div>
-      <p id = "text-other">Other objects</p>
-    </div>
-
-    <div id="row-three">
-      <div id="box"></div>
-      <p id = "text-other">Other objects</p>
-    </div>
-
-    <div id="row-four">
-      <div id="box"></div>
-      <p id= "text-other">Other objects</p>
-    </div>
-    
-    </div>*/
-
