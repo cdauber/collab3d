@@ -24,6 +24,7 @@ export const OPEN_THREAD = "OPEN_THREAD";
 export const CLOSE_THREAD = "CLOSE_THREAD";
 
 export const UPDATE_DRAWING = "UPDATE_DRAWING";
+export const UPDATE_PIN = "UPDATE_PIN";
 
 /**
  * action creators
@@ -86,4 +87,7 @@ export function closeThread() {
 
 export function updateDrawing(drawing) {
   return { type: UPDATE_DRAWING, data: drawing };
+}
+export function updatePin(pin) {
+  return { type: UPDATE_PIN, data: pin };
 }

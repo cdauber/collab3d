@@ -9,7 +9,7 @@ import {
   selectComment
 } from "../../redux/actions";
 import CommentInput from "../CommentInput/CommentInput";
-import { CommentsColumnHeader } from "../CommentsColumnHeader/CommentsColumnHeader";
+import CommentsColumnHeader from "../CommentsColumnHeader/CommentsColumnHeader";
 import MainComment from "../MainComment/MainComment";
 import "./MainThread.css";
 
@@ -27,7 +27,7 @@ function MainThread({
     <div id="comment-column" {...props}>
       <div id="input-column">
         <CommentsColumnHeader headerText="Comments" />
-        <CommentInput pinAttachable onClickSubmit={onAddComment} />
+        <CommentInput pinAttachable mainThread onClickSubmit={onAddComment} />
       </div>
       <div className={"scroll-column" + (isCommenting ? " focused" : "")}>
         {comments.map(comment => (

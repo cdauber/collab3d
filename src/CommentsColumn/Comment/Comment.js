@@ -1,6 +1,6 @@
 import React from "react";
-import "./Comment.css";
 import { connect } from "react-redux";
+import "./Comment.css";
 import { TopRow } from "./TopRow/TopRow";
 
 function Comment({

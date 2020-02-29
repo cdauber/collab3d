@@ -1,9 +1,9 @@
 import React from "react";
-import { DrawCanvas } from "../DrawCanvas/DrawCanvas";
-import "./DrawOver.css";
 import { connect } from "react-redux";
-import { CURSOR } from "../redux/store";
+import { DrawCanvas } from "../DrawCanvas/DrawCanvas";
 import { updateDrawing } from "../redux/actions";
+import { CURSOR } from "../redux/store";
+import "./DrawOver.css";
 
 function DrawOver({ interactive, drawing, onChange, children, ...props }) {
   return (

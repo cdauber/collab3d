@@ -1,8 +1,8 @@
 import React from "react";
-import "./MainComment.css";
-import Comment from "../Comment/Comment";
 import { connect } from "react-redux";
-import { openThread, selectComment, cancelComment } from "../../redux/actions";
+import { cancelComment, openThread, selectComment } from "../../redux/actions";
+import Comment from "../Comment/Comment";
+import "./MainComment.css";
 
 function MainComment({
   comment: { thread, ...comment },

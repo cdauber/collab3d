@@ -12,7 +12,7 @@ import {
 } from "../../redux/actions";
 import Comment from "../Comment/Comment";
 import CommentInput from "../CommentInput/CommentInput";
-import { CommentsColumnHeader } from "../CommentsColumnHeader/CommentsColumnHeader";
+import CommentsColumnHeader from "../CommentsColumnHeader/CommentsColumnHeader";
 import "./Thread.css";
 
 function Thread({
@@ -20,6 +20,7 @@ function Thread({
   isCommenting,
   onReturn,
   onClickComment,
+  onClickReply,
   onAddReply,
   onResolveComment,
   ...props
@@ -47,7 +48,7 @@ function Thread({
             <Comment
               key={reply.id}
               comment={reply}
-              onClick={() => onClickComment(reply)}
+              onClick={() => onClickReply(reply)}
               onResolve={() => setResolveCommentId(reply.id)}
             />
           ))}
@@ -86,7 +87,12 @@ function mergeProps(
     ...ownProps,
     ...stateProps,
     ...restOfDispatchProps,
-    onClickComment: comment =>
+    onClickComment: comment => {
+      if (comment !== selectedComment) {
+        selectComment(comment);
+      }
+    },
+    onClickReply: comment =>
       comment !== selectedComment ? selectComment(comment) : deselectComment(),
     onResolveComment: comment => {
       if (comment === selectedComment) {

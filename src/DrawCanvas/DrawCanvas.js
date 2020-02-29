@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "./DrawCanvas.css";
-import { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HotKeys } from "react-hotkeys";
+import "./DrawCanvas.css";
 
 function handleUndo(isPainting, setPainting, value, onChange) {
   return () => {

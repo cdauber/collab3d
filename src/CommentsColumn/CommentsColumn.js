@@ -1,8 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import "./CommentsColumn.css";
 import MainThread from "./MainThread/MainThread";
 import Thread from "./Thread/Thread";
-import "./CommentsColumn.css";
-import { connect } from "react-redux";
 
 function CommentsColumn({ activeThread, ...props }) {
   return (

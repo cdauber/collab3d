@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider, connect } from "react-redux";
+import { connect, Provider } from "react-redux";
 import CommentsColumn from "./CommentsColumn/CommentsColumn";
 import DrawOver from "./DrawOver/DrawOver";
 import Header from "./Header/Header";
@@ -23,10 +23,7 @@ function MainPage({ cursor }) {
   );
 }
 
-const WrappedMainPage = connect(
-  ({ cursor }) => ({ cursor }),
-  () => ({})
-)(MainPage);
+const WrappedMainPage = connect(({ cursor }) => ({ cursor }))(MainPage);
 
 ReactDOM.render(
   <Provider store={store}>

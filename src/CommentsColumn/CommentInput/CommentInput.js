@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import TextareaAutosize from "react-autosize-textarea/lib";
 import { connect } from "react-redux";
-import "./CommentInput.css";
-import {
-  attachFile,
-  unattachFile,
-  attachDrawOver,
-  unattachDrawOver,
-  attachPin,
-  unattachPin,
-  cancelComment,
-  beginComment,
-  deselectComment
-} from "../../redux/actions";
 import ReactTooltip from "react-tooltip";
+import {
+  attachDrawOver,
+  attachFile,
+  attachPin,
+  beginComment,
+  cancelComment,
+  deselectComment,
+  unattachDrawOver,
+  unattachFile,
+  unattachPin
+} from "../../redux/actions";
+import "./CommentInput.css";
 
 function CommentInput({
   pinAttachable = false,
+  mainThread = false,
   fileIsAttached,
   drawOverIsAttached,
   pinIsAttached,
@@ -130,8 +131,14 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
   return {
     ...ownProps,
     ...stateProps,
-    onFocusTextArea: () =>
-      stateProps.isCommenting || (deselectComment() && beginComment()),
+    onFocusTextArea: () => {
+      if (stateProps.isCommenting) {
+        if (stateProps.mainThread) {
+          deselectComment();
+        }
+        beginComment();
+      }
+    },
     onBlurTextArea: comment =>
       !stateProps.fileIsAttached &&
       !stateProps.drawOverIsAttached &&
@@ -151,7 +158,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          deselectComment();
+          if (ownProps.mainThread) {
+            deselectComment();
+          }
           beginComment();
         }
         attachFile();
@@ -170,7 +179,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          deselectComment();
+          if (ownProps.mainThread) {
+            deselectComment();
+          }
           beginComment();
         }
         attachDrawOver();
@@ -189,7 +200,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          deselectComment();
+          if (ownProps.mainThread) {
+            deselectComment();
+          }
           beginComment();
         }
         attachPin();
@@ -200,12 +213,23 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
 }
 
 export default connect(
-  ({ isCommenting, fileIsAttached, drawOverIsAttached, pinIsAttached }) => ({
+  ({
+    isCommenting,
+    fileIsAttached,
+    file,
+    drawOverIsAttached,
+    drawing,
+    pinIsAttached,
+    pin
+  }) => ({
     fileIsAttached,
     drawOverIsAttached,
     pinIsAttached,
     cancelEnabled: isCommenting,
-    submitEnabled: fileIsAttached || drawOverIsAttached || pinIsAttached
+    submitEnabled:
+      (fileIsAttached && file) ||
+      (drawOverIsAttached && drawing) ||
+      (pinIsAttached && pin)
   }),
   {
     deselectComment,
