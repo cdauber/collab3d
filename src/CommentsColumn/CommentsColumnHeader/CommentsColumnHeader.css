@@ -1,0 +1,20 @@
+.comments-column-header-row {
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.comments-column-header-icon-image {
+  margin-right: 5px;
+  height: 15px;
+  width: auto;
+}
+
+.comments-column-header-text {
+  margin-left: 5px;
+}

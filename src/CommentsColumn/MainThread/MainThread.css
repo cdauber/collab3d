@@ -1,0 +1,37 @@
+#comment-column {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* width: 23vw; */
+  width: 337px;
+}
+
+#input-column {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.scroll-column {
+  position: relative;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.scroll-column.focused {
+  overflow-y: hidden;
+}
+
+#comment-vignette {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  opacity: 0.38;
+  z-index: 10;
+}

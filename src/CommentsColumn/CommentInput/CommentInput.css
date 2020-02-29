@@ -1,0 +1,96 @@
+.comment-input-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.comment-input-text-area {
+  padding: 12px;
+  border: 1px solid #a5a5a5;
+  border-radius: 12px;
+  font-family: "SF Pro Display";
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+  color: #333;
+  box-sizing: content-box;
+  outline: none;
+  resize: none;
+}
+
+.comment-input-text-area::placeholder {
+  font-style: italic;
+  color: #a5a5a5;
+}
+
+.comment-input-actions-row {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-input-icon-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.comment-input-icon-action-button {
+  background: none;
+  border: none;
+
+  width: 31px;
+  height: 31px;
+  margin: 5px;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment-input-icon-action-button:hover,
+.comment-input-icon-action-button.active {
+  background-color: #dde3ff;
+}
+
+.comment-input-text-action-button {
+  background: none;
+  border: none;
+  cursor: default;
+
+  padding: 6px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #a5a5a5;
+}
+
+.comment-input-text-action-button:enabled {
+  cursor: pointer;
+}
+
+.comment-input-cancel-button:enabled:hover {
+  color: #7e8ed7;
+}
+
+.comment-input-submit-button:enabled {
+  background-color: #7e8ed7;
+  color: white;
+}
+
+.comment-input-tooltip {
+  padding: 6px 9px !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  line-height: 14px !important;
+  background-color: rgba(51, 51, 51, 0.6) !important;
+  border-radius: 3px !important;
+}
+
+.comment-input-tooltip::after {
+  display: none !important;
+}

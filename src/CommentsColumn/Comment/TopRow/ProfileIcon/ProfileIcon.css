@@ -1,0 +1,17 @@
+.profile-picture,
+.initials {
+  height: 35px;
+  width: 35px;
+  flex-shrink: 0;
+  border-radius: 100%;
+  background-color: #c4c4c4;
+}
+
+.initials {
+  text-align: center;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 35px;
+  color: #333;
+}

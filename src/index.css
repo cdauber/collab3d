@@ -27,6 +27,38 @@ code {
   margin: 10px 0px 10px 0px;
 }
 
+#app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#app-container.drawover {
+  cursor: url(/assets/pencil-cursor-black.png) 0 22, crosshair;
+  cursor: url(/assets/pencil-cursor-black.svg) 0 22, crosshair;
+  cursor: -webkit-image-set(
+        url(/assets/pencil-cursor-black.png) 1x,
+        url(/assets/pencil-cursor-black-2x.png) 2x,
+        url(/assets/pencil-cursor-black-3x.png) 3x,
+        url(/assets/pencil-cursor-black-4x.png) 4x
+      )
+      0 22,
+    crosshair;
+}
+
+#app-container.pin {
+  cursor: url(/assets/pin-cursor.png) 0 18, crosshair;
+  cursor: url(/assets/pin-cursor.svg) 0 18, crosshair;
+  cursor: -webkit-image-set(
+        url(/assets/pin-cursor.png) 1x,
+        url(/assets/pin-cursor-2x.png) 2x,
+        url(/assets/pin-cursor-3x.png) 3x,
+        url(/assets/pin-cursor-4x.png) 4x
+      )
+      0 18,
+    crosshair;
+}
+
 #main-area {
   flex-grow: 1;
   display: flex;
