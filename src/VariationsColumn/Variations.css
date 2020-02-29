@@ -49,8 +49,12 @@
   left: 20px;
 }
 
-
 #sidebar-subitem-text {
   font-size: 0.8rem;
+}
+
+#title {
+  position:relative;
+  left:20px;
 }
 
