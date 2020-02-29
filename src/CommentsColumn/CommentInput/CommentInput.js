@@ -132,10 +132,8 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     ...ownProps,
     ...stateProps,
     onFocusTextArea: () => {
-      if (stateProps.isCommenting) {
-        if (stateProps.mainThread) {
-          deselectComment();
-        }
+      if (!stateProps.isCommenting) {
+        deselectComment();
         beginComment();
       }
     },
@@ -158,9 +156,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          if (ownProps.mainThread) {
-            deselectComment();
-          }
+          deselectComment();
           beginComment();
         }
         attachFile();
@@ -179,9 +175,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          if (ownProps.mainThread) {
-            deselectComment();
-          }
+          deselectComment();
           beginComment();
         }
         attachDrawOver();
@@ -200,9 +194,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          if (ownProps.mainThread) {
-            deselectComment();
-          }
+          deselectComment();
           beginComment();
         }
         attachPin();
