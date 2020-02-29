@@ -1,9 +1,6 @@
 .head {
   position: relative;
   background-color: #373737;
-}
-
-.head {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
