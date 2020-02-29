@@ -1,68 +1,82 @@
 .head {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-  z-index: 1;
-}
-
-.greeting-row {
-  margin-left: 335px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.greeting {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-}
-
-.button-row {
-  padding: 5px 10px;
-  width: 335px;
+  position: relative;
+  background-color: #373737;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  z-index: 20;
 }
 
-.share {
-  border: 0;
-  box-shadow: none;
-  padding: 5px 15px;
-  background: #71B2FF;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-left: 10px;
+.back-button {
+  background: none;
+  border: none;
+
+  margin: 0 10px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+  color: #fff;
 }
 
-.textShare,
-.textAR {
+.greeting-row {
+  background: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 21;
+  pointer-events: none;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.AR {
-  box-shadow: none;
-  padding: 5px 15px;
-  background: white;
-  border: 1px solid black;
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin-left: 20px;
+.greeting-row > span {
+  pointer-events: all;
+  padding: 0 20px;
 }
 
-.textShare {
-  color: white;
+.button-row {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding-right: 10px;
 }
 
 .profile {
   width: 43px;
   height: 43px;
+  border: 1px solid #ffffff;
   border-radius: 50%;
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+
+.AR,
+.share,
+.eye {
+  background: none;
+  border: none;
+
+  padding: 4px 18px;
+  margin: 0 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 14px;
+  color: #fff;
+  text-align: center;
+}
+
+.share {
+  background-color: #9b00d1;
 }
 
 button:focus {
