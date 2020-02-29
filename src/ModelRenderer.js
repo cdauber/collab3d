@@ -80,11 +80,11 @@ function ModelRenderer({ cameraPosition, onOrbitChange, ...props }) {
 }
 
 export default connect(
-  ({ comments, selectedCommentId }) => ({
+  ({ comments, selectedCommentId, activeCameraPosition }) => ({
     cameraPosition: comments.reduce(
       (acc, comment) =>
         comment.id === selectedCommentId ? comment.camera : acc,
-      null
+      activeCameraPosition
     )
   }),
   dispatch => ({

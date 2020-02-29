@@ -19,7 +19,8 @@ import {
   UNATTACH_DRAW_OVER,
   UNATTACH_FILE,
   UNATTACH_PIN,
-  UPDATE_DRAWING
+  UPDATE_DRAWING,
+  MOVE_CAMERA
 } from "./actions";
 
 export const CURSOR = {
@@ -32,6 +33,7 @@ export const INITIAL_CAMERA_POSITION = [0, 2, 4];
 
 const initialState = {
   cursor: CURSOR.DEFAULT,
+  activeCameraPosition: { position: INITIAL_CAMERA_POSITION, focus: [0, 0, 0] },
   cameraPosition: { position: INITIAL_CAMERA_POSITION, focus: [0, 0, 0] },
   isCommenting: false,
   fileIsAttached: false,
@@ -70,7 +72,9 @@ function rootReducer(state = initialState, { type, data }) {
           drawing: null
         };
       }
-      return { ...state, cameraPosition: data };
+      return { ...state, activeCameraPosition: null, cameraPosition: data };
+    case MOVE_CAMERA:
+      return { ...state, activeCameraPosition: data };
     case SELECT_COMMENT:
       return {
         ...state,

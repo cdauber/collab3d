@@ -2,10 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import "./Comment.css";
 import { TopRow } from "./TopRow/TopRow";
+import { CURSOR } from "../../redux/store";
+import { unattachDrawOver } from "../../redux/actions";
 
 function Comment({
   comment: { text, drawOver, pin, ...comment },
   selected,
+  redrawEnabled,
+  onRedraw,
   onResolve,
   children,
   ...props
@@ -13,7 +17,12 @@ function Comment({
   return (
     <div className={"comment" + (selected ? " selected" : "")} {...props}>
       <div className="comment-content">
-        <TopRow {...comment} onResolve={onResolve} />
+        <TopRow
+          {...comment}
+          redrawEnabled={redrawEnabled}
+          onRedraw={onRedraw}
+          onResolve={onResolve}
+        />
         <p className="comment-text">{text}</p>
         {children}
       </div>
@@ -38,8 +47,17 @@ function Comment({
 }
 
 export default connect(
-  ({ selectedCommentId }, { comment: { id } }) => ({
-    selected: id === selectedCommentId
+  (
+    { cursor, activeThreadId, selectedCommentId, drawing },
+    { comment: { id } }
+  ) => ({
+    selected: id === selectedCommentId,
+    redrawEnabled:
+      id === activeThreadId && cursor === CURSOR.DRAWOVER && drawing
   }),
-  dispatch => ({})
+  dispatch => ({
+    onRedraw: () => {
+      dispatch(unattachDrawOver());
+    }
+  })
 )(Comment);

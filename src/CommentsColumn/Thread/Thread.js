@@ -38,7 +38,7 @@ function Thread({
       <Comment
         comment={comment}
         onClick={() => onClickComment(comment)}
-        onResolve={() => {}}
+        onResolve={() => setResolveCommentId(comment.id)}
       >
         <CommentInput onClickSubmit={text => onAddReply(comment, text)} />
       </Comment>
@@ -122,7 +122,7 @@ export default connect(
     selectComment: comment => dispatch(selectComment(comment)),
     deselectComment: () => dispatch(deselectComment()),
     resolveComment: comment => dispatch(resolveComment(comment)),
-    resolveReply: reply => dispatch(resolveReply(reply)),
+    resolveReply: (comment, reply) => dispatch(resolveReply(comment, reply)),
     onAddReply: (comment, text) => {
       dispatch(addReply(comment, text));
       dispatch(cancelComment());

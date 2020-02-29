@@ -28,26 +28,29 @@
   color: #333;
 }
 
-.resolve {
-  background: none;
-  border: none;
-
-  padding: 4px 10px;
-  border-radius: 5px;
-
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 14px;
-  color: #7e8ed7;
-  margin-right: 8px;
-  border: 1px solid #cecece;
-}
-
 .comment-date {
   font-size: 10px;
   font-weight: normal;
   line-height: 12px;
   color: #a5a5a5;
+}
+
+.top-row-redo-button {
+  background: none;
+  border: none;
+  cursor: default;
+
+  padding: 5px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #a5a5a5;
+  cursor: pointer;
+}
+
+.top-row-redo-button:hover {
+  color: #7e8ed7;
 }
 
 .top-row-popup-content {

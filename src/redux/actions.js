@@ -3,6 +3,7 @@
  */
 
 export const CHANGE_CAMERA = "CHANGE_CAMERA";
+export const MOVE_CAMERA = "MOVE_CAMERA";
 export const SELECT_COMMENT = "SELECT_COMMENT";
 export const DESELECT_COMMENT = "DESELECT_COMMENT";
 
@@ -32,6 +33,9 @@ export const UPDATE_PIN = "UPDATE_PIN";
 
 export function changeCamera(cameraPosition) {
   return { type: CHANGE_CAMERA, data: cameraPosition };
+}
+export function moveCamera(cameraPosition) {
+  return { type: MOVE_CAMERA, data: cameraPosition };
 }
 export function selectComment(comment) {
   return { type: SELECT_COMMENT, data: comment };
