@@ -10,34 +10,41 @@
   border-radius: 25px;
 }
 
-img {
-  position:absolute;
-  height:100px;
-  width:150px;
-  left:-50px;
+#shoe {
+  position: absolute;
+  height: 100px;
+  width: 150px;
+  left: -50px;
 }
 
 .makeStyles-nested-2 {
-  position:relative;
+  position: relative;
 }
 
 #shoe_text {
-  position:absolute;
-  top:10px;
+  position: absolute;
+  top: 10px;
 }
 
-.MuiCollapse-container .MuiCheckbox-root {
-  position:absolute;
-  right:0px;
-  top:-70px;
+.MuiCollapse-container .rc-checkbox {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.MuiCollapse-hidden {
+  visibility: hidden;
 }
 
 .MuiCollapse-container .MuiButtonBase-root {
-  height:180px;
+  height: 180px;
 }
-
 
 #sidebar-subitem-text {
   font-size: 0.8rem;
 }
 
+#title {
+  position: relative;
+  left: 20px;
+}
