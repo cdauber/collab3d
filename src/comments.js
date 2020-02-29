@@ -3,7 +3,7 @@ import { addDays } from "./CommentsColumn/Comment/TopRow/TopRow";
 export default [
   {
     id: 1,
-    author: "Palvi Mehta",
+    author: "Steve Singh",
     date: new Date().getTime(),
     text:
       "I dont like how the openings end before the bottom of the black canvas, what can we do about this?",
@@ -27,7 +27,7 @@ export default [
   },
   {
     id: 3,
-    author: "Kabir Shahani",
+    author: "Dan Levitan",
     date: addDays(new Date(), -2).getTime(),
     text:
       "I love the differnent fonts, but make the nike and zoom closer together in size",
