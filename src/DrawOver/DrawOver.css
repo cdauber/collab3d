@@ -1,0 +1,25 @@
+#sketch-container {
+  position: relative;
+}
+
+.static {
+  pointer-events: none;
+  cursor: auto;
+}
+
+#sketch-canvas {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  background: none;
+  /* cursor: url(/assets/pencil-cursor-black.png) 0 22, crosshair;
+  cursor: url(/assets/pencil-cursor-black.svg) 0 22, crosshair;
+  cursor: -webkit-image-set(
+        url(/assets/pencil-cursor-black.png) 1x,
+        url(/assets/pencil-cursor-black-2x.png) 2x,
+        url(/assets/pencil-cursor-black-3x.png) 3x,
+        url(/assets/pencil-cursor-black-4x.png) 4x
+      )
+      0 22,
+    crosshair; */
+}
