@@ -66,19 +66,21 @@ code {
   overflow: hidden;
 }
 
-#variations-column {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  border-radius:25px;
-}
-
 .draw-over {
   flex-grow: 1;
 }
 
+.renderer-row {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
 .renderer {
-  position: absolute !important;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .camera-button-row {

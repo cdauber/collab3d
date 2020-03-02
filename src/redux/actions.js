@@ -30,6 +30,9 @@ export const CLOSE_THREAD = "CLOSE_THREAD";
 export const UPDATE_DRAWING = "UPDATE_DRAWING";
 export const UPDATE_PIN = "UPDATE_PIN";
 
+export const SELECT_VARIATION = "SELECT_VARIATION";
+export const DESELECT_VARIATION = "DESELECT_VARIATION";
+
 /**
  * action creators
  */
@@ -105,4 +108,11 @@ export function updateDrawing(drawing) {
 }
 export function updatePin(pin) {
   return { type: UPDATE_PIN, data: pin };
+}
+
+export function selectVariation(variation) {
+  return { type: SELECT_VARIATION, data: variation };
+}
+export function deselectVariation(variation) {
+  return { type: DESELECT_VARIATION, data: variation };
 }

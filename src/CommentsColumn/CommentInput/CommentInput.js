@@ -115,7 +115,11 @@ function CommentInput({
   );
 }
 
-function mergeProps(stateProps, dispatchProps, ownProps) {
+function mergeProps(
+  { selectedCommentId, ...stateProps },
+  dispatchProps,
+  ownProps
+) {
   const {
     deselectComment,
     beginComment,
@@ -133,7 +137,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     ...stateProps,
     onFocusTextArea: () => {
       if (!stateProps.isCommenting) {
-        deselectComment();
+        if (selectedCommentId) {
+          deselectComment();
+        }
         beginComment();
       }
     },
@@ -212,7 +218,8 @@ export default connect(
     drawOverIsAttached,
     drawing,
     pinIsAttached,
-    pin
+    pin,
+    selectedCommentId
   }) => ({
     fileIsAttached,
     drawOverIsAttached,
@@ -221,7 +228,8 @@ export default connect(
     submitEnabled:
       (fileIsAttached && file) ||
       (drawOverIsAttached && drawing) ||
-      (pinIsAttached && pin)
+      (pinIsAttached && pin),
+    selectedCommentId
   }),
   {
     deselectComment,

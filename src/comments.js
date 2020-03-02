@@ -12,6 +12,7 @@ export default [
       position: [3.6724893617668513, 0.10448181831762553, -0.10443959458119491],
       focus: [0, 0, 0]
     },
+    activeVariationIds: { 1: true },
     thread: []
   },
   {
@@ -25,6 +26,7 @@ export default [
       position: [-0.2391278466290959, 0.2413250726086689, 1.7599386342780603],
       focus: [0, 0, 0]
     },
+    activeVariationIds: { 1: true },
     thread: []
   },
   {
@@ -44,6 +46,7 @@ export default [
       ],
       focus: [1.2637327202535016, 0, -0.09982552431336995]
     },
+    activeVariationIds: { 1: true },
     thread: []
   }
 ];
