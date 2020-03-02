@@ -4,10 +4,11 @@ import { Canvas, useThree, extend, useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Box3, Vector3, Color, sRGBEncoding } from "three";
 import { connect } from "react-redux";
-import { changeCamera } from "./redux/actions";
+import { changeCamera, movePointer } from "./redux/actions";
 import { INITIAL_CAMERA_POSITION } from "./redux/store";
 
 extend({ OrbitControls });
+z;
 
 function Model({ path, ...props }) {
   const gltf = useLoader(GLTFLoader, path);
@@ -27,6 +28,42 @@ function Model({ path, ...props }) {
   }, [gltf]);
 
   return <primitive object={gltf.scene} {...props} />;
+}
+
+function Pin({ position = [0, 0, 0], rotation = [0, 0, 0] }) {
+  const mesh = useRef();
+  position = new Vector3(...position);
+  rotation = new Vector3(...rotation);
+
+  let endVertex = position.clone();
+  endVertex.addScaledVector(rotation, 0.15); //length of pin
+
+  var points = [];
+  points.push(position);
+  points.push(endVertex);
+
+  var pin = (
+    <group>
+      <line ref={mesh}>
+        <geometry
+          attach="geometry"
+          vertices={points}
+          verticesNeedUpdate={true}
+        />
+        <meshBasicMaterial attach="material" color="#7B7B7B" />
+      </line>
+
+      <mesh visible position={points[1]}>
+        <sphereGeometry attach="geometry" args={[0.02, 16, 16]} />
+        <meshStandardMaterial attach="material" color="red" />
+      </mesh>
+    </group>
+  );
+
+  useEffect(() => {
+    mesh.current.geometry.verticesNeedUpdate = true;
+  });
+  return pin;
 }
 
 function Controls({ cameraPosition, onOrbitChange, ...props }) {
@@ -73,7 +110,10 @@ function ModelRenderer({ cameraPosition, onOrbitChange, ...props }) {
       />
       <ambientLight />
       <Suspense fallback={null}>
-        <Model path="models/gltf/nike_shoe/scene.gltf" />
+        <Model
+          path="models/gltf/nike_shoe/scene.gltf"
+          onPointerMove={onPointerMove}
+        />
       </Suspense>
     </Canvas>
   );

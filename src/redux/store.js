@@ -20,7 +20,8 @@ import {
   UNATTACH_FILE,
   UNATTACH_PIN,
   UPDATE_DRAWING,
-  MOVE_CAMERA
+  MOVE_CAMERA,
+  MOVE_POINTER
 } from "./actions";
 
 export const CURSOR = {
@@ -75,6 +76,8 @@ function rootReducer(state = initialState, { type, data }) {
       return { ...state, activeCameraPosition: null, cameraPosition: data };
     case MOVE_CAMERA:
       return { ...state, activeCameraPosition: data };
+    case MOVE_POINTER:
+      return { ...state, pointerEventData: data };
     case SELECT_COMMENT:
       return {
         ...state,
