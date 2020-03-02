@@ -12,17 +12,19 @@ import {
   CHANGE_CAMERA,
   CLOSE_THREAD,
   DESELECT_COMMENT,
+  DESELECT_VARIATION,
+  MOVE_CAMERA,
   OPEN_THREAD,
+  PLACE_PIN,
   RESOLVE_COMMENT,
   RESOLVE_REPLY,
   SELECT_COMMENT,
+  SELECT_VARIATION,
+  SET_PIN_POSITION,
   UNATTACH_DRAW_OVER,
   UNATTACH_FILE,
   UNATTACH_PIN,
-  UPDATE_DRAWING,
-  MOVE_CAMERA,
-  PLACE_PIN,
-  SET_PIN_POSITION
+  UPDATE_DRAWING
 } from "./actions";
 
 export const CURSOR = {
@@ -31,33 +33,59 @@ export const CURSOR = {
   PIN: "pin"
 };
 
-export const INITIAL_CAMERA_POSITION = [0, 2, 4];
+export const INITIAL_CAMERA_POSITION = [0, 1, 4];
 
 const initialState = {
   cursor: CURSOR.DEFAULT,
-  activeCameraPosition: { position: INITIAL_CAMERA_POSITION, focus: [0, 0, 0] },
   cameraPosition: { position: INITIAL_CAMERA_POSITION, focus: [0, 0, 0] },
   isCommenting: false,
   fileIsAttached: false,
   drawOverIsAttached: false,
   pinIsAttached: false,
   maxCommentId: 3,
+  activeVariationIds: { 1: true },
+  variations: [
+    {
+      id: 1,
+      name: "Original",
+      thumbnail: "assets/adidas_sneaker_thumbnail.png",
+      model: "models/gltf/adidas_sneaker/scene.gltf"
+    },
+    {
+      id: 2,
+      name: "Lavender",
+      thumbnail: "assets/adidas_sneaker_lavender_thumbnail.png",
+      model: "models/gltf/adidas_sneaker_lavender/Project Name.gltf"
+    },
+    {
+      id: 3,
+      name: "Pink",
+      thumbnail: "assets/adidas_sneaker_pink_thumbnail.png",
+      model: "models/gltf/adidas_sneaker_pink/Project Name.gltf"
+    },
+    {
+      id: 4,
+      name: "Dark Blue",
+      thumbnail: "assets/adidas_sneaker_dark_blue_thumbnail.png",
+      model: "models/gltf/adidas_sneaker_dark_blue/Project Name.gltf"
+    }
+  ],
   comments: comments
 };
 
-function rootReducer(state = initialState, { type, data }) {
-  function cameraPositionEquals(camera1, camera2) {
-    return (
-      camera1 === camera2 ||
-      (camera1 &&
-        camera2 &&
-        camera1.position.every(
-          (p, i) => Math.abs(p - camera2.position[i]) < 1e-10
-        ) &&
-        camera1.focus.every((f, i) => Math.abs(f - camera2.focus[i]) < 1e-10))
-    );
-  }
+export function cameraPositionEquals(camera1, camera2) {
+  return (
+    camera1 === camera2 ||
+    (camera1 &&
+      camera2 &&
+      camera1.position.every(
+        (p, i) => Math.abs(p - camera2.position[i]) < 1e-10
+      ) &&
+      camera1.focus.every((f, i) => Math.abs(f - camera2.focus[i]) < 1e-10))
+  );
+}
 
+function rootReducer(state = initialState, { type, data }) {
   switch (type) {
     case CHANGE_CAMERA:
       const selectedComment = state.comments.find(
@@ -74,13 +102,17 @@ function rootReducer(state = initialState, { type, data }) {
           drawing: null
         };
       }
-      return { ...state, activeCameraPosition: null, cameraPosition: data };
+      return { ...state, cameraPosition: data };
     case MOVE_CAMERA:
-      return { ...state, activeCameraPosition: data };
+      return { ...state, cameraPosition: data };
     case SELECT_COMMENT:
       return {
         ...state,
         selectedCommentId: data.id,
+        cameraPosition: data.camera ? data.camera : state.cameraPosition,
+        activeVariationIds: data.activeVariationIds
+          ? data.activeVariationIds
+          : state.activeVariationIds,
         drawing:
           data.drawOver &&
           JSON.parse(LZString.decompressFromEncodedURIComponent(data.drawOver))
@@ -164,6 +196,7 @@ function rootReducer(state = initialState, { type, data }) {
             ),
             pin: state.pin,
             camera: state.cameraPosition,
+            activeVariationIds: state.activeVariationIds,
             thread: []
           },
           ...state.comments
@@ -200,6 +233,16 @@ function rootReducer(state = initialState, { type, data }) {
       return { ...state, activeThreadId: null };
     case UPDATE_DRAWING:
       return { ...state, drawing: data };
+    case SELECT_VARIATION:
+      return {
+        ...state,
+        activeVariationIds: { ...state.activeVariationIds, [data.id]: true }
+      };
+    case DESELECT_VARIATION:
+      return {
+        ...state,
+        activeVariationIds: { ...state.activeVariationIds, [data.id]: false }
+      };
     default:
       return state;
   }

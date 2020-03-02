@@ -8,9 +8,11 @@ import "./index.css";
 import ModelRenderer from "./ModelRenderer";
 import store from "./redux/store";
 import { deselectComment, moveCamera } from "./redux/actions";
+import VariationsColumn from "./VariationsColumn/VariationsColumn";
 
 function MainPage({
   cursor,
+  activeVariations,
   onClickTopCamera,
   onClickFrontCamera,
   onClickSideCamera
@@ -19,9 +21,21 @@ function MainPage({
     <div id="app-container" className={cursor}>
       <Header />
       <div id="main-area">
-        {/* <div id="variations-column"></div> */}
+        <VariationsColumn />
         <DrawOver className="draw-over">
-          <ModelRenderer className="renderer" />
+          <div className="renderer-row">
+            {activeVariations.map(variation => (
+              <div
+                key={variation.id}
+                className="renderer"
+                style={{
+                  width: `calc(100%/${activeVariations.length})`
+                }}
+              >
+                <ModelRenderer modelPath={variation.model} />
+              </div>
+            ))}
+          </div>
           <div className="camera-button-row">
             <button
               className="camera-button top-camera-button"
@@ -59,7 +73,12 @@ function MainPage({
 }
 
 const WrappedMainPage = connect(
-  ({ cursor }) => ({ cursor }),
+  ({ cursor, activeVariationIds, variations }) => ({
+    cursor,
+    activeVariations: Object.keys(activeVariationIds)
+      .filter(id => activeVariationIds[id])
+      .map(variationId => variations.find(({ id }) => id == variationId))
+  }),
   dispatch => ({
     onClickTopCamera: () => {
       dispatch(deselectComment());
