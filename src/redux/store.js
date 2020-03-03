@@ -211,9 +211,11 @@ function rootReducer(state = initialState, { type, data }) {
             date: new Date().getTime(),
             text: data,
             file: state.file,
-            drawOver: LZString.compressToEncodedURIComponent(
-              JSON.stringify(state.drawing)
-            ),
+            drawOver:
+              state.drawing &&
+              LZString.compressToEncodedURIComponent(
+                JSON.stringify(state.drawing)
+              ),
             pin: state.pin,
             camera: state.cameraPosition,
             activeVariationIds: state.activeVariationIds,
