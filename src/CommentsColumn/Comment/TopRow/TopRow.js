@@ -42,7 +42,7 @@ export function TopRow({
 
   return (
     <div className="comment-top-row">
-      <ProfileIcon src={profilePic} author={author} />
+      <ProfileIcon author={author} />
       <div className="comment-top-column">
         <div className="author-name">{author}</div>
         <div className="comment-date">{relativeDateString(date)}</div>
