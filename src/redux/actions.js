@@ -4,7 +4,7 @@
 
 export const CHANGE_CAMERA = "CHANGE_CAMERA";
 export const MOVE_CAMERA = "MOVE_CAMERA";
-export const MOVE_POINTER = "MOVE_CAMERA";
+export const MOVE_POINTER = "MOVE_POINTER";
 export const SELECT_COMMENT = "SELECT_COMMENT";
 export const DESELECT_COMMENT = "DESELECT_COMMENT";
 
@@ -39,7 +39,6 @@ export function moveCamera(cameraPosition) {
   return { type: MOVE_CAMERA, data: cameraPosition };
 }
 export function movePointer(pointerData) {
-  console.log(pointerData);
   return { type: MOVE_POINTER, data: pointerData };
 }
 export function selectComment(comment) {

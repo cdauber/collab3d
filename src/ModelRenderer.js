@@ -1,6 +1,12 @@
 import React, { Suspense, useRef, useEffect } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Canvas, useThree, extend, useLoader } from "react-three-fiber";
+import {
+  Canvas,
+  useThree,
+  extend,
+  useLoader,
+  useFrame
+} from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Box3, Vector3, Color, sRGBEncoding } from "three";
 import { connect } from "react-redux";
@@ -8,7 +14,6 @@ import { changeCamera, movePointer } from "./redux/actions";
 import { INITIAL_CAMERA_POSITION } from "./redux/store";
 
 extend({ OrbitControls });
-z;
 
 function Model({ path, ...props }) {
   const gltf = useLoader(GLTFLoader, path);
@@ -30,17 +35,15 @@ function Model({ path, ...props }) {
   return <primitive object={gltf.scene} {...props} />;
 }
 
-function Pin({ position = [0, 0, 0], rotation = [0, 0, 0] }) {
+function Pin({ pinPosition }) {
   const mesh = useRef();
-  position = new Vector3(...position);
-  rotation = new Vector3(...rotation);
+  let position = (pinPosition && pinPosition.position) || new Vector3(0, 0, 0);
+  let normal = (pinPosition && pinPosition.normal) || new Vector3(1, 1, 1);
 
   let endVertex = position.clone();
-  endVertex.addScaledVector(rotation, 0.15); //length of pin
+  endVertex.addScaledVector(normal, 0.2); //length of pin
 
-  var points = [];
-  points.push(position);
-  points.push(endVertex);
+  var points = [position, endVertex];
 
   var pin = (
     <group>
@@ -54,15 +57,15 @@ function Pin({ position = [0, 0, 0], rotation = [0, 0, 0] }) {
       </line>
 
       <mesh visible position={points[1]}>
-        <sphereGeometry attach="geometry" args={[0.02, 16, 16]} />
+        <sphereGeometry attach="geometry" args={[0.03, 16, 16]} />
         <meshStandardMaterial attach="material" color="red" />
       </mesh>
     </group>
   );
-
-  useEffect(() => {
+  if (mesh.current) {
     mesh.current.geometry.verticesNeedUpdate = true;
-  });
+  }
+
   return pin;
 }
 
@@ -92,7 +95,14 @@ function Controls({ cameraPosition, onOrbitChange, ...props }) {
   );
 }
 
-function ModelRenderer({ cameraPosition, onOrbitChange, ...props }) {
+function ModelRenderer({
+  cameraPosition,
+  onOrbitChange,
+  onPointerMove,
+  pointerEventData,
+  pinIsAttached,
+  ...props
+}) {
   return (
     <Canvas
       camera={{ fov: 60, near: 1, position: INITIAL_CAMERA_POSITION }}
@@ -114,18 +124,31 @@ function ModelRenderer({ cameraPosition, onOrbitChange, ...props }) {
           path="models/gltf/nike_shoe/scene.gltf"
           onPointerMove={onPointerMove}
         />
+        {pinIsAttached && <Pin pinPosition={pointerEventData} />}
+        {
+          //pins.map(pin => <Pin pointerEventData={pointerEventData} onClick={() => dsometing(pin)} />)
+        }
       </Suspense>
     </Canvas>
   );
 }
 
 export default connect(
-  ({ comments, selectedCommentId, activeCameraPosition }) => ({
+  ({
+    comments,
+    selectedCommentId,
+    activeCameraPosition,
+    pointerEventData,
+    pinIsAttached
+  }) => ({
     cameraPosition: comments.reduce(
       (acc, comment) =>
         comment.id === selectedCommentId ? comment.camera : acc,
       activeCameraPosition
-    )
+    ),
+    //pins: comments.filter().map(),
+    pointerEventData,
+    pinIsAttached
   }),
   dispatch => ({
     onOrbitChange: ({
@@ -136,6 +159,10 @@ export default connect(
     }) =>
       dispatch(
         changeCamera({ position: position.toArray(), focus: focus.toArray() })
+      ),
+    onPointerMove: event =>
+      dispatch(
+        movePointer({ position: event.point, normal: event.face.normal })
       )
   })
 )(ModelRenderer);
