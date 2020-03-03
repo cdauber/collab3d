@@ -77,7 +77,7 @@ const WrappedMainPage = connect(
     cursor,
     activeVariations: Object.keys(activeVariationIds)
       .filter(id => activeVariationIds[id])
-      .map(variationId => variations.find(({ id }) => id == variationId))
+      .map(variationId => variations.find(({ id }) => `${id}` === variationId))
   }),
   dispatch => ({
     onClickTopCamera: () => {

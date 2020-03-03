@@ -121,13 +121,13 @@ function LoadingModel({ color = "orange", ...props }) {
       (async () => {
         const gltf = await new Promise((resolve, reject) =>
           new GLTFLoader().load(
-            "models/gltf/loading_model/Project Name.gltf",
+            "models/gltf/loading_model_2/Project Name.gltf",
             resolve,
             undefined,
             reject
           )
         );
-        gltf.scene.scale.setLength(6);
+        gltf.scene.scale.setLength(13);
         setLoadingModel(gltf);
       })();
     }
