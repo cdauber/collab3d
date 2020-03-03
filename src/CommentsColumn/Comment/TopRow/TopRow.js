@@ -25,7 +25,6 @@ function relativeDateString(dateInMillis) {
 }
 
 export function TopRow({
-  profilePic,
   profilePicture,
   author,
   date,
