@@ -112,7 +112,7 @@ function Controls({ cameraPosition, onOrbitChange, ...props }) {
   );
 }
 
-function LoadingModel({ color = "orange", ...props }) {
+function LoadingModel({ color = "orange", position, ...props }) {
   const mesh = useRef();
   const [loadingModel, setLoadingModel] = useState();
 
@@ -136,6 +136,7 @@ function LoadingModel({ color = "orange", ...props }) {
   useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y -= 0.03;
+      mesh.current.position.set(...position);
     }
   });
 
@@ -148,7 +149,6 @@ function ModelRenderer({
   cameraPosition,
   comments,
   modelPath,
-  activeVariationIds,
   pinIsAttached,
   pinFollowCursor,
   pin,
@@ -190,16 +190,8 @@ function ModelRenderer({
 }
 
 export default connect(
-  ({
+  ({ cameraPosition, comments, pinIsAttached, cursor, pin }) => ({
     cameraPosition,
-    activeVariationIds,
-    comments,
-    pinIsAttached,
-    cursor,
-    pin
-  }) => ({
-    cameraPosition,
-    activeVariationIds,
     comments,
     pinIsAttached,
     pinFollowCursor: cursor === CURSOR.PIN,
