@@ -7,9 +7,9 @@ button {
   display: flex;
   flex-direction: column;
   position: relative;
-  border-width: 0.3px 0px;
+  border-width: 0.1px 0px;
   border-style: solid;
-  border-color:silver;
+  border-color: #C7C7C7;
 }
 
 .comment-flag-row {
