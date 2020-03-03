@@ -196,6 +196,8 @@ function rootReducer(state = initialState, { type, data }) {
           {
             id: 1 + state.maxCommentId,
             author: "Greg Gottesman",
+            profilePicture:
+              "https://assets.website-files.com/5d3152346d95065922960b3a/5db769036b1dff3418bffd20_Greg.jpg",
             date: new Date().getTime(),
             text: data,
             file: state.file,
@@ -222,6 +224,8 @@ function rootReducer(state = initialState, { type, data }) {
                   {
                     id: 1 + state.maxCommentId,
                     author: "Greg Gottesman",
+                    profilePicture:
+                      "https://assets.website-files.com/5d3152346d95065922960b3a/5db769036b1dff3418bffd20_Greg.jpg",
                     date: new Date().getTime(),
                     text: data.text,
                     file: state.file,

@@ -4,6 +4,8 @@ export default [
   {
     id: 1,
     author: "Steve Singh",
+    profilePicture:
+      "https://media-exp1.licdn.com/dms/image/C5103AQES2HWYu834NA/profile-displayphoto-shrink_800_800/0?e=1588809600&v=beta&t=crKDuzgclc_52hqw_qvzN5O-vvGJUYWLxiCXwvPUa60",
     date: new Date().getTime(),
     text:
       "I dont like how the openings end before the bottom of the black canvas, what can we do about this?",
@@ -17,6 +19,8 @@ export default [
   {
     id: 2,
     author: "Ed Lazowska",
+    profilePicture:
+      "https://s3-us-west-2.amazonaws.com/www-cse-public/images/portraits/lazowska_sm.jpg",
     date: addDays(new Date(), -1).getTime(),
     text:
       "I'm really proud of the lacing design here, do we think it will be too complicated?",
@@ -30,6 +34,8 @@ export default [
   {
     id: 3,
     author: "Dan Levitan",
+    profilePicture:
+      "https://dukeangelnetwork.duke.edu/wp-content/uploads/2015/05/Dan-Levitan-Headshot.jpg",
     date: addDays(new Date(), -2).getTime(),
     text:
       "I love the differnent fonts, but make the nike and zoom closer together in size",
