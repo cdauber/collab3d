@@ -123,3 +123,14 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (max-width: 768px) {
+  #main-area {
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .camera-button-row {
+    display: none;
+  }
+}
