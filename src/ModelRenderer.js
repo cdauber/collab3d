@@ -72,7 +72,7 @@ function Controls({ cameraPosition, onOrbitChange, ...props }) {
   );
 }
 
-function LoadingModel({ color = "orange", ...props }) {
+function LoadingModel({ color = "orange", position, ...props }) {
   const mesh = useRef();
   const [loadingModel, setLoadingModel] = useState();
 
@@ -96,6 +96,7 @@ function LoadingModel({ color = "orange", ...props }) {
   useFrame(() => {
     if (mesh.current) {
       mesh.current.rotation.y -= 0.03;
+      mesh.current.position.set(...position);
     }
   });
 
@@ -130,7 +131,7 @@ function ModelRenderer({
       <Model
         path={modelPath}
         activeVariationIds={activeVariationIds}
-        fallback={<LoadingModel />}
+        fallback={<LoadingModel position={cameraPosition.focus} />}
       />
     </Canvas>
   );
