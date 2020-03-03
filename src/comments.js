@@ -25,7 +25,7 @@ export default [
       "https://s3-us-west-2.amazonaws.com/www-cse-public/images/portraits/lazowska_sm.jpg",
     date: addDays(new Date(), -1).getTime(),
     text:
-      "Do you think the lining should be a different color?\nShould we try another material?\nMaybe more velvet-looking fabrics.",
+      "Do you think the lining should be a different color? Should we try another material? Maybe more velvet-looking fabrics.",
     camera: {
       position: [
         -0.01780035071461352,
@@ -44,7 +44,7 @@ export default [
       "https://dukeangelnetwork.duke.edu/wp-content/uploads/2015/05/Dan-Levitan-Headshot.jpg",
     date: addDays(new Date(), -2).getTime(),
     text:
-      "If I remember correctly, the merchandise team wants to get rid of the heel collar pull tab, right?\nBut I’m pretty open to it. What do you think?",
+      "If I remember correctly, the merchandise team wants to get rid of the heel collar pull tab, right? But I’m pretty open to it. What do you think?",
     drawOver:
       "NrDeCIA9wLgBgHQFYDsBOJAOJcCM-cAWANiQBpwBPWRAZjiTXWONt3VwCY4MBfMiNHjIscTrhaZmjOJgrVhbdnELZCeTJlxJi-QTREoutTklxxamQt07yDbTrULmGKQiiRJVugVAOfVFBQVcU4g1TtFXFpiaNMeUksGPT9hT3pMPE5CWiRaFCtcSLoibLR1TmJy-DRMFKFET3YTZy8sNAZCYoQ2T3FidzQawjyUev9CNDRc1usUNmxutmJ0S2muJmC0H300yYsqphYhiKp7dhy4FVUsMwtxvZRiTDROTXDK6aXcKTFODrgT1ouTQD0aIxenDeUmsz2yS24sTgz2CUIBbjByEII2xqFq7ky+QRP0w-w6qgs6DCmK8MRIEm4L1YbARvSQjh0tW4kxpc3cLG480wtCYCJwrFYlWxT1qvJ4ODc1imUiwCKqKBsGCGwPcNJFxAsFi8KimRgRmkysNGLwwO1SjRF2ny2MqpM0aARGAkqFJLFYmj1pPSlTu+GFSzY1kmHnEJkphD1AywJgGBTyRAjnw13LYYmmCd8DWQuU8U1kGoORTOimB23KpAGmi85T1+WI-1kzykbgjRhwEgN7JeVj1bwG+2myKNEasUOcXGCGoLuwd2gkBW4uSXcmrdHUwNksnEGvdevMK32NrwLCW6m2VUY9bEWjtRaHpOiA2yjAvt+c-LEfAVB+FYaTefJBVzV5GFsXcemlYUPEsR08WXe1kEqLhGBIEZ2yrBQ90wA1OiCEw3iCMD3A3fIdGiBwljMIgcEsddpheSiTBeHDsnbWgGPYLQflqe8CnYMDTDjMdxUYfD7FpUwhVQXAuVyMDnywZT5mVFAGOqKinlJaYKMLfxlOFFhzCIng8B0uCYmRX40SuIE0LfdgZHUZScDRcg7JYZwoWiNwVCwGl2CIGp6CMIgciWZ44yRFE-lBEy0m0VZVGcJ4Q2IJY+zwJQeHPVgwtUcp8QkFQNVkxQ3GeLyTACHRhTCmYNRjUhGCcPKrFqNwjBuIjX1M9yjTcIZ23KJZDLMKowmCEYdCQMKVDERsfw8WRptiEwdXzKxYhpTtXAyKECmeab1n+IIeFeGJhrSZEQXZZSuHwEglgwCwX1WF42FoI7+x+aIbMcXK7K5El4qVfqjrCBtgORHRLG6dQITwdkVnc1AAdSxo8Cyl4XokRY4LvCx6C5aZ21UI7nI0VgSae1GuFjYL0adTFJm2bhNhyIJxBqxB-1ZoK0dEbQuaYZ0DPZBaXlR7lhUGaWCeSPGEEmVNWAVLsCncRX6DeZ9GwWRwpYNMIGG2ExlFMRXLjEIULJyFqNcmTwgmwQE8lkaNFeebFSVMf9afd+tVgVCChl8gjNfoMQvFTBhhWwKWSEjwFo+0VGHE2W6wYGXApfyTJpmuoZxEBXPLGsUxsGE+KpehbITBtkwPFsuP+eS5zmSwJ4pbMkU2-cPJnFR-8PAOyx2TCOpw8spozD+iVJ-ZV4Bid4VUAe4WOh+YI13mVBr0noYeByLKiCkVT3Y-PufhCJgMFR5XBypBJ0i59A1D6Vf67dDMB0YUdYSA6FUAvFcmtU5HHQD6TCpM44BEBFwAUjVaJSzMGOZwt8phMC6HBLAJAGCxHmEEbCnAwog3ekRLC2I+JEIwM4fE8w3jZByHqawb1lQh2DkApk9YIFNi1jSdsyJBheC0FCC6RCWC-SupsYuGt2hDH6rWEY5RCHIOBPlMwzZZASExEiOi54tBBA8EA64G9cLiCIilaB7Ywj4AfJtAy4Nu4VnMJpX2IZtjGNtrhCWkwvLr3+FKbeW494IAlP6H25lKgihZk4KyOQY6TEsAElgSRp4xESR6Oys5HBGVqG6LCxi3jmAknRZ8uRbxWRImw8iYwNaDlehSfA8xFrfEcM4K4qAx5SOiaIVQuQCD0AYbHewVwXjImyA5b0wz-RkIwNgrQKM7LW2YIzDgvNloqOIVsR8wIyTfBiHEHA2w8iZGWgAXVuUAA",
     camera: {
