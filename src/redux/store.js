@@ -21,7 +21,6 @@ import {
   UNATTACH_PIN,
   UPDATE_DRAWING,
   MOVE_CAMERA,
-  MOVE_POINTER,
   PLACE_PIN,
   SET_PIN_POSITION
 } from "./actions";
@@ -79,8 +78,7 @@ function rootReducer(state = initialState, { type, data }) {
       return { ...state, activeCameraPosition: null, cameraPosition: data };
     case MOVE_CAMERA:
       return { ...state, activeCameraPosition: data };
-    case MOVE_POINTER:
-      return { ...state, pointerEventData: data };
+
     case SELECT_COMMENT:
       console.log(state);
 
