@@ -17,6 +17,9 @@ export const ATTACH_PIN = "ATTACH_PIN";
 export const UNATTACH_PIN = "UNATTACH_PIN";
 export const CANCEL_COMMENT = "CANCEL_COMMENT";
 
+export const PLACE_PIN = "PLACE_PIN";
+export const SET_PIN_POSITION = "SET_PIN_POSITION";
+
 export const ADD_COMMENT = "ADD_COMMENT";
 export const ADD_REPLY = "ADD_REPLY";
 export const RESOLVE_COMMENT = "RESOLVE_COMMENT";
@@ -69,6 +72,13 @@ export function attachPin() {
 export function unattachPin() {
   return { type: UNATTACH_PIN };
 }
+export function setPinPosition(pinLocation) {
+  return { type: SET_PIN_POSITION, data: pinLocation };
+}
+export function placePin() {
+  return { type: PLACE_PIN };
+}
+
 export function cancelComment() {
   return { type: CANCEL_COMMENT };
 }
