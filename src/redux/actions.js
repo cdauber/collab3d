@@ -33,6 +33,9 @@ export const UPDATE_PIN = "UPDATE_PIN";
 export const SELECT_VARIATION = "SELECT_VARIATION";
 export const DESELECT_VARIATION = "DESELECT_VARIATION";
 
+export const SHOW_PINS = "SHOW_PINS";
+export const HIDE_PINS = "HIDE_PINS";
+
 /**
  * action creators
  */
@@ -115,4 +118,11 @@ export function selectVariation(variation) {
 }
 export function deselectVariation(variation) {
   return { type: DESELECT_VARIATION, data: variation };
+}
+
+export function showPins() {
+  return { type: SHOW_PINS };
+}
+export function hidePins() {
+  return { type: HIDE_PINS };
 }

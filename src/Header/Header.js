@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 
-function Header() {
-  const [eyeOpen, setEyeOpen] = useState(true);
-
+function Header({ eyeOpen, onClickEye }) {
   return (
     <div className="head">
       <button className="back-button">Back</button>
@@ -19,7 +17,7 @@ function Header() {
         <button className="share" onClick={() => alert("share link copied")}>
           Share
         </button>
-        <button className="eye" onClick={() => setEyeOpen(!eyeOpen)}>
+        <button className="eye" onClick={onClickEye}>
           <img
             src={`assets/eye-${eyeOpen ? "open" : "closed"}.svg`}
             alt="Show/hide pins icon"
