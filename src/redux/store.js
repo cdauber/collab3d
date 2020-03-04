@@ -13,6 +13,7 @@ import {
   CLOSE_THREAD,
   DESELECT_COMMENT,
   DESELECT_VARIATION,
+  HIDE_PINS,
   MOVE_CAMERA,
   OPEN_THREAD,
   PLACE_PIN,
@@ -21,6 +22,7 @@ import {
   SELECT_COMMENT,
   SELECT_VARIATION,
   SET_PIN_POSITION,
+  SHOW_PINS,
   UNATTACH_DRAW_OVER,
   UNATTACH_FILE,
   UNATTACH_PIN,
@@ -42,6 +44,7 @@ const initialState = {
   fileIsAttached: false,
   drawOverIsAttached: false,
   pinIsAttached: false,
+  showPins: true,
   maxCommentId: 3,
   activeVariationIds: { 1: true },
   variations: [
@@ -267,6 +270,10 @@ function rootReducer(state = initialState, { type, data }) {
         ...state,
         activeVariationIds: { ...state.activeVariationIds, [data.id]: false }
       };
+    case SHOW_PINS:
+      return { ...state, showPins: true };
+    case HIDE_PINS:
+      return { ...state, showPins: false };
     default:
       return state;
   }

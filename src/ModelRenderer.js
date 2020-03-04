@@ -44,6 +44,13 @@ function Model({ path, fallback, ...props }) {
 
 function Pin({ pinPosition, color = "red" }) {
   const mesh = useRef();
+
+  useEffect(() => {
+    if (mesh.current) {
+      mesh.current.geometry.verticesNeedUpdate = true;
+    }
+  });
+
   if (!pinPosition) return null;
 
   let position = new Vector3(...pinPosition.position);
@@ -71,9 +78,6 @@ function Pin({ pinPosition, color = "red" }) {
       </mesh>
     </group>
   );
-  if (mesh.current) {
-    mesh.current.geometry.verticesNeedUpdate = true;
-  }
 
   return pin;
 }
@@ -152,6 +156,7 @@ function ModelRenderer({
   pinIsAttached,
   pinFollowCursor,
   pin,
+  showPins,
   onOrbitChange,
   placePinClick,
   onPointerMove,
@@ -175,27 +180,27 @@ function ModelRenderer({
       <ambientLight />
       <Model
         path={modelPath}
-        fallback={<LoadingModel />}
+        fallback={<LoadingModel position={cameraPosition.focus} />}
         onPointerMove={pinFollowCursor && onPointerMove}
         onClick={pinFollowCursor && placePinClick}
       />
       {pinIsAttached && <Pin pinPosition={pin} color="#E37FFA" />}
-      {comments
-        .filter(comment => comment.pin)
-        .map(comment => (
-          <Pin key={comment.id} pinPosition={comment.pin} />
-        ))}
+      {showPins &&
+        comments
+          .filter(comment => comment.pin)
+          .map(comment => <Pin key={comment.id} pinPosition={comment.pin} />)}
     </Canvas>
   );
 }
 
 export default connect(
-  ({ cameraPosition, comments, pinIsAttached, cursor, pin }) => ({
+  ({ cameraPosition, comments, pinIsAttached, cursor, pin, showPins }) => ({
     cameraPosition,
     comments,
     pinIsAttached,
     pinFollowCursor: cursor === CURSOR.PIN,
-    pin
+    pin,
+    showPins
   }),
   dispatch => ({
     onOrbitChange: ({
