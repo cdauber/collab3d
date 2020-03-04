@@ -26,6 +26,7 @@ function relativeDateString(dateInMillis) {
 
 export function TopRow({
   profilePic,
+  src,
   author,
   date,
   redrawEnabled,
@@ -42,7 +43,7 @@ export function TopRow({
 
   return (
     <div className="comment-top-row">
-      <ProfileIcon author={author} />
+      <ProfileIcon src={src} author={author} />
       <div className="comment-top-column">
         <div className="author-name">{author}</div>
         <div className="comment-date">{relativeDateString(date)}</div>

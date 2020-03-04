@@ -3,6 +3,7 @@ import { addDays } from "./CommentsColumn/Comment/TopRow/TopRow";
 export default [
   {
     id: 1,
+    src: "https://media-exp1.licdn.com/dms/image/C5103AQES2HWYu834NA/profile-displayphoto-shrink_200_200/0?e=1587600000&v=beta&t=e85cbE830lKu3L4wbpIqVu83o5byIKrhQx8pPpbpPbQ",
     author: "Steve Singh",
     date: new Date().getTime(),
     text:
@@ -15,6 +16,7 @@ export default [
   },
   {
     id: 2,
+    src: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Edward_D_Lazowska.jpg/1200px-Edward_D_Lazowska.jpg" ,
     author: "Ed Lazowska",
     date: addDays(new Date(), -1).getTime(),
     text:
@@ -27,6 +29,7 @@ export default [
   },
   {
     id: 3,
+    src: "https://dukeangelnetwork.duke.edu/wp-content/uploads/2015/05/Dan-Levitan-Headshot.jpg" ,
     author: "Dan Levitan",
     date: addDays(new Date(), -2).getTime(),
     text:
