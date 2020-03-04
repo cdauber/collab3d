@@ -163,7 +163,7 @@ function ModelRenderer({
       camera={{ fov: 60, near: 1 }}
       onCreated={({ gl, scene }) => {
         if (gl) gl.outputEncoding = sRGBEncoding;
-        if (scene) scene.background = new Color(0xfafafa);
+        if (scene) scene.background = new Color(0xe5e5e5);
       }}
       {...props}
     >

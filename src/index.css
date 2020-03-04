@@ -64,6 +64,8 @@ code {
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  background-color: #e5e5e5;
+  position: relative;
 }
 
 .draw-over {

@@ -61,4 +61,6 @@
   top: 0;
   z-index: 10;
   box-shadow: 0 0 99999px 99999px rgba(51, 51, 51, 0.38);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
