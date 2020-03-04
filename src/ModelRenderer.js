@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Box3, Vector3, Color, sRGBEncoding } from "three";
 import { connect } from "react-redux";
 import { changeCamera, placePin, setPinPosition } from "./redux/actions";
-import { INITIAL_CAMERA_POSITION } from "./redux/store";
+import { INITIAL_CAMERA_POSITION, CURSOR } from "./redux/store";
 
 extend({ OrbitControls });
 
@@ -143,7 +143,7 @@ export default connect(
     activeCameraPosition,
     pointerEventData,
     pinIsAttached,
-    pinFollowCursor,
+    cursor,
     pin
   }) => ({
     cameraPosition: comments.reduce(
@@ -154,7 +154,7 @@ export default connect(
     comments,
     pointerEventData,
     pinIsAttached,
-    pinFollowCursor,
+    pinFollowCursor: cursor === CURSOR.PIN,
     pin
   }),
   dispatch => ({

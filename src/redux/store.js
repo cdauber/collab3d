@@ -41,7 +41,6 @@ const initialState = {
   fileIsAttached: false,
   drawOverIsAttached: false,
   pinIsAttached: false,
-  pinFollowCursor: false,
   maxCommentId: 3,
   comments: comments
 };
@@ -78,10 +77,7 @@ function rootReducer(state = initialState, { type, data }) {
       return { ...state, activeCameraPosition: null, cameraPosition: data };
     case MOVE_CAMERA:
       return { ...state, activeCameraPosition: data };
-
     case SELECT_COMMENT:
-      console.log(state);
-
       return {
         ...state,
         selectedCommentId: data.id,
@@ -127,7 +123,6 @@ function rootReducer(state = initialState, { type, data }) {
       return {
         ...state,
         pinIsAttached: true,
-        pinFollowCursor: true,
         cursor: CURSOR.PIN
       };
     case UNATTACH_PIN:
@@ -135,13 +130,12 @@ function rootReducer(state = initialState, { type, data }) {
         ...state,
         pinIsAttached: false,
         attachedPin: null,
-        pinFollowCursor: false,
         cursor: CURSOR.DEFAULT
       };
     case SET_PIN_POSITION:
       return { ...state, pin: data };
     case PLACE_PIN:
-      return { ...state, cursor: CURSOR.DEFAULT, pinFollowCursor: false };
+      return { ...state, cursor: CURSOR.DEFAULT };
     case CANCEL_COMMENT:
       return {
         ...state,
