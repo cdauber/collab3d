@@ -2,7 +2,7 @@ import React, { Suspense, useRef, useEffect } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Canvas, useThree, extend, useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Box3, Vector3, Color, sRGBEncoding } from "three";
+import { Box3, Vector3, Color, sRGBEncoding, MeshNormalMaterial } from "three";
 import { connect } from "react-redux";
 import { changeCamera, placePin, setPinPosition } from "./redux/actions";
 import { INITIAL_CAMERA_POSITION } from "./redux/store";
@@ -24,8 +24,13 @@ function Model({ path, ...props }) {
     //Centering Object
     bbox.setFromObject(mroot);
     mroot.position.copy(bbox.getCenter(new Vector3())).multiplyScalar(-1);
-  }, [gltf]);
 
+    mroot.traverse(node => {
+      //whatever you do dont log node above
+      if (!node.isMesh) return;
+      node.material = new MeshNormalMaterial(); //overwriting textures
+    });
+  }, [gltf]);
   return <primitive object={gltf.scene} {...props} />;
 }
 
@@ -121,9 +126,10 @@ function ModelRenderer({
       <ambientLight />
       <Suspense fallback={null}>
         <Model
-          path="models/gltf/nike_shoe/scene.gltf"
+          path="models/gltf/adidas_sneaker/scene.gltf"
+          //path="models/gltf/nike_shoe/scene.gltf"
           onPointerMove={pinFollowCursor && onPointerMove}
-          onClick={pinFollowCursor && placePinClick}
+          //onClick={pinFollowCursor && placePinClick}
         />
         {pinIsAttached && <Pin pinPosition={pin} color="#E37FFA" />}
         {comments
