@@ -72,24 +72,24 @@ const initialState = {
       thumbnail: "assets/adidas_sneaker_dark_blue_thumbnail.png",
       model: "models/gltf/adidas_sneaker_dark_blue/Project Name.gltf"
     },
-    {
-      id: 5,
-      name: "Grey Jacket",
-      thumbnail: "assets/grey_adidas_thumbnail.png",
-      model: "models/gltf/grey_adidas/Grey Adidas.gltf"
-    },
-    {
-      id: 6,
-      name: "Blue Jacket",
-      thumbnail: "assets/blue_adidas_thumbnail.png",
-      model: "models/gltf/blue_adidas/Blue Adidas.gltf"
-    },
-    {
-      id: 7,
-      name: "Pink Jacket",
-      thumbnail: "assets/pink_adidas_thumbnail.png",
-      model: "models/gltf/pink_adidas/Pink Jacket.gltf"
-    }
+    // {
+    //   id: 5,
+    //   name: "Grey Jacket",
+    //   thumbnail: "assets/grey_adidas_thumbnail.png",
+    //   model: "models/gltf/grey_adidas/Grey Adidas.gltf"
+    // },
+    // {
+    //   id: 6,
+    //   name: "Blue Jacket",
+    //   thumbnail: "assets/blue_adidas_thumbnail.png",
+    //   model: "models/gltf/blue_adidas/Blue Adidas.gltf"
+    // },
+    // {
+    //   id: 7,
+    //   name: "Pink Jacket",
+    //   thumbnail: "assets/pink_adidas_thumbnail.png",
+    //   model: "models/gltf/pink_adidas/Pink Jacket.gltf"
+    // }
   ],
   comments: comments
 };
