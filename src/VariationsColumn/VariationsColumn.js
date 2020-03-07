@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import CommentsColumnHeader from "../CommentsColumn/CommentsColumnHeader/CommentsColumnHeader";
 import {
@@ -10,21 +10,36 @@ import Variation from "./Variation/Variation";
 import "./VariationsColumn.css";
 
 function VariationsColumn({ variations, onClickVariation, ...props }) {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <div id="variations-column" {...props}>
+    <div id="variations-column" className={isOpen ? "" : "closed"} {...props}>
       <CommentsColumnHeader
-        className="variations-header"
-        headerText="Iterations"
+        headerText="Show Iterations"
+        className={"variations-column-closed-label" + (isOpen ? "" : " closed")}
+        onClick={() => setIsOpen(true)}
       />
-      <div className="variations-scroll-column">
-        {variations.map(variation => (
-          <Variation
-            key={variation.id}
-            onClick={() => onClickVariation(variation)}
-            {...variation}
-          />
-        ))}
+      <div className={"variations-column-inside" + (isOpen ? "" : " closed")}>
+        <CommentsColumnHeader
+          className="variations-header"
+          headerText="Iterations"
+        />
+        <div className="variations-scroll-column">
+          {variations.map(variation => (
+            <Variation
+              key={variation.id}
+              onClick={() => onClickVariation(variation)}
+              {...variation}
+            />
+          ))}
+        </div>
       </div>
+      <button
+        className={"variations-column-close-button" + (isOpen ? "" : " closed")}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <img src="assets/right-arrow.svg" alt="Close sidebar icon" />
+      </button>
     </div>
   );
 }

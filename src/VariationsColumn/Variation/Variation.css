@@ -1,4 +1,5 @@
 .variation {
+  direction: ltr;
   position: relative;
   padding: 20px;
   cursor: pointer;

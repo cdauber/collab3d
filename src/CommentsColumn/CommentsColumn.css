@@ -1,6 +1,5 @@
 #comments-row {
   flex-shrink: 0;
-  box-sizing: content-box;
 
   /* New changes */
   align-self: flex-end;
@@ -15,6 +14,7 @@
 
 #comments-row.closed {
   position: absolute;
+  z-index: 1;
   right: 0;
   bottom: 0;
   min-width: 0;
@@ -23,6 +23,7 @@
 
 .comments-column-closed-label {
   padding: 20px;
+  padding-bottom: 20px !important;
   opacity: 0;
   transition: opacity 0.2s;
 }

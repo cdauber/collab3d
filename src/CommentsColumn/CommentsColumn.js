@@ -10,11 +10,11 @@ import { closeThread, cancelComment } from "../redux/actions";
 function CommentsColumn({ activeThread, onClickShowHide, ...props }) {
   const [isOpen, setIsOpen] = useState(true);
   return (
-    <div id="comments-row" className={isOpen ? "" : " closed"}>
+    <div id="comments-row" className={isOpen ? "" : "closed"}>
       <CommentsColumnHeader
         headerText="Show comments"
         className={"comments-column-closed-label" + (isOpen ? "" : " closed")}
-        onClick={() => console.log("yo") || setIsOpen(true)}
+        onClick={() => setIsOpen(true)}
       />
       <div className={"comments-column-inside" + (isOpen ? "" : " closed")}>
         <MainThread

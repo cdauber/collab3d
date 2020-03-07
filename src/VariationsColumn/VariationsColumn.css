@@ -1,10 +1,36 @@
 #variations-column {
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  border-right: 0.2px solid black;
-  box-sizing: border-box;
-  overflow: hidden;
+
+  /* New changes */
+  align-self: flex-end;
+  position: relative;
+  margin: 30px 0;
+  min-width: 194px;
+  min-height: calc(100% - 2 * 30px);
+  background-color: white;
+  border-radius: 20px;
+  transition: min-height 0.3s, min-width 0.3s;
+}
+
+#variations-column.closed {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.variations-column-closed-label {
+  padding: 20px;
+  padding-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.variations-column-closed-label.closed {
+  opacity: 100%;
+  cursor: pointer;
 }
 
 .variations-header {
@@ -13,11 +39,56 @@
   padding-right: 25px;
 }
 
+.variations-column-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
+  transition: opacity 0.2s;
+}
+
+.variations-column-inside.closed {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .variations-scroll-column {
+  direction: rtl;
   flex-grow: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+}
+
+.variations-column-close-button {
+  background: none;
+  border: none;
+
+  position: absolute;
+  bottom: 36px;
+  right: -17px;
+  width: 37px;
+  height: 37px;
+  background-color: #7e8ed7;
+  border-radius: 100%;
+  z-index: 10;
+  transition: transform 0.3s, bottom 0.3s;
+  transform: rotate(-180deg);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.variations-column-close-button.closed {
+  bottom: calc(50% - (37px / 2));
+  transform: scale(0.62);
 }
 
 @media only screen and (max-width: 768px) {
