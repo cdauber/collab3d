@@ -197,10 +197,10 @@ export default connect(
   ({ cameraPosition, comments, pinIsAttached, cursor, pin, showPins }) => ({
     cameraPosition,
     comments,
-    pinIsAttached,
-    pinFollowCursor: cursor === CURSOR.PIN,
-    pin,
-    showPins
+    // pinIsAttached,
+    // pinFollowCursor: cursor === CURSOR.PIN,
+    // pin,
+    // showPins
   }),
   dispatch => ({
     onOrbitChange: ({
