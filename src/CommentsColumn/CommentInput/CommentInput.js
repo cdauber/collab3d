@@ -103,7 +103,7 @@ function CommentInput({
               !(submitEnabled || (inputComment && inputComment.length > 0))
             }
             onClick={() => {
-              onClickSubmit(inputComment || "");
+              onClickSubmit(inputComment);
               setInputComment("");
             }}
           >

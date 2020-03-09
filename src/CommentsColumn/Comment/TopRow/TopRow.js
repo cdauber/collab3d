@@ -24,14 +24,7 @@ function relativeDateString(dateInMillis) {
   }
 }
 
-export function TopRow({
-  profilePicture,
-  author,
-  date,
-  redrawEnabled,
-  onRedraw,
-  onResolve
-}) {
+export function TopRow({ profilePicture, author, date, onResolve }) {
   const [closeMenu, setCloseMenu] = useState(false);
 
   useEffect(() => {
@@ -47,11 +40,6 @@ export function TopRow({
         <div className="author-name">{author}</div>
         <div className="comment-date">{relativeDateString(date)}</div>
       </div>
-      {redrawEnabled && (
-        <button className="top-row-redo-button" onClick={onRedraw}>
-          Redraw
-        </button>
-      )}
       <Popup
         className="top-row-popup"
         trigger={

@@ -187,14 +187,8 @@ function rootReducer(state = initialState, { type, data }) {
         cursor: CURSOR.DEFAULT
       };
     case ADD_COMMENT:
-      if (!data || data.trim().length === 0) {
-        if (state.drawOverIsAttached) {
-          data = "Attached a draw over.";
-        } else if (state.pinIsAttached) {
-          data = "Attached a pin.";
-        } else if (state.fileIsAttached) {
-          data = "Attached a file.";
-        }
+      if (typeof data === "string" && data.trim().length === 0) {
+        data = undefined;
       }
       const comment = {
         id: uuidV4(),
@@ -214,6 +208,9 @@ function rootReducer(state = initialState, { type, data }) {
       conn.send("addcomment", comment);
       return { ...state, comments: [comment, ...state.comments] };
     case ADD_REPLY:
+      if (typeof data === "string" && data.trim().length === 0) {
+        data = undefined;
+      }
       const reply = {
         id: uuidV4(),
         author: author.name,
@@ -224,9 +221,10 @@ function rootReducer(state = initialState, { type, data }) {
         drawOver:
           state.drawing &&
           LZString.compressToEncodedURIComponent(JSON.stringify(state.drawing)),
+        camera: state.camera,
+        activeVariationIds: state.activeVariationIds,
         // needed for API
-        parent_id: data.comment.id,
-        camera: data.comment.camera
+        parent_id: data.comment.id
       };
       conn.send("addcomment", reply);
       return {

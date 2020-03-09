@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { unattachDrawOver } from "../../redux/actions";
+import { CURSOR } from "../../redux/store";
 import "./Comment.css";
 import { TopRow } from "./TopRow/TopRow";
-import { CURSOR } from "../../redux/store";
-import { unattachDrawOver } from "../../redux/actions";
 
 function Comment({
   comment: { text, drawOver, pin, ...comment },
@@ -40,6 +40,11 @@ function Comment({
             src="assets/pin-flag.svg"
             alt="Pin flag"
           />
+        )}
+        {redrawEnabled && (
+          <button className="comment-flag-redo-button" onClick={onRedraw}>
+            Redraw
+          </button>
         )}
       </div>
     </div>

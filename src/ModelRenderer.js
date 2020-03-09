@@ -192,11 +192,11 @@ function ModelRenderer({
 export default connect(
   ({ cameraPosition, comments, pinIsAttached, cursor, pin, showPins }) => ({
     cameraPosition,
-    comments
-    // pinIsAttached,
-    // pinFollowCursor: cursor === CURSOR.PIN,
-    // pin,
-    // showPins
+    comments,
+    pinIsAttached,
+    pinFollowCursor: cursor === CURSOR.PIN,
+    pin,
+    showPins
   }),
   dispatch => ({
     onOrbitChange: ({

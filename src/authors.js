@@ -27,7 +27,7 @@ export default [
   {
     name: "Ben Gilbert",
     profilePicture:
-      "https://lh3.googleusercontent.com/proxy/bKIGmUHRGVoBmJEK3FTkKFZFEgNYlxb3-WNBVxEZvyw6SL8-1JbNFG3z59FDp72lmpVKvWyc_9KSLK4S1KBPdOro52lViI2fE6SFkEHWFL5OcRZHthc1S5H62IUknlR39Bw"
+      "http://benjamingilbert.net/wp-content/uploads/2009/10/Ben-PSL-Headshot.jpg"
   },
   {
     name: "Xiao Wang",
