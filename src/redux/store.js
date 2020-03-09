@@ -53,27 +53,27 @@ const initialState = {
   variations: [
     {
       id: 1,
-      name: "Grey Sneaker",
-      thumbnail: "assets/adidas_sneaker_thumbnail.png",
-      model: "models/gltf/adidas_sneaker/scene.gltf"
+      name: "Original",
+      thumbnail: "assets/nike_shoe_thumbnail.png",
+      model: "models/gltf/nike_shoe/scene.gltf"
     },
     {
       id: 2,
-      name: "Lavender Sneaker",
-      thumbnail: "assets/adidas_sneaker_lavender_thumbnail.png",
-      model: "models/gltf/adidas_sneaker_lavender/Project Name.gltf"
+      name: "Magenta",
+      thumbnail: "assets/nike_shoe_pink_thumbnail.png",
+      model: "models/gltf/nike_shoe_pink/scene.gltf"
     },
     {
       id: 3,
-      name: "Pink Sneaker",
-      thumbnail: "assets/adidas_sneaker_pink_thumbnail.png",
-      model: "models/gltf/adidas_sneaker_pink/Project Name.gltf"
+      name: "Turquoise",
+      thumbnail: "assets/nike_shoe_turquoise_thumbnail.png",
+      model: "models/gltf/nike_shoe_turquoise/scene.gltf"
     },
     {
       id: 4,
-      name: "Dark Blue Sneaker",
-      thumbnail: "assets/adidas_sneaker_dark_blue_thumbnail.png",
-      model: "models/gltf/adidas_sneaker_dark_blue/Project Name.gltf"
+      name: "Black",
+      thumbnail: "assets/nike_shoe_black_thumbnail.png",
+      model: "models/gltf/nike_shoe_black/scene.gltf"
     }
   ],
   comments: []
