@@ -117,8 +117,9 @@ function LoadingModel({ color = "orange", position, ...props }) {
   const [loadingModel, setLoadingModel] = useState();
 
   useEffect(() => {
+    let stillMounted = true;
     if (!loadingModel) {
-      (async () => {
+      (async function() {
         const gltf = await new Promise((resolve, reject) =>
           new GLTFLoader().load(
             "models/gltf/vivid3d_loader/scene.gltf",
@@ -127,10 +128,16 @@ function LoadingModel({ color = "orange", position, ...props }) {
             reject
           )
         );
-        gltf.scene.scale.setLength(13);
-        setLoadingModel(gltf);
+        if (stillMounted) {
+          gltf.scene.scale.setLength(13);
+          setLoadingModel(gltf);
+        }
       })();
     }
+    
+    return function() {
+      stillMounted = false;
+    };
   }, [loadingModel, setLoadingModel]);
 
   useFrame(() => {
