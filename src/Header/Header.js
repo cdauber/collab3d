@@ -1,4 +1,5 @@
 import React from "react";
+import { author } from "../redux/store";
 import "./Header.css";
 
 function Header({ eyeOpen, onClickEye }) {
@@ -8,8 +9,8 @@ function Header({ eyeOpen, onClickEye }) {
       <div className="button-row">
         <img
           className="profile"
-          alt="Greg"
-          src="https://assets.website-files.com/5d3152346d95065922960b3a/5db769036b1dff3418bffd20_Greg.jpg"
+          alt={author.name}
+          src={author.profilePicture}
         />
         <button className="AR" onClick={() => alert("more features to come")}>
           AR

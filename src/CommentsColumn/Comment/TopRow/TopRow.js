@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import { ProfileIcon } from "./ProfileIcon/ProfileIcon";
 import "./TopRow.css";
 
-export function addDays(date, days) {
+function addDays(date, days) {
   const result = new Date(date.valueOf());
   result.setDate(date.getDate() + days);
   return result;
@@ -48,10 +48,7 @@ export function TopRow({
         <div className="comment-date">{relativeDateString(date)}</div>
       </div>
       {redrawEnabled && (
-        <button
-          className="top-row-redo-button"
-          onClick={onRedraw}
-        >
+        <button className="top-row-redo-button" onClick={onRedraw}>
           Redraw
         </button>
       )}

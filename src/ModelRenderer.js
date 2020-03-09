@@ -5,11 +5,7 @@ import { Box3, Color, sRGBEncoding, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { changeCamera, placePin, setPinPosition } from "./redux/actions";
-import {
-  cameraPositionEquals,
-  CURSOR,
-  INITIAL_CAMERA_POSITION
-} from "./redux/store";
+import { cameraPositionEquals, CURSOR } from "./redux/store";
 
 extend({ OrbitControls });
 
@@ -125,7 +121,7 @@ function LoadingModel({ color = "orange", position, ...props }) {
       (async () => {
         const gltf = await new Promise((resolve, reject) =>
           new GLTFLoader().load(
-            "models/gltf/loading_model_2/Project Name.gltf",
+            "models/gltf/vivid3d_loader/scene.gltf",
             resolve,
             undefined,
             reject
@@ -164,7 +160,7 @@ function ModelRenderer({
 }) {
   return (
     <Canvas
-      camera={{ fov: 60, near: 1, position: INITIAL_CAMERA_POSITION }}
+      camera={{ fov: 60, near: 1 }}
       onCreated={({ gl, scene }) => {
         if (gl) gl.outputEncoding = sRGBEncoding;
         if (scene) scene.background = new Color(0xfafafa);
@@ -196,7 +192,7 @@ function ModelRenderer({
 export default connect(
   ({ cameraPosition, comments, pinIsAttached, cursor, pin, showPins }) => ({
     cameraPosition,
-    comments,
+    comments
     // pinIsAttached,
     // pinFollowCursor: cursor === CURSOR.PIN,
     // pin,
