@@ -36,6 +36,8 @@ export const DESELECT_VARIATION = "DESELECT_VARIATION";
 export const SHOW_PINS = "SHOW_PINS";
 export const HIDE_PINS = "HIDE_PINS";
 
+export const SET_COMMENTS = "SET_COMMENTS";
+
 /**
  * action creators
  */
@@ -125,4 +127,8 @@ export function showPins() {
 }
 export function hidePins() {
   return { type: HIDE_PINS };
+}
+
+export function setComments(comments) {
+  return { type: SET_COMMENTS, data: comments };
 }

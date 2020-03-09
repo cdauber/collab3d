@@ -5,11 +5,7 @@ import { Box3, Color, sRGBEncoding, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { changeCamera, placePin, setPinPosition } from "./redux/actions";
-import {
-  cameraPositionEquals,
-  CURSOR,
-  INITIAL_CAMERA_POSITION
-} from "./redux/store";
+import { cameraPositionEquals, CURSOR } from "./redux/store";
 
 extend({ OrbitControls });
 
@@ -103,6 +99,7 @@ function Controls({ cameraPosition, onOrbitChange, ...props }) {
 
   useEffect(() => {
     const controls = controlsRef.current;
+    console.log(controls.minPolarAngle, controls.maxPolarAngle);
     controls.addEventListener("change", onOrbitChange);
     return () => controls.removeEventListener("change", onOrbitChange);
   }, [cameraPosition, controlsRef, onOrbitChange]);
@@ -164,7 +161,7 @@ function ModelRenderer({
 }) {
   return (
     <Canvas
-      camera={{ fov: 60, near: 1, position: INITIAL_CAMERA_POSITION }}
+      camera={{ fov: 60, near: 1 }}
       onCreated={({ gl, scene }) => {
         if (gl) gl.outputEncoding = sRGBEncoding;
         if (scene) scene.background = new Color(0xfafafa);

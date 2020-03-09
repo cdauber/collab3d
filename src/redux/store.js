@@ -1,6 +1,8 @@
+import { Converter } from "aws-sdk/clients/dynamodb";
 import LZString from "lz-string";
 import { createStore } from "redux";
-import comments from "../comments";
+import { v4 as uuidV4 } from "uuid";
+import authors from "../authors";
 import {
   ADD_COMMENT,
   ADD_REPLY,
@@ -21,6 +23,8 @@ import {
   RESOLVE_REPLY,
   SELECT_COMMENT,
   SELECT_VARIATION,
+  setComments,
+  SET_COMMENTS,
   SET_PIN_POSITION,
   SHOW_PINS,
   UNATTACH_DRAW_OVER,
@@ -35,17 +39,16 @@ export const CURSOR = {
   PIN: "pin"
 };
 
-export const INITIAL_CAMERA_POSITION = [0, 1, 4];
+export const author = authors[Math.floor(Math.random() * authors.length)];
 
 const initialState = {
   cursor: CURSOR.DEFAULT,
-  cameraPosition: { position: INITIAL_CAMERA_POSITION, focus: [0, 0, 0] },
+  cameraPosition: { position: ["0", "1", "4"], focus: ["0", "0", "0"] },
   isCommenting: false,
   fileIsAttached: false,
   drawOverIsAttached: false,
   pinIsAttached: false,
   showPins: true,
-  maxCommentId: 3,
   activeVariationIds: { 1: true },
   variations: [
     {
@@ -71,27 +74,9 @@ const initialState = {
       name: "Dark Blue Sneaker",
       thumbnail: "assets/adidas_sneaker_dark_blue_thumbnail.png",
       model: "models/gltf/adidas_sneaker_dark_blue/Project Name.gltf"
-    },
-    // {
-    //   id: 5,
-    //   name: "Grey Jacket",
-    //   thumbnail: "assets/grey_adidas_thumbnail.png",
-    //   model: "models/gltf/grey_adidas/Grey Adidas.gltf"
-    // },
-    // {
-    //   id: 6,
-    //   name: "Blue Jacket",
-    //   thumbnail: "assets/blue_adidas_thumbnail.png",
-    //   model: "models/gltf/blue_adidas/Blue Adidas.gltf"
-    // },
-    // {
-    //   id: 7,
-    //   name: "Pink Jacket",
-    //   thumbnail: "assets/pink_adidas_thumbnail.png",
-    //   model: "models/gltf/pink_adidas/Pink Jacket.gltf"
-    // }
+    }
   ],
-  comments: comments
+  comments: []
 };
 
 export function cameraPositionEquals(camera1, camera2) {
@@ -118,34 +103,49 @@ function rootReducer(state = initialState, { type, data }) {
       ) {
         return {
           ...state,
-          cameraPosition: data,
+          cameraPosition: {
+            position: data.position.map(i => `${i}`),
+            focus: data.focus.map(i => `${i}`)
+          },
           selectedCommentId: null,
-          drawing: null
+          drawing: undefined
         };
       }
-      return { ...state, cameraPosition: data };
+      return {
+        ...state,
+        cameraPosition: {
+          position: data.position.map(i => `${i}`),
+          focus: data.focus.map(i => `${i}`)
+        }
+      };
     case MOVE_CAMERA:
-      return { ...state, cameraPosition: data };
+      return {
+        ...state,
+        cameraPosition: {
+          position: data.position.map(i => `${i}`),
+          focus: data.focus.map(i => `${i}`)
+        }
+      };
     case SELECT_COMMENT:
       return {
         ...state,
         selectedCommentId: data.id,
-        cameraPosition: data.camera ? data.camera : state.cameraPosition,
-        activeVariationIds: data.activeVariationIds
-          ? data.activeVariationIds
-          : state.activeVariationIds,
+        cameraPosition: data.camera,
+        activeVariationIds: data.activeVariationIds || state.activeVariationIds,
         drawing:
           data.drawOver &&
           JSON.parse(LZString.decompressFromEncodedURIComponent(data.drawOver))
       };
     case DESELECT_COMMENT:
-      return { ...state, selectedCommentId: null, drawing: null };
+      return { ...state, selectedCommentId: null, drawing: undefined };
     case RESOLVE_COMMENT:
+      conn.send("deletecomment", { id: data.id });
       return {
         ...state,
         comments: state.comments.filter(({ id }) => id !== data.id)
       };
     case RESOLVE_REPLY:
+      conn.send("deletecomment", { id: data.reply.id });
       return {
         ...state,
         comments: state.comments.map(comment =>
@@ -162,14 +162,14 @@ function rootReducer(state = initialState, { type, data }) {
     case ATTACH_FILE:
       return { ...state, fileIsAttached: true };
     case UNATTACH_FILE:
-      return { ...state, fileIsAttached: false, attachedFile: null };
+      return { ...state, fileIsAttached: false, attachedFile: undefined };
     case ATTACH_DRAW_OVER:
       return { ...state, drawOverIsAttached: true, cursor: CURSOR.DRAWOVER };
     case UNATTACH_DRAW_OVER:
       return {
         ...state,
         drawOverIsAttached: false,
-        drawing: null,
+        drawing: undefined,
         cursor: CURSOR.DEFAULT
       };
     case ATTACH_PIN:
@@ -182,11 +182,17 @@ function rootReducer(state = initialState, { type, data }) {
       return {
         ...state,
         pinIsAttached: false,
-        attachedPin: null,
+        pin: undefined,
         cursor: CURSOR.DEFAULT
       };
     case SET_PIN_POSITION:
-      return { ...state, pin: data };
+      return {
+        ...state,
+        pin: {
+          position: data.position.map(i => `${i}`),
+          normal: data.normal.map(i => `${i}`)
+        }
+      };
     case PLACE_PIN:
       return { ...state, cursor: CURSOR.DEFAULT };
     case CANCEL_COMMENT:
@@ -194,62 +200,63 @@ function rootReducer(state = initialState, { type, data }) {
         ...state,
         isCommenting: false,
         fileIsAttached: false,
-        attachedFile: null,
+        attachedFile: undefined,
         drawOverIsAttached: false,
-        drawing: null,
+        drawing: undefined,
         pinIsAttached: false,
-        pin: null,
+        pin: undefined,
         cursor: CURSOR.DEFAULT
       };
     case ADD_COMMENT:
-      return {
-        ...state,
-        maxCommentId: 1 + state.maxCommentId,
-        comments: [
-          {
-            id: 1 + state.maxCommentId,
-            author: "Greg Gottesman",
-            profilePicture:
-              "https://assets.website-files.com/5d3152346d95065922960b3a/5db769036b1dff3418bffd20_Greg.jpg",
-            date: new Date().getTime(),
-            text: data,
-            file: state.file,
-            drawOver:
-              state.drawing &&
-              LZString.compressToEncodedURIComponent(
-                JSON.stringify(state.drawing)
-              ),
-            pin: state.pin,
-            camera: state.cameraPosition,
-            activeVariationIds: state.activeVariationIds,
-            thread: []
-          },
-          ...state.comments
-        ]
+      if (!data) {
+        if (state.drawOverIsAttached) {
+          data = "Attached a draw over.";
+        } else if (state.pinIsAttached) {
+          data = "Attached a pin.";
+        } else if (state.fileIsAttached) {
+          data = "Attached a file.";
+        }
+      }
+      const comment = {
+        id: uuidV4(),
+        author: author.name,
+        profilePicture: author.profilePicture,
+        date: new Date().getTime(),
+        text: data,
+        file: state.file,
+        drawOver:
+          state.drawing &&
+          LZString.compressToEncodedURIComponent(JSON.stringify(state.drawing)),
+        pin: state.pin,
+        camera: state.cameraPosition,
+        activeVariationIds: state.activeVariationIds,
+        thread: []
       };
+      conn.send("addcomment", comment);
+      return { ...state, comments: [comment, ...state.comments] };
     case ADD_REPLY:
+      const reply = {
+        id: uuidV4(),
+        author: author.name,
+        profilePicture: author.profilePicture,
+        date: new Date().getTime(),
+        text: data.text,
+        file: state.file,
+        drawOver:
+          state.drawing &&
+          LZString.compressToEncodedURIComponent(JSON.stringify(state.drawing)),
+        // needed for API
+        parent_id: data.comment.id,
+        camera: data.comment.camera
+      };
+      conn.send("addcomment", reply);
       return {
         ...state,
-        maxCommentId: 1 + state.maxCommentId,
         comments: state.comments.map(comment =>
           comment.id === data.comment.id
             ? {
                 ...comment,
-                thread: [
-                  {
-                    id: 1 + state.maxCommentId,
-                    author: "Greg Gottesman",
-                    profilePicture:
-                      "https://assets.website-files.com/5d3152346d95065922960b3a/5db769036b1dff3418bffd20_Greg.jpg",
-                    date: new Date().getTime(),
-                    text: data.text,
-                    file: state.file,
-                    drawOver: LZString.compressToEncodedURIComponent(
-                      JSON.stringify(state.drawing)
-                    )
-                  },
-                  ...comment.thread
-                ]
+                thread: [reply, ...comment.thread]
               }
             : comment
         )
@@ -274,9 +281,61 @@ function rootReducer(state = initialState, { type, data }) {
       return { ...state, showPins: true };
     case HIDE_PINS:
       return { ...state, showPins: false };
+    case SET_COMMENTS:
+      return { ...state, comments: data };
     default:
       return state;
   }
 }
 
-export default createStore(rootReducer);
+const store = createStore(rootReducer);
+
+class AWSConnection {
+  constructor(url, onOpen, onMessage, onError = null, onClose = null) {
+    if (url) {
+      this.ws = new WebSocket(url);
+      this.ws.onopen = onOpen;
+      this.ws.onmessage =
+        onMessage &&
+        function({ data, ...event }) {
+          onMessage({ data: JSON.parse(data), ...event });
+        };
+      this.ws.onerror = onError;
+      this.ws.onclose = onClose;
+    }
+  }
+
+  send(action, data) {
+    if (this.ws) {
+      this.ws.send(JSON.stringify({ commentAction: action, ...data }));
+    }
+  }
+}
+
+const conn = new AWSConnection(
+  "wss://m4wsvsc677.execute-api.us-east-1.amazonaws.com/poctest",
+  function() {
+    conn.send("fetchcomments");
+  },
+  function({ data }) {
+    if (Array.isArray(data)) {
+      data = data.map(comment => Converter.unmarshall(comment));
+      data = data
+        .filter(({ parent_id }) => !parent_id)
+        .map(comment => ({
+          ...comment,
+          thread: data
+            .filter(({ parent_id }) => parent_id === comment.id)
+            .sort((comment1, comment2) => comment2.date - comment1.date)
+        }))
+        .sort((comment1, comment2) => comment2.date - comment1.date);
+      console.log(data);
+      store.dispatch(setComments(data));
+    } else {
+      conn.send("fetchcomments");
+    }
+  },
+  console.log
+);
+
+export default store;
