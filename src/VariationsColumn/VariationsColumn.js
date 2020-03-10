@@ -15,14 +15,14 @@ function VariationsColumn({ variations, onClickVariation, ...props }) {
   return (
     <div id="variations-column" className={isOpen ? "" : "closed"} {...props}>
       <CommentsColumnHeader
-        headerText="Show Iterations"
+        headerText="Show Variations"
         className={"variations-column-closed-label" + (isOpen ? "" : " closed")}
         onClick={() => setIsOpen(true)}
       />
       <div className={"variations-column-inside" + (isOpen ? "" : " closed")}>
         <CommentsColumnHeader
           className="variations-header"
-          headerText="Iterations"
+          headerText="Variations"
         />
         <div className="variations-scroll-column">
           {variations.map(variation => (
