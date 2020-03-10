@@ -221,7 +221,7 @@ function rootReducer(state = initialState, { type, data }) {
         drawOver:
           state.drawing &&
           LZString.compressToEncodedURIComponent(JSON.stringify(state.drawing)),
-        camera: state.camera,
+        camera: state.cameraPosition,
         activeVariationIds: state.activeVariationIds,
         // needed for API
         parent_id: data.comment.id
@@ -306,7 +306,6 @@ const conn = new AWSConnection(
             .sort((comment1, comment2) => comment2.date - comment1.date)
         }))
         .sort((comment1, comment2) => comment2.date - comment1.date);
-      console.log(data);
       store.dispatch(setComments(data));
     } else {
       conn.send("fetchcomments");
