@@ -35,24 +35,6 @@
   color: #a5a5a5;
 }
 
-.top-row-redo-button {
-  background: none;
-  border: none;
-  cursor: default;
-
-  padding: 5px 16px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14px;
-  color: #a5a5a5;
-  cursor: pointer;
-}
-
-.top-row-redo-button:hover {
-  color: #7e8ed7;
-}
-
 .top-row-popup-content {
   top: 45px !important;
   background-color: #333333 !important;
@@ -68,7 +50,7 @@
 .small-icon-button {
   background: none;
   border: none;
-  padding: 5px 0;
+  padding: 5px 10px;
 }
 
 .top-row-menu {
@@ -78,7 +60,20 @@
   padding: 11px 10px;
 }
 
-.top-row-menu > div {
+.top-row-menu > button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  color: white;
+  margin-top: 22px;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.top-row-menu > div,
+.top-row-menu > button {
   padding-left: 17px;
   display: flex;
   flex-direction: row;
@@ -90,20 +85,20 @@
   color: #a5a5a5;
 }
 
-.top-row-menu > div:not(.top-row-menu-options-row) {
-  cursor: pointer;
-  margin-top: 22px;
-}
-
-.top-row-menu > div:not(.top-row-menu-options-row):hover {
+.top-row-menu > button:not(:disabled):hover {
   padding-left: 0;
 }
 
-.top-row-menu > div:not(.top-row-menu-options-row):hover:before {
+.top-row-menu > button:not(:disabled):hover:before {
   display: block;
   content: "";
   background: url(/assets/check.svg);
   width: 10px;
   height: 10px;
   margin-right: 7px;
+}
+
+.top-row-menu > button:disabled {
+  cursor: default;
+  color: #a5a5a5
 }

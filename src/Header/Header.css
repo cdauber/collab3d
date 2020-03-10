@@ -58,6 +58,7 @@
   border-radius: 50%;
   box-sizing: border-box;
   margin: 5px 0;
+  object-fit: cover;
 }
 
 .AR,
@@ -73,7 +74,10 @@
   font-weight: normal;
   line-height: 14px;
   color: #fff;
-  text-align: center;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .share {
@@ -82,4 +86,9 @@
 
 button:focus {
   outline: 0;
+}
+@media only screen and (max-width: 768px) {
+  .head {
+    display: none;
+  }
 }

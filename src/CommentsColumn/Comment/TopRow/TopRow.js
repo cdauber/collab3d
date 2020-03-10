@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import { ProfileIcon } from "./ProfileIcon/ProfileIcon";
 import "./TopRow.css";
 
-export function addDays(date, days) {
+function addDays(date, days) {
   const result = new Date(date.valueOf());
   result.setDate(date.getDate() + days);
   return result;
@@ -24,15 +24,7 @@ function relativeDateString(dateInMillis) {
   }
 }
 
-export function TopRow({
-  profilePic,
-  profilePicture,
-  author,
-  date,
-  redrawEnabled,
-  onRedraw,
-  onResolve
-}) {
+export function TopRow({ profilePicture, author, date, onResolve }) {
   const [closeMenu, setCloseMenu] = useState(false);
 
   useEffect(() => {
@@ -48,14 +40,6 @@ export function TopRow({
         <div className="author-name">{author}</div>
         <div className="comment-date">{relativeDateString(date)}</div>
       </div>
-      {redrawEnabled && (
-        <button
-          className="top-row-redo-button"
-          onClick={onRedraw}
-        >
-          Redraw
-        </button>
-      )}
       <Popup
         className="top-row-popup"
         trigger={
@@ -81,23 +65,26 @@ export function TopRow({
               />
             </button>
           </div>
-          <div
+          <button
             onClick={() => {
               setCloseMenu(true);
               onResolve();
             }}
           >
             Resolve
-          </div>
-          <div onClick={() => setCloseMenu(true)}>Edit</div>
-          <div
+          </button>
+          <button disabled onClick={() => setCloseMenu(true)}>
+            Edit
+          </button>
+          <button
+            disabled
             onClick={() => {
               setCloseMenu(true);
               onResolve();
             }}
           >
             Delete
-          </div>
+          </button>
         </div>
       </Popup>
     </div>

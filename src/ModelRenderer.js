@@ -1,36 +1,52 @@
-import React, { Suspense, useRef, useEffect } from "react";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { Canvas, useThree, extend, useLoader } from "react-three-fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Box3, Vector3, Color, sRGBEncoding } from "three";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
+import { Canvas, extend, useFrame, useThree } from "react-three-fiber";
+import { Box3, Color, sRGBEncoding, Vector3 } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { changeCamera, placePin, setPinPosition } from "./redux/actions";
-import { INITIAL_CAMERA_POSITION, CURSOR } from "./redux/store";
+import { cameraPositionEquals, CURSOR } from "./redux/store";
 
 extend({ OrbitControls });
 
-function Model({ path, ...props }) {
-  const gltf = useLoader(GLTFLoader, path);
+function Model({ path, fallback, ...props }) {
+  const [model, setModel] = useState();
 
   useEffect(() => {
-    var mroot = gltf.scene;
+    if (!model) {
+      (async () => {
+        const gltf = await new Promise((resolve, reject) =>
+          new GLTFLoader().load(path, resolve, undefined, reject)
+        );
+        var mroot = gltf.scene;
 
-    //Rescale the object to normalized space
-    var bbox = new Box3().setFromObject(mroot);
-    mroot.scale.multiplyScalar(
-      5 / Math.max(...bbox.getSize(new Vector3()).toArray())
-    );
+        //Rescale the object to normalized space
+        var bbox = new Box3().setFromObject(mroot);
+        mroot.scale.multiplyScalar(
+          5 / Math.max(...bbox.getSize(new Vector3()).toArray())
+        );
 
-    //Centering Object
-    bbox.setFromObject(mroot);
-    mroot.position.copy(bbox.getCenter(new Vector3())).multiplyScalar(-1);
-  }, [gltf]);
+        //Centering Object
+        bbox.setFromObject(mroot);
+        mroot.position.copy(bbox.getCenter(new Vector3())).multiplyScalar(-1);
 
-  return <primitive object={gltf.scene} {...props} />;
+        setModel(gltf);
+      })();
+    }
+  }, [path, model]);
+
+  return model ? <primitive object={model.scene} {...props} /> : fallback;
 }
 
 function Pin({ pinPosition, color = "red" }) {
   const mesh = useRef();
+
+  useEffect(() => {
+    if (mesh.current) {
+      mesh.current.geometry.verticesNeedUpdate = true;
+    }
+  });
+
   if (!pinPosition) return null;
 
   let position = new Vector3(...pinPosition.position);
@@ -58,27 +74,32 @@ function Pin({ pinPosition, color = "red" }) {
       </mesh>
     </group>
   );
-  if (mesh.current) {
-    mesh.current.geometry.verticesNeedUpdate = true;
-  }
 
   return pin;
 }
 
 function Controls({ cameraPosition, onOrbitChange, ...props }) {
   const controlsRef = useRef();
-  useEffect(() => {
-    const controls = controlsRef.current;
 
-    if (cameraPosition) {
+  useFrame(() => {
+    const controls = controlsRef.current;
+    if (
+      cameraPosition &&
+      !cameraPositionEquals(cameraPosition, {
+        position: controls.object.position.toArray(),
+        focus: controls.target.toArray()
+      })
+    ) {
       const { position, focus } = cameraPosition;
       controls.object.position.set(...position);
       controls.target.set(...focus);
+      controls.update();
     }
+  });
 
+  useEffect(() => {
+    const controls = controlsRef.current;
     controls.addEventListener("change", onOrbitChange);
-    controls.update();
-
     return () => controls.removeEventListener("change", onOrbitChange);
   }, [cameraPosition, controlsRef, onOrbitChange]);
 
@@ -91,24 +112,65 @@ function Controls({ cameraPosition, onOrbitChange, ...props }) {
   );
 }
 
+function LoadingModel({ color = "orange", position, ...props }) {
+  const mesh = useRef();
+  const [loadingModel, setLoadingModel] = useState();
+
+  useEffect(() => {
+    let stillMounted = true;
+    if (!loadingModel) {
+      (async function() {
+        const gltf = await new Promise((resolve, reject) =>
+          new GLTFLoader().load(
+            "models/gltf/vivid3d_loader/scene.gltf",
+            resolve,
+            undefined,
+            reject
+          )
+        );
+        if (stillMounted) {
+          gltf.scene.scale.setLength(13);
+          setLoadingModel(gltf);
+        }
+      })();
+    }
+    
+    return function() {
+      stillMounted = false;
+    };
+  }, [loadingModel, setLoadingModel]);
+
+  useFrame(() => {
+    if (mesh.current) {
+      mesh.current.rotation.y -= 0.03;
+      mesh.current.position.set(...position);
+    }
+  });
+
+  return loadingModel ? (
+    <primitive ref={mesh} object={loadingModel.scene} {...props} />
+  ) : null;
+}
+
 function ModelRenderer({
   cameraPosition,
-  onOrbitChange,
-  placePinClick,
-  onPointerMove,
-  pointerEventData,
+  comments,
+  modelPath,
   pinIsAttached,
   pinFollowCursor,
   pin,
-  comments,
+  showPins,
+  onOrbitChange,
+  placePinClick,
+  onPointerMove,
   ...props
 }) {
   return (
     <Canvas
-      camera={{ fov: 60, near: 1, position: INITIAL_CAMERA_POSITION }}
+      camera={{ fov: 60, near: 1 }}
       onCreated={({ gl, scene }) => {
-        gl.outputEncoding = sRGBEncoding;
-        scene.background = new Color(0xfafafa);
+        if (gl) gl.outputEncoding = sRGBEncoding;
+        if (scene) scene.background = new Color(0xe5e5e5);
       }}
       {...props}
     >
@@ -119,43 +181,29 @@ function ModelRenderer({
         onOrbitChange={onOrbitChange}
       />
       <ambientLight />
-      <Suspense fallback={null}>
-        <Model
-          path="models/gltf/nike_shoe/scene.gltf"
-          onPointerMove={pinFollowCursor && onPointerMove}
-          onClick={pinFollowCursor && placePinClick}
-        />
-        {pinIsAttached && <Pin pinPosition={pin} color="#E37FFA" />}
-        {comments
+      <Model
+        path={modelPath}
+        fallback={<LoadingModel position={cameraPosition.focus} />}
+        onPointerMove={pinFollowCursor && onPointerMove}
+        onClick={pinFollowCursor && placePinClick}
+      />
+      {pinIsAttached && <Pin pinPosition={pin} color="#E37FFA" />}
+      {showPins &&
+        comments
           .filter(comment => comment.pin)
-          .map(comment => (
-            <Pin key={comment.id} pinPosition={comment.pin} />
-          ))}
-      </Suspense>
+          .map(comment => <Pin key={comment.id} pinPosition={comment.pin} />)}
     </Canvas>
   );
 }
 
 export default connect(
-  ({
+  ({ cameraPosition, comments, pinIsAttached, cursor, pin, showPins }) => ({
+    cameraPosition,
     comments,
-    selectedCommentId,
-    activeCameraPosition,
-    pointerEventData,
-    pinIsAttached,
-    cursor,
-    pin
-  }) => ({
-    cameraPosition: comments.reduce(
-      (acc, comment) =>
-        comment.id === selectedCommentId ? comment.camera : acc,
-      activeCameraPosition
-    ),
-    comments,
-    pointerEventData,
     pinIsAttached,
     pinFollowCursor: cursor === CURSOR.PIN,
-    pin
+    pin,
+    showPins
   }),
   dispatch => ({
     onOrbitChange: ({

@@ -51,6 +51,7 @@ function CommentInput({
               "comment-input-icon-action-button" +
               (fileIsAttached ? " active" : "")
             }
+            disabled
             data-tip="Attach file"
             onClick={() => onClickAttachFile(inputComment)}
           >
@@ -103,7 +104,7 @@ function CommentInput({
               !(submitEnabled || (inputComment && inputComment.length > 0))
             }
             onClick={() => {
-              onClickSubmit(inputComment || "");
+              onClickSubmit(inputComment);
               setInputComment("");
             }}
           >
@@ -115,7 +116,11 @@ function CommentInput({
   );
 }
 
-function mergeProps(stateProps, dispatchProps, ownProps) {
+function mergeProps(
+  { selectedCommentId, ...stateProps },
+  dispatchProps,
+  ownProps
+) {
   const {
     deselectComment,
     beginComment,
@@ -132,8 +137,8 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     ...ownProps,
     ...stateProps,
     onFocusTextArea: () => {
-      if (stateProps.isCommenting) {
-        if (stateProps.mainThread) {
+      if (!stateProps.isCommenting) {
+        if (selectedCommentId) {
           deselectComment();
         }
         beginComment();
@@ -158,9 +163,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          if (ownProps.mainThread) {
-            deselectComment();
-          }
+          deselectComment();
           beginComment();
         }
         attachFile();
@@ -179,9 +182,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          if (ownProps.mainThread) {
-            deselectComment();
-          }
+          deselectComment();
           beginComment();
         }
         attachDrawOver();
@@ -200,9 +201,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         }
       } else {
         if (!stateProps.cancelEnabled) {
-          if (ownProps.mainThread) {
-            deselectComment();
-          }
+          deselectComment();
           beginComment();
         }
         attachPin();
@@ -220,7 +219,8 @@ export default connect(
     drawOverIsAttached,
     drawing,
     pinIsAttached,
-    pin
+    pin,
+    selectedCommentId
   }) => ({
     fileIsAttached,
     drawOverIsAttached,
@@ -229,7 +229,8 @@ export default connect(
     submitEnabled:
       (fileIsAttached && file) ||
       (drawOverIsAttached && drawing) ||
-      (pinIsAttached && pin)
+      (pinIsAttached && pin),
+    selectedCommentId
   }),
   {
     deselectComment,

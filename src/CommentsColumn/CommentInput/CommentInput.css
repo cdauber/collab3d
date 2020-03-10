@@ -51,9 +51,13 @@
   align-items: center;
 }
 
-.comment-input-icon-action-button:hover,
-.comment-input-icon-action-button.active {
+.comment-input-icon-action-button:hover:not(:disabled),
+.comment-input-icon-action-button.active:not(:disabled) {
   background-color: #dde3ff;
+}
+
+.comment-input-icon-action-button:disabled {
+  opacity: 0.7;
 }
 
 .comment-input-text-action-button {

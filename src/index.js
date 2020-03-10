@@ -7,21 +7,42 @@ import Header from "./Header/Header";
 import "./index.css";
 import ModelRenderer from "./ModelRenderer";
 import store from "./redux/store";
-import { deselectComment, moveCamera } from "./redux/actions";
+import {
+  deselectComment,
+  moveCamera,
+  showPins,
+  hidePins
+} from "./redux/actions";
+import VariationsColumn from "./VariationsColumn/VariationsColumn";
 
 function MainPage({
   cursor,
+  showPins,
+  activeVariations,
+  onClickEye,
   onClickTopCamera,
   onClickFrontCamera,
   onClickSideCamera
 }) {
   return (
     <div id="app-container" className={cursor}>
-      <Header />
+      <Header eyeOpen={showPins} onClickEye={onClickEye} />
       <div id="main-area">
-        {/* <div id="variations-column"></div> */}
+        <VariationsColumn />
         <DrawOver className="draw-over">
-          <ModelRenderer className="renderer" />
+          <div className="renderer-row">
+            {activeVariations.map(variation => (
+              <div
+                key={variation.id}
+                className="renderer"
+                style={{
+                  width: `calc(100%/${activeVariations.length})`
+                }}
+              >
+                <ModelRenderer modelPath={variation.model} />
+              </div>
+            ))}
+          </div>
           <div className="camera-button-row">
             <button
               className="camera-button top-camera-button"
@@ -59,7 +80,13 @@ function MainPage({
 }
 
 const WrappedMainPage = connect(
-  ({ cursor }) => ({ cursor }),
+  ({ cursor, activeVariationIds, variations, showPins }) => ({
+    cursor,
+    activeVariations: Object.keys(activeVariationIds)
+      .filter(id => activeVariationIds[id])
+      .map(variationId => variations.find(({ id }) => `${id}` === variationId)),
+    showPins
+  }),
   dispatch => ({
     onClickTopCamera: () => {
       dispatch(deselectComment());
@@ -72,6 +99,20 @@ const WrappedMainPage = connect(
     onClickSideCamera: () => {
       dispatch(deselectComment());
       dispatch(moveCamera({ position: [-4, 0, 0], focus: [0, 0, 0] }));
+    },
+    showPins: () => dispatch(showPins()),
+    hidePins: () => dispatch(hidePins())
+  }),
+  (stateProps, { showPins, hidePins, ...dispatchProps }, ownProps) => ({
+    ...ownProps,
+    ...stateProps,
+    ...dispatchProps,
+    onClickEye: () => {
+      if (stateProps.showPins) {
+        hidePins();
+      } else {
+        showPins();
+      }
     }
   })
 )(MainPage);

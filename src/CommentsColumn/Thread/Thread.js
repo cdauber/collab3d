@@ -40,7 +40,10 @@ function Thread({
         onClick={() => onClickComment(comment)}
         onResolve={() => setResolveCommentId(comment.id)}
       >
-        <CommentInput onClickSubmit={text => onAddReply(comment, text)} />
+        <CommentInput
+          onClick={e => e.stopPropagation()}
+          onClickSubmit={text => onAddReply(comment, text)}
+        />
       </Comment>
       <div className="scroll-column">
         {comment &&
@@ -88,7 +91,7 @@ function mergeProps(
     ...stateProps,
     ...restOfDispatchProps,
     onClickComment: comment => {
-      if (comment !== selectedComment) {
+      if (!stateProps.isCommenting && comment !== selectedComment) {
         selectComment(comment);
       }
     },
