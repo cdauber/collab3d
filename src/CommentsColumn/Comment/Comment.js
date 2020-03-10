@@ -17,7 +17,7 @@ function Comment({
   return (
     <div className={"comment" + (selected ? " selected" : "")} {...props}>
       <div className="comment-content">
-        <TopRow {...comment} redrawEnabled={redrawEnabled} />
+        <TopRow {...comment} onResolve={onResolve} />
         <p className="comment-text">{text}</p>
         {children}
       </div>
