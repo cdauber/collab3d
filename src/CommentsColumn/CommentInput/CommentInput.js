@@ -51,6 +51,7 @@ function CommentInput({
               "comment-input-icon-action-button" +
               (fileIsAttached ? " active" : "")
             }
+            disabled
             data-tip="Attach file"
             onClick={() => onClickAttachFile(inputComment)}
           >

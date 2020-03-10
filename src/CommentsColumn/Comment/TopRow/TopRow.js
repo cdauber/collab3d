@@ -65,23 +65,26 @@ export function TopRow({ profilePicture, author, date, onResolve }) {
               />
             </button>
           </div>
-          <div
+          <button
             onClick={() => {
               setCloseMenu(true);
               onResolve();
             }}
           >
             Resolve
-          </div>
-          <div onClick={() => setCloseMenu(true)}>Edit</div>
-          <div
+          </button>
+          <button disabled onClick={() => setCloseMenu(true)}>
+            Edit
+          </button>
+          <button
+            disabled
             onClick={() => {
               setCloseMenu(true);
               onResolve();
             }}
           >
             Delete
-          </div>
+          </button>
         </div>
       </Popup>
     </div>

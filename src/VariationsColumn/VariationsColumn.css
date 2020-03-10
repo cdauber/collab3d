@@ -29,7 +29,7 @@
 }
 
 .variations-column-closed-label.closed {
-  opacity: 100%;
+  opacity: 1;
   cursor: pointer;
 }
 
