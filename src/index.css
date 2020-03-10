@@ -84,7 +84,7 @@ code {
   position: absolute;
   z-index: 1;
   bottom: 42px;
-  left: calc(50% - (3/2) * (16px + 2*8.5px));
+  left: calc(50% - (3/2) * (14px + 2*8.5px));
   background-color: #fafafa;
   border-radius: 6.8px;
   box-shadow: 0px 1.7px 10.2px rgba(139, 139, 139, 0.36);
@@ -113,8 +113,6 @@ code {
 }
 
 .camera-button-icon-container {
-  width: 16px;
-  height: 16px;
   padding-bottom: 5px;
   display: flex;
   justify-content: center;
